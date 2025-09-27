@@ -1,0 +1,196 @@
+/* src/styles.css (TRIMMED GLOBAL STYLES) */
+
+/* --- Universal Resets and Base Styles (Global) --- */
+body {
+margin: 0;
+font-family: 'Poppins', sans-serif;
+background-color: var(--dark-bg);
+min-height: 100vh;
+}
+
+:root {
+--dark-bg: #0c0817;
+--purple-1: #3b0764;
+--purple-2: #581c87;
+--purple-3: #7e22ce;
+--purple-4: #9333ea;
+--purple-5: #a855f7;
+--purple-6: #c084fc;
+--purple-7: #d8b4fe;
+--indigo-1: #4f46e5;
+--indigo-2: #4338ca;
+--indigo-3: #3730a3;
+--indigo-4: #312e81;
+}
+
+/* ======================================= /
+/ --- Word Page Styles (from App.jsx) --- /
+/ ======================================= */
+.word-page-container {
+min-height: 100vh;
+background: linear-gradient(180deg, var(--dark-bg) 0%, var(--purple-1) 100%);
+padding: 2rem;
+}
+.word-list-wrapper {
+max-width: 896px;
+margin: 0 auto;
+}
+.word-page-header {
+text-align: center;
+padding: 2rem 0;
+}
+.word-list-back-button {
+margin-bottom: 1rem;
+color: var(--purple-6);
+font-weight: 500;
+display: flex;
+align-items: center;
+gap: 0.5rem;
+margin: 0 auto 1rem;
+background: none;
+border: none;
+cursor: pointer;
+transition: color 0.3s ease;
+}
+.word-list-back-button:hover {
+color: var(--purple-7);
+}
+.word-page-title {
+font-size: 2.25rem;
+font-weight: 900;
+background: linear-gradient(to right, var(--purple-6), var(--purple-4));
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+background-clip: text;
+color: transparent;
+margin-bottom: 0.5rem;
+}
+.word-page-subtitle {
+color: var(--purple-7);
+}
+.word-list-grid {
+display: grid;
+gap: 1rem;
+}
+.word-card {
+background-color: rgba(126, 34, 206, 0.1);
+border-radius: 1rem;
+padding: 1.5rem;
+box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+transition: all 300ms;
+cursor: pointer;
+border: 1px solid var(--purple-3);
+overflow: hidden;
+position: relative;
+z-index: 1;
+}
+.word-card:hover {
+transform: translateY(-5px);
+box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+.word-card-header {
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
+.word-card-title {
+font-size: 1.5rem;
+font-weight: 700;
+color: var(--purple-6);
+margin-bottom: 0.25rem;
+}
+.word-card-definition {
+color: var(--purple-7);
+}
+.word-card-icon-container {
+display: flex;
+align-items: center;
+justify-content: center;
+}
+.word-card-icon {
+width: 1.5rem;
+height: 1.5rem;
+color: var(--purple-4);
+transition: transform 300ms, color 300ms;
+}
+.word-card.expanded .word-card-icon {
+transform: rotate(90deg);
+color: var(--purple-6);
+}
+
+.word-card-details {
+margin-top: 1rem;
+padding-top: 1rem;
+border-top: 1px solid rgba(126, 34, 206, 0.3);
+color: #fff;
+}
+.word-card-synonyms, .word-card-antonyms {
+color: var(--purple-7);
+font-weight: 600;
+margin-bottom: 0.5rem;
+}
+.word-card-detail-value {
+font-weight: 400;
+color: var(--purple-7);
+}
+
+/* Quiz Card */
+.quiz-section {
+margin-top: 3rem;
+text-align: center;
+}
+.quiz-card {
+background-color: rgba(126, 34, 206, 0.1);
+border-radius: 1rem;
+padding: 2rem;
+box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+border: 1px solid var(--purple-3);
+position: relative;
+z-index: 1;
+}
+.quiz-card-title {
+font-size: 1.5rem;
+font-weight: 700;
+color: var(--purple-6);
+margin-bottom: 1rem;
+}
+.quiz-card-subtitle {
+color: var(--purple-7);
+margin-bottom: 1.5rem;
+}
+.quiz-card-button {
+background: linear-gradient(to right, var(--indigo-1), var(--indigo-2));
+color: white;
+padding: 0.75rem 2rem;
+border-radius: 0.75rem;
+font-weight: 600;
+transition: all 300ms;
+border: none;
+cursor: pointer;
+box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.quiz-card-button:hover {
+transform: scale(1.05);
+}
+
+/* --- Responsive Styles --- */
+@media (max-width: 767px) {
+.word-page-container {
+padding: 1rem;
+}
+.word-page-title {
+font-size: 1.5rem;
+}
+.word-page-subtitle {
+font-size: 0.875rem;
+}
+.word-card-title {
+font-size: 1.25rem;
+}
+.word-card-definition {
+font-size: 0.875rem;
+}
+.quiz-card-title {
+font-size: 1.25rem;
+}
+}
