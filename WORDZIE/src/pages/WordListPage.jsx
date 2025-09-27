@@ -42,10 +42,9 @@ const SimpleWordCard = ({ wordItem }) => {
                 </span>
                 
                 {wordItem.sentences && wordItem.sentences.length > 0 && (
-                    <div className="word-list-sentences-section">
-                        <strong className="word-list-detail-label">Examples:</strong>
+                    <div className="word-list-detail-tag">
+                        <strong className="word-list-detail-label">Sentences:</strong>
                         <ul className="word-list-sentences">
-                            {/* Map through the sentences array and render each one */}
                             {wordItem.sentences.map((sentence, index) => (
                                 <li key={index} className="word-list-sentence">{sentence}</li>
                             ))}

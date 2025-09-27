@@ -125,7 +125,7 @@ const HomePage = ({ onLetterSelect, onNavigateToGameSelect, selectedLetter, word
                         <Zap className="separator-icon" />
                         <div className="separator-line-right"></div>
                     </div>
-                    <p className="header-subtitle">Expand your vocabulary, one word at a time</p>
+                    <p className="header-subtitle">Expand your vocabulary, Shape your vision</p>
                     <div className="streak-info-container">
                         <div className="streak-info">
                             <div className="streak-dot"></div>
@@ -158,7 +158,7 @@ const HomePage = ({ onLetterSelect, onNavigateToGameSelect, selectedLetter, word
                         <h2 className="cta-title-compact">Ready to Expand Your Vocabulary?</h2>
                         <p className="cta-subtitle-compact">Join thousands of learners improving their vocabulary daily</p>
                         <div className="cta-buttons-compact">
-                            <button className="cta-button-primary-compact" onClick={onNavigateToGameSelect}>Start Quiz Challenge</button>
+                            <button className="cta-button-primary-compact" onClick={onNavigateToGameSelect}>Start Challenge</button>
                             <button className="cta-button-secondary-compact" onClick={() => alert('Feature coming soon!')}>Learn More</button>
                         </div>
                     </div>
