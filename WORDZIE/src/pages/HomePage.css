@@ -1,9 +1,11 @@
-/* --- Google Fonts Import for Fancy Font --- */
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&display=swap');
+/*  
+@import url('https://fonts.googleapis.com/css2?family=Ultra&display=swap'); 
+*/
 
 /* --- Homepage Layout and Background --- */
 .homepage-container {
-    min-height: 100vh;
+    min-height: auto;
     background: linear-gradient(135deg, 
         #0a0a0a 0%, 
         #1a0a2a 15%, 
@@ -13,8 +15,7 @@
         #1a0a2a 85%, 
         #0a0a0a 100%
     );
-    /* ✅ RETAINED: Increased padding to ensure content clears the fixed bottom watermark */
-    padding-bottom: 5rem; 
+    padding-bottom: 4rem; 
     color: #e2e8f0;
     position: relative;
     overflow-x: hidden;
@@ -47,7 +48,7 @@
 
 @media (max-width: 1023px) {
     .main-content-wrapper {
-        margin: 1rem; 
+        margin: 1rem auto; 
     }
 }
 
@@ -73,7 +74,6 @@
 
     .letter-selector-section {
         align-self: flex-start;
-        /* Desktop specific left alignment/spacing */
         margin-left: 1.8rem; 
         padding-right: 2rem;
         text-align: left;
@@ -153,11 +153,12 @@
 }
 
 .header-content-wrapper {
-    margin-bottom: 2rem; /* Adjusted margin */
+    margin-bottom: 2rem; 
 }
 
 /* --- Header Styles (FIXED) --- */
 .header-title {
+    font-family: 'Cooper Black', Impact, 'Arial Black', sans-serif;
     font-size: 3rem;
     font-weight: 900;
     margin-bottom: 1rem;
@@ -170,12 +171,18 @@
     filter: 
         drop-shadow(0 0 5px rgba(248, 250, 252, 0.5)) 
         drop-shadow(0 0 10px rgba(76, 29, 149, 1)); 
-    animation: neon-pulse 4s ease-in-out infinite alternate;
+    animation: neon-pulse 3s ease-in-out infinite alternate;
+}
+
+@media (min-width: 1024px) {
+    .header-title {
+        font-size: 7rem;
+    }
 }
 
 @media (min-width: 480px) {
     .header-title {
-        font-size: 4rem;
+        font-size: 3rem;
     }
 }
 
@@ -453,7 +460,7 @@
     height: 100vw;
     max-width: 320px; 
     max-height: 320px;
-    margin: 0 auto 3rem; /* Centered on mobile */
+    margin: 0 auto 3rem; 
     display: block;
 }
 
@@ -475,7 +482,7 @@
 
 @media (min-width: 1024px) {
     .circular-selector-wrapper {
-        margin: 0; /* Reset margin on desktop */
+        margin: 0; 
         width: 450px; 
         height: 450px;
         max-width: none;
@@ -524,15 +531,13 @@
     filter: drop-shadow(0 0 10px rgba(168, 85, 247, 0.5));
 }
 
-/* ✨ REFINED FIX: Smart Hover using glow, not scale */
 .letter-circle.available:hover {
-    fill: rgba(192, 132, 252, 0.9);
+    fill: rgba(73, 20, 126, 0.9);
     stroke: #c084fc;
     filter: 
-        drop-shadow(0 0 10px #c084fc) 
-        drop-shadow(0 0 25px rgba(192, 132, 252, 0.7));
+        drop-shadow(0 0 30px #c084fc) 
+        drop-shadow(0 0 55px rgba(192, 132, 252, 0.7));
     box-shadow: 0 0 25px rgba(192, 132, 252, 0.7);
-    /* Removed transform: scale(1.3); to prevent overlapping */
 }
 
 .letter-circle.unavailable {
@@ -708,20 +713,20 @@
         0 0 60px rgba(168, 85, 247, 0.3);
 }
 
-/* ✨ FIX: Letter Selector Text Alignment and Centering for Mobile/Tablet */
+/* --- Center Circular Selector on Small Screens --- */
 @media (max-width: 1023px) {
-    .letter-selector-section {
-        text-align: center;
-        /* Ensure the entire section is centered on mobile viewports */
-        margin-left: auto;
-        margin-right: auto;
+    .circular-selector-wrapper {
+        position: relative;
+        width: 90vw; 
+        height: 90vw; 
+        max-width: 320px;
+        max-height: 320px;
+        margin: 0 auto 3rem; 
     }
-    .letter-selector-section .section-title,
-    .letter-selector-section .section-subtitle {
-        text-align: center;
-        /* Reset desktop-specific margins to ensure centering */
-        margin-left: auto !important;
-        margin-right: auto !important;
+
+    .circular-selector-svg {
+        display: block;
+        margin: 0 auto; 
     }
 }
 
@@ -895,7 +900,6 @@
         width: 250px;
         max-width: 250px;
         padding: 0.8rem 1rem;
-        /* ✨ FIX: Auto margins to center the block element */
         margin-left: auto;
         margin-right: auto;
     }
@@ -1135,7 +1139,7 @@
     padding: 0.85rem 1.1rem; 
     border-radius: 0.85rem; 
     font-weight: 800;
-    font-size: 0.5rem;
+    font-size: 0.8rem;
     transition: all 400ms;
     border: 2px solid rgba(248, 250, 252, 0.9);
     cursor: pointer;

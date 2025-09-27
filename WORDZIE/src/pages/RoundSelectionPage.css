@@ -22,15 +22,10 @@
     max-width: 100%;
     margin: 0 auto;
     color: var(--neon-purple-light);
-    /* REMOVED: animation: fadeIn 0.8s ease-out; */
 }
 
-/* REMOVED: @keyframes fadeIn animation entirely */
 
-/* ======================================= /
-/* --- Header & Back Button --- /
-/* ======================================= */
-
+/* --- Header & Back Button --- */
 .round-selection-header {
     text-align: center;
     padding: 2rem 0;
@@ -129,10 +124,7 @@
     }
 }
 
-/* ======================================= /
-/* --- Round Cards Grid: CENTERED (SINGLE COLUMN) --- /
-/* ======================================= */
-
+/* --- Round Cards Grid: CENTERED (SINGLE COLUMN) --- */
 .round-cards-grid {
     display: grid;
     gap: 1.5rem;
@@ -232,7 +224,6 @@
     transform: translateX(5px);
 }
 
-/* --- No Rounds Message --- */
 .no-rounds-message {
     text-align: center;
     padding: 5rem 0;

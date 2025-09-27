@@ -306,8 +306,8 @@ h1.word-list-title {
 
     .word-list-container .word-list-back-button,
     .word-list-container .word-list-home-button {
-        top: 1rem; /* Same top position for both */
-        font-size: 0.95rem; /* Slightly smaller button text */
+        top: 1rem; 
+        font-size: 0.95rem; 
     }
 }
 
