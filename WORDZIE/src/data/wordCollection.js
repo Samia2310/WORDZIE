@@ -225,21 +225,6 @@ export const wordDataByLetter = {
     { word: 'CONGENITAL', definition: 'Describing a trait or condition acquired between conception and birth; innate', synonyms: ['Inborn', 'Inherent', 'Innate'], antonyms: ['Acquired', 'Learned', 'Developed'], sentences: ['A congenital birth defect is one present at birth but not caused by genes.', 'A congenital liar is a natural liar who can\'t help but lie.'] },
     { word: 'CONJECTURE', definition: 'To guess; to deduce or infer on slight evidence', synonyms: ['Speculate', 'Guess', 'Theorize'], antonyms: ['Know for certain', 'Prove', 'Verify'], sentences: ['If forced to conjecture, I would say the volcano will erupt in twenty-four hours.', 'The divorce lawyer argued that the cause of the lipstick on the collar was mere conjecture.'] },
     { word: 'CONNOISSEUR', definition: 'An expert, particularly in matters of art or taste', synonyms: ['Expert', 'Specialist', 'Authority'], antonyms: ['Amateur', 'Novice', 'Beginner'], sentences: ['The artist\'s work was popular, but connoisseurs rejected it as amateurish.', 'Frank was a connoisseur of bad movies; he knew which were genuinely dreadful.'] },
-    { word: 'CATEGORICAL', definition: 'Unconditional; absolute', synonyms: ['Absolute', 'Unconditional', 'Definitive'], antonyms: ['Conditional', 'Qualified', 'Partial'], sentences: ['Crooked politicians often make categorical denials of charges against them.', 'I categorically refuse to participate in any activity today.'] },
-    { word: 'CHICANERY', definition: 'Trickery; deceitfulness, especially political or legal', synonyms: ['Deception', 'Trickery', 'Fraud'], antonyms: ['Honesty', 'Fairness', 'Straightforwardness'], sentences: ['Political news is filled with the chicanery of elected officials.', 'The lawyer\'s chicanery nearly cost his client the case.'] },
-    { word: 'CIRCUITOUS', definition: 'Roundabout; not following a direct path', synonyms: ['Indirect', 'Roundabout', 'Meandering'], antonyms: ['Direct', 'Straightforward', 'Linear'], sentences: ['The circuitous bus route took a very long time to reach the destination.', 'The salesman\'s route was circuitous, winding through many towns.'] },
-    { word: 'COLLOQUIAL', definition: 'Conversational; informal in language', synonyms: ['Informal', 'Casual', 'Conversational'], antonyms: ['Formal', 'Literary', 'Academic'], sentences: ['A writer with a colloquial style uses ordinary words and seems as informal as common speech.', '"The way I figure it" is a colloquial expression; people often say it but it isn\'t used in formal prose.'] },
-    { word: 'COLLUSION', definition: 'Conspiracy; secret cooperation', synonyms: ['Conspiracy', 'Secret cooperation', 'Plot'], antonyms: ['Transparency', 'Honesty', 'Open cooperation'], sentences: ['The increase in oil prices was the result of collusion by the oil-producing nations.', 'There was collusion among the owners of the baseball teams; they agreed secretly not to sign any expensive free agents.'] },
-    { word: 'COMPELLING', definition: 'Forceful; causing to yield', synonyms: ['Persuasive', 'Convincing', 'Forceful'], antonyms: ['Unconvincing', 'Weak', 'Ineffective'], sentences: ['A compelling argument for buying a DVR makes you go out and buy it.', 'The recruiter\'s speech was so compelling that nearly everyone enlisted in the Army.'] },
-    { word: 'COMPLICITY', definition: 'Participation in wrongdoing; being an accomplice', synonyms: ['Involvement', 'Participation', 'Collusion'], antonyms: ['Innocence', 'Noninvolvement', 'Uninvolvement'], sentences: ['There was complicity between the bank robber and the dishonest teller.', 'Complicity among the students made it impossible to find the culprit.'] },
-    { word: 'COMPLEMENT', definition: 'To complete or fill up; perfect counterpart', synonyms: ['Complete', 'Enhance', 'Supplement'], antonyms: ['Clash', 'Conflict', 'Contradict'], sentences: ['The flower arrangement complemented the table decorations.', 'Fish-flavored ice cream was a perfect complement to the seafood dinner.'] },
-    { word: 'COMPLACENT', definition: 'Self-satisfied; overly pleased with oneself', synonyms: ['Self-satisfied', 'Smug', 'Self-content'], antonyms: ['Dissatisfied', 'Concerned', 'Anxious'], sentences: ['The complacent camper paid no attention to the bear, and the bear ate him up.', 'The football team became complacent after winning many games, and the worst team snuck up and beat it.'] },
-    { word: 'COMPENDIUM', definition: 'A summary; an abridgment', synonyms: ['Summary', 'Digest', 'Compilation'], antonyms: ['Expansion', 'Full version', 'Complete work'], sentences: ['A yearbook often contains a compendium of offenses, achievements, and future plans.', 'The compendium provided a brief overview of all the major theories.'] },
-    { word: 'CONDESCEND', definition: 'To stoop to someone else\'s level, usually offensively; to patronize', synonyms: ['Patronize', 'Talk down to', 'Deign'], antonyms: ['Respect', 'Esteem', 'Treat as equal'], sentences: ['I was surprised that the president condescended to talk with me, a mere temporary employee.', 'She condescended to explain the simple concept to her coworkers.'] },
-    { word: 'CONFLUENCE', definition: 'A flowing together, especially of rivers; a place where they join', synonyms: ['Convergence', 'Meeting', 'Junction'], antonyms: ['Divergence', 'Separation', 'Fork'], sentences: ['The confluence of the Missouri and Mississippi rivers is at St. Louis.', 'A confluence of many factors made it inevitable that the party would be a flop.'] },
-    { word: 'CONGENITAL', definition: 'Describing a trait or condition acquired between conception and birth; innate', synonyms: ['Inborn', 'Inherent', 'Innate'], antonyms: ['Acquired', 'Learned', 'Developed'], sentences: ['A congenital birth defect is one present at birth but not caused by genes.', 'A congenital liar is a natural liar who can\'t help but lie.'] },
-    { word: 'CONJECTURE', definition: 'To guess; to deduce or infer on slight evidence', synonyms: ['Speculate', 'Guess', 'Theorize'], antonyms: ['Know for certain', 'Prove', 'Verify'], sentences: ['If forced to conjecture, I would say the volcano will erupt in twenty-four hours.', 'The divorce lawyer argued that the cause of the lipstick on the collar was mere conjecture.'] },
-    { word: 'CONNOISSEUR', definition: 'An expert, particularly in matters of art or taste', synonyms: ['Expert', 'Specialist', 'Authority'], antonyms: ['Amateur', 'Novice', 'Beginner'], sentences: ['The artist\'s work was popular, but connoisseurs rejected it as amateurish.', 'Frank was a connoisseur of bad movies; he knew which were genuinely dreadful.'] },
     { word: 'CONSECRATE', definition: 'To make or declare sacred', synonyms: ['Sanctify', 'Bless', 'Hallow'], antonyms: ['Desecrate', 'Defile', 'Profane'], sentences: ['The battlefield had been consecrated by the blood of soldiers.', 'The priest consecrated the building by sprinkling holy water on it.'] },
     { word: 'CONTENTIOUS', definition: 'Argumentative; quarrelsome', synonyms: ['Quarrelsome', 'Disputatious', 'Combative'], antonyms: ['Agreeable', 'Peaceful', 'Harmonious'], sentences: ['Liz\'s contentious style would make her a perfect litigator.', 'Two people having a fight are contentious.'] },
     { word: 'CONTIGUOUS', definition: 'Side by side; adjoining', synonyms: ['Adjacent', 'Neighboring', 'Adjoining'], antonyms: ['Separated', 'Distant', 'Remote'], sentences: ['Two countries that share a border are contiguous.', 'Two events that happened one right after the other are contiguous.'] },
@@ -914,7 +899,22 @@ export const wordDataByLetter = {
 ]
 };
 
-const allWords = Object.values(wordDataByLetter).flat();
+const sortWordEntries = (words = []) =>
+  [...words].sort((first, second) => {
+    const lengthDifference = (first.word?.length ?? 0) - (second.word?.length ?? 0);
+
+    if (lengthDifference !== 0) {
+      return lengthDifference;
+    }
+
+    return (first.word ?? '').localeCompare(second.word ?? '');
+  });
+
+Object.keys(wordDataByLetter).forEach((letter) => {
+  wordDataByLetter[letter] = sortWordEntries(wordDataByLetter[letter]);
+});
+
+const allWords = sortWordEntries(Object.values(wordDataByLetter).flat());
 
 export const gameModes = {
   full_quiz: {

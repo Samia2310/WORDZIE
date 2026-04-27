@@ -51,9 +51,7 @@
     text-transform: uppercase;
 }
 
-.game-studio__hero,
-.game-studio__feature-card,
-.game-studio__benefit-card {
+.game-studio__hero {
     border-radius: 28px;
     border: 1px solid rgba(197, 181, 255, 0.12);
     background:
@@ -65,9 +63,7 @@
 .game-studio__hero {
     margin-top: 22px;
     padding: 32px;
-    display: grid;
-    grid-template-columns: minmax(0, 1.25fr) minmax(300px, 0.75fr);
-    gap: 24px;
+    display: block;
 }
 
 .game-studio__eyebrow,
@@ -85,18 +81,24 @@
     text-transform: uppercase;
 }
 
+.game-studio__hero-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+}
+
 .game-studio__hero-copy h1 {
     margin: 18px 0 14px;
-    max-width: 18ch;
+    max-width: none;
     font-size: clamp(1.85rem, 3vw, 2.8rem);
     line-height: 0.98;
     letter-spacing: -0.05em;
-    text-wrap: balance;
+    white-space: nowrap;
 }
 
 .game-studio__hero-copy p,
 .game-studio__feature-card p,
-.game-studio__benefit-card p,
 .game-studio__card p {
     margin: 0;
     color: #c8bbde;
@@ -145,13 +147,6 @@
     font-size: 0.88rem;
 }
 
-.game-studio__feature-card {
-    padding: 28px;
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-}
-
 .game-studio__feature-icon,
 .game-studio__card-icon {
     width: 48px;
@@ -171,11 +166,22 @@
     letter-spacing: -0.04em;
 }
 
+.game-studio__hero-summary-copy h2 {
+    margin: 0;
+    font-size: clamp(1.5rem, 2.4vw, 2.2rem);
+    line-height: 1.06;
+    letter-spacing: -0.04em;
+}
+
 .game-studio__skill-list,
 .game-studio__card-skills {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
+}
+
+.game-studio__skill-list--hero {
+    margin-top: 24px;
 }
 
 .game-studio__skill-list span,
@@ -210,12 +216,8 @@
 }
 
 .game-studio__grid,
-.game-studio__benefits {
-    display: grid;
-    gap: 18px;
-}
-
 .game-studio__grid {
+    display: grid;
     margin-top: 18px;
     grid-template-columns: repeat(2, minmax(0, 1fr));
 }
@@ -287,22 +289,6 @@
 
 .game-studio__card p {
     color: var(--game-card-text);
-}
-
-.game-studio__benefits {
-    margin-top: 24px;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-}
-
-.game-studio__benefit-card {
-    padding: 22px;
-    display: flex;
-    gap: 14px;
-    align-items: flex-start;
-}
-
-.game-studio__benefit-card h3 {
-    margin: 0 0 8px;
 }
 
 .game-studio__card .game-studio__card-icon {
@@ -414,15 +400,13 @@
 }
 
 @media (max-width: 1024px) {
-    .game-studio__hero,
-    .game-studio__grid,
-    .game-studio__benefits {
-        grid-template-columns: 1fr;
-    }
-
     .game-studio__hero-copy h1,
     .game-studio__heading h2 {
         max-width: none;
+    }
+
+    .game-studio__hero-copy h1 {
+        white-space: normal;
     }
 }
 
@@ -432,9 +416,31 @@
         padding-top: 22px;
     }
 
+    .game-studio__grid {
+        grid-template-columns: 1fr;
+    }
+
+    .game-studio__hero,
+    .game-studio__heading,
+    .game-studio__card {
+        text-align: center;
+    }
+
     .game-studio__actions {
-        flex-direction: column;
+        flex-direction: row;
+        flex-wrap: wrap;
         align-items: stretch;
+        justify-content: center;
+    }
+
+    .game-studio__primary-button {
+        width: 100%;
+    }
+
+    .game-studio__stat-pill {
+        flex: 1 1 calc(50% - 7px);
+        min-width: 0;
+        text-align: center;
     }
 
     .game-studio__topbar {
@@ -450,14 +456,41 @@
         white-space: nowrap;
     }
 
-    .game-studio__hero,
-    .game-studio__feature-card,
-    .game-studio__benefit-card {
+    .game-studio__hero {
         padding: 20px;
         border-radius: 24px;
     }
 
+    .game-studio__hero-top {
+        justify-content: center;
+        position: relative;
+        padding-right: 44px;
+        align-items: flex-start;
+        min-height: 40px;
+    }
+
+    .game-studio__hero-top .game-studio__feature-icon {
+        position: absolute;
+        right: 0;
+        top: -6px;
+        transform: none;
+    }
+
     .game-studio__label {
+        font-size: 0.66rem;
+        letter-spacing: 0.08em;
         text-align: center;
+    }
+
+    .game-studio__hero .game-studio__eyebrow {
+        font-size: 0.68rem;
+        padding: 7px 11px;
+        letter-spacing: 0.06em;
+    }
+
+    .game-studio__skill-list,
+    .game-studio__card-skills,
+    .game-studio__card-top {
+        justify-content: center;
     }
 }

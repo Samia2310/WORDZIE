@@ -137,6 +137,11 @@ const PuzzleBucketsGame = ({ onBackToGameSelect, onBackToHome }) => {
                             <span>3. Submit the board</span>
                         </div>
 
+                        <p className="puzzle-game__manual-note">
+                            Tiles shown in all capital letters represent the main vocabulary words
+                            for each bucket.
+                        </p>
+
                         <div className="puzzle-game__chip-bank">
                             {availableChips.map((chip) => (
                                 <button
@@ -169,13 +174,14 @@ const PuzzleBucketsGame = ({ onBackToGameSelect, onBackToHome }) => {
                         </div>
 
                         <div className="puzzle-game__bucket-grid">
-                            {session.rows.map((row) => {
+                            {session.rows.map((row, index) => {
                                 const rowResult = results?.rowResults.find((item) => item.rowId === row.id);
+                                const bucketLabel = `Bucket ${String(index + 1).padStart(2, '0')} clue`;
 
                                 return (
                                     <article key={row.id} className="puzzle-game__bucket-card">
                                         <div className="puzzle-game__bucket-header">
-                                            <span className="puzzle-game__bucket-label">Bucket clue</span>
+                                            <span className="puzzle-game__bucket-label">{bucketLabel}</span>
                                             <p>{row.clue}</p>
                                             <small>{row.example}</small>
                                         </div>

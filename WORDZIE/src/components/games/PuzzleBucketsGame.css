@@ -54,6 +54,13 @@
     box-shadow: none;
 }
 
+.puzzle-game__ghost-button {
+    font-size: 0.88rem;
+    font-weight: 700;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
 .puzzle-game__nav-button {
     justify-content: flex-start;
     min-height: 36px;
@@ -227,6 +234,13 @@
     color: #924103;
     font-size: 0.86rem;
     font-weight: 600;
+}
+
+.puzzle-game__manual-note {
+    margin: 0 0 16px;
+    color: #844012;
+    font-size: 0.92rem;
+    line-height: 1.6;
 }
 
 .puzzle-game__chip-bank {

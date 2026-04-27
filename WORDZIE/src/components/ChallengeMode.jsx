@@ -4,12 +4,10 @@ import {
     ArrowRight,
     BookOpen,
     Brain,
-    CheckCircle2,
     Gamepad2,
     LayoutGrid,
     Sparkles,
     Target,
-    Trophy,
 } from 'lucide-react';
 import { allWords, GAME_CATALOG, GAME_IDS } from './games/gameData.js';
 import PuzzleBucketsGame from './games/PuzzleBucketsGame.jsx';
@@ -27,8 +25,6 @@ const gameIcons = {
 
 const GameStudio = ({ onModeSelect, onBackToHome }) => {
     const [activeGameKey, setActiveGameKey] = useState(GAME_IDS.PUZZLE);
-    const activeGame = GAME_CATALOG[activeGameKey];
-    const ActiveIcon = gameIcons[activeGameKey];
 
     return (
         <div className="game-studio">
@@ -43,12 +39,25 @@ const GameStudio = ({ onModeSelect, onBackToHome }) => {
 
                 <section className="game-studio__hero">
                     <div className="game-studio__hero-copy">
-                        <span className="game-studio__eyebrow">Interactive Vocabulary Games</span>
-                        <h1>Choose a game style that fits the kind of learning you want.</h1>
+                        <div className="game-studio__hero-top">
+                            <span className="game-studio__eyebrow">Interactive Vocabulary Games</span>
+                            <div className="game-studio__feature-icon">
+                                <Gamepad2 size={22} />
+                            </div>
+                        </div>
+                        <h1>Choose a vocabulary game for focused practice.</h1>
                         <p>
-                            Each game now lives in its own file and its own visual system, so the
-                            experience can feel more intentional instead of one shared template.
+                            Challenge Mode brings four distinct practice styles into one place, so
+                            you can open the activity that best matches the vocabulary skill you
+                            want to build next.
                         </p>
+
+                        <div className="game-studio__skill-list game-studio__skill-list--hero">
+                            <span>Word families</span>
+                            <span>Synonym and antonym practice</span>
+                            <span>Context clues</span>
+                            <span>Spelling recall</span>
+                        </div>
 
                         <div className="game-studio__actions">
                             <button
@@ -56,7 +65,7 @@ const GameStudio = ({ onModeSelect, onBackToHome }) => {
                                 onClick={() => onModeSelect(activeGameKey)}
                             >
                                 <Sparkles size={18} />
-                                <span>Start {activeGame.title}</span>
+                                <span>Open selected game</span>
                             </button>
                             <div className="game-studio__stat-pill">
                                 <strong>4</strong>
@@ -68,27 +77,6 @@ const GameStudio = ({ onModeSelect, onBackToHome }) => {
                             </div>
                         </div>
                     </div>
-
-                    <aside className="game-studio__feature-card">
-                        <div className="game-studio__feature-icon">
-                            <ActiveIcon size={22} />
-                        </div>
-                        <span className="game-studio__feature-label">Featured right now</span>
-                        <h2>{activeGame.title}</h2>
-                        <p>{activeGame.description}</p>
-                        <div className="game-studio__skill-list">
-                            {activeGame.skills.map((skill) => (
-                                <span key={skill}>{skill}</span>
-                            ))}
-                        </div>
-                        <button
-                            className="game-studio__secondary-button"
-                            onClick={() => onModeSelect(activeGameKey)}
-                        >
-                            <span>Open this game</span>
-                            <ArrowRight size={16} />
-                        </button>
-                    </aside>
                 </section>
 
                 <section className="game-studio__grid-section">
@@ -143,39 +131,6 @@ const GameStudio = ({ onModeSelect, onBackToHome }) => {
                                 </article>
                             );
                         })}
-                    </div>
-                </section>
-
-                <section className="game-studio__benefits">
-                    <div className="game-studio__benefit-card">
-                        <Gamepad2 size={20} />
-                        <div>
-                            <h3>More than a quiz</h3>
-                            <p>
-                                Each game trains a different skill instead of forcing every activity
-                                into one repeated format.
-                            </p>
-                        </div>
-                    </div>
-                    <div className="game-studio__benefit-card">
-                        <CheckCircle2 size={20} />
-                        <div>
-                            <h3>Clearer maintenance</h3>
-                            <p>
-                                Separate files make it much easier to redesign or improve one game
-                                without touching the others.
-                            </p>
-                        </div>
-                    </div>
-                    <div className="game-studio__benefit-card">
-                        <Trophy size={20} />
-                        <div>
-                            <h3>Unique identity</h3>
-                            <p>
-                                Each game can now have its own look and mood instead of sharing one
-                                global design system.
-                            </p>
-                        </div>
                     </div>
                 </section>
             </div>

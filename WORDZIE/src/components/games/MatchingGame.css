@@ -61,6 +61,13 @@
     box-shadow: none;
 }
 
+.matching-game__ghost-button {
+    font-size: 0.88rem;
+    font-weight: 700;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
 .matching-game__nav-button {
     justify-content: flex-start;
     min-height: 36px;

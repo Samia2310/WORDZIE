@@ -13,6 +13,11 @@ import {
 } from './gameData.js';
 import './MatchingGame.css';
 
+const getPromptPlaceholder = (relation) =>
+    relation === 'antonym'
+        ? 'Drag or select an antonym tile'
+        : 'Drag or select a synonym tile';
+
 const MatchingGame = ({ onBackToGameSelect, onBackToHome }) => {
     const [session, setSession] = useState(() => createMatchingSession());
     const [activePromptId, setActivePromptId] = useState(session.prompts[0]?.id || '');
@@ -210,7 +215,10 @@ const MatchingGame = ({ onBackToGameSelect, onBackToHome }) => {
                                             </div>
                                             <p>{prompt.clue}</p>
                                             <div className="matching-game__answer-preview">
-                                                <span>{assignedOption?.label || 'Drop a tile here'}</span>
+                                                <span>
+                                                    {assignedOption?.label ||
+                                                        getPromptPlaceholder(prompt.relation)}
+                                                </span>
                                                 {assignedOption && !hasChecked && (
                                                     <button
                                                         className="matching-game__mini-button"
