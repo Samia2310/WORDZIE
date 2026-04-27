@@ -95,8 +95,8 @@ const MatchingGame = ({ onBackToGameSelect, onBackToHome }) => {
 
                 <section className="matching-game__hero">
                     <div className="matching-game__hero-copy">
-                        <span className="matching-game__eyebrow">Blue Match Lab</span>
-                        <h1>Matching</h1>
+                        <span className="matching-game__eyebrow">Connect the Words Lab</span>
+                        <h1>Connect the Words</h1>
                         <p>
                             Match each word to the right synonym or antonym. Drag tiles if you want
                             a more game-like feel, or click a prompt and assign the answer.
@@ -272,7 +272,7 @@ const MatchingGame = ({ onBackToGameSelect, onBackToHome }) => {
                                 disabled={!isComplete || hasChecked}
                                 onClick={() => setHasChecked(true)}
                             >
-                                Check matches
+                                Check links
                             </button>
                         </div>
                     </section>

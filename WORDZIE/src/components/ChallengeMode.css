@@ -432,10 +432,22 @@
         padding-top: 22px;
     }
 
-    .game-studio__topbar,
     .game-studio__actions {
         flex-direction: column;
         align-items: stretch;
+    }
+
+    .game-studio__topbar {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .game-studio__nav-button {
+        width: auto;
+        min-height: 38px;
+        padding: 0 14px;
+        white-space: nowrap;
     }
 
     .game-studio__hero,

@@ -17,10 +17,10 @@ export const GAME_CATALOG = {
         difficulty: 'Focused logic',
     },
     [GAME_IDS.MATCHING]: {
-        title: 'Matching',
-        tagline: 'Match words to the right synonym or antonym.',
+        title: 'Connect the Words',
+        tagline: 'Pair each word with the right synonym or antonym.',
         description:
-            'A clean matching board where each prompt tells students whether they need a synonym or antonym, so they must read carefully instead of guessing fast.',
+            'A focused pairing board where each prompt tells students whether they need a synonym or antonym, so they must read carefully instead of guessing fast.',
         skills: ['Meaning comparison', 'Precision reading', 'Quick retrieval'],
         difficulty: 'Fast analysis',
     },

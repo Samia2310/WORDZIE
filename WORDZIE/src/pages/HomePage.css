@@ -137,11 +137,12 @@
 
 .home-title {
     margin: 0;
-    font-size: clamp(1.9rem, 3.6vw, 3.55rem);
+    font-size: clamp(1.7rem, 2.8vw, 3rem);
     line-height: 0.98;
     letter-spacing: -0.055em;
-    max-width: 11.5ch;
+    max-width: none;
     text-align: center;
+    white-space: nowrap;
 }
 
 .home-description {
@@ -614,8 +615,9 @@
     }
 
     .home-title {
+        font-size: clamp(1.2rem, 6vw, 1.7rem);
         max-width: 8ch;
-        font-size: clamp(1.75rem, 9vw, 2.45rem);
+        white-space: normal;
     }
 
     .home-hero__copy {

@@ -310,6 +310,31 @@
     align-items: flex-start;
 }
 
+.blanks-game__ghost-button {
+    font-size: 0.88rem;
+    white-space: nowrap;
+}
+
+.blanks-game__question-tools .blanks-game__primary-button,
+.blanks-game__answer-feedback .blanks-game__primary-button {
+    min-height: 42px;
+    padding: 0 18px;
+    font-size: 0.94rem;
+}
+
+.blanks-game__hint-card,
+.blanks-game__answer-feedback {
+    margin-top: 12px;
+}
+
+.blanks-game__question-tools .blanks-game__primary-button {
+    margin-top: 8px;
+}
+
+.blanks-game__answer-feedback .blanks-game__primary-button {
+    margin-top: 10px;
+}
+
 .blanks-game__answer-feedback.is-correct {
     box-shadow: inset 0 0 0 2px rgba(74, 222, 128, 0.34);
 }
