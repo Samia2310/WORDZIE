@@ -220,8 +220,7 @@
 }
 
 .matching-game__steps {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
     gap: 10px;
     margin: 16px 0 14px;
 }
@@ -233,17 +232,26 @@
     color: #226699;
     font-size: 0.85rem;
     font-weight: 600;
+    text-align: center;
 }
 
 .matching-game__board-grid {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 0.95fr);
+    grid-template-columns: 1fr;
     gap: 18px;
     align-items: start;
 }
 
 .matching-game__column {
     min-width: 0;
+}
+
+.matching-game__column--answers {
+    order: -1;
+    padding: 16px;
+    border-radius: 24px;
+    background: rgba(255, 255, 255, 0.54);
+    box-shadow: inset 0 0 0 1px rgba(121, 194, 246, 0.22);
 }
 
 .matching-game__column h3 {
@@ -343,17 +351,18 @@
 
 .matching-game__option-grid {
     display: grid;
-    grid-template-columns: repeat(2, minmax(140px, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 12px;
 }
 
 .matching-game__option {
     width: 100%;
     min-width: 0;
-    min-height: 68px;
-    padding: 15px;
+    min-height: 62px;
+    padding: 13px 12px;
     font-weight: 700;
     overflow-wrap: anywhere;
+    text-align: center;
     transition:
         transform 0.18s ease,
         box-shadow 0.18s ease,
@@ -420,8 +429,7 @@
 
 @media (max-width: 1180px) {
     .matching-game__hero,
-    .matching-game__layout,
-    .matching-game__board-grid {
+    .matching-game__layout {
         grid-template-columns: 1fr;
     }
 
@@ -447,13 +455,16 @@
         border-radius: 26px;
     }
 
-    .matching-game__board-grid,
     .matching-game__option-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 }
 
 @media (max-width: 640px) {
+    .matching-game {
+        font-size: 14px;
+    }
+
     .matching-game__shell {
         width: calc(100% - 18px);
         padding-top: 22px;
@@ -479,6 +490,30 @@
         border-radius: 22px;
     }
 
+    .matching-game__hero-copy h1 {
+        font-size: clamp(2rem, 10vw, 2.6rem);
+    }
+
+    .matching-game__hero-copy p,
+    .matching-game__side p,
+    .matching-game__feedback p,
+    .matching-game__tip p,
+    .matching-game__column-note,
+    .matching-game__prompt-card p,
+    .matching-game__answer-preview span {
+        font-size: 0.9rem;
+        line-height: 1.5;
+    }
+
+    .matching-game__hud-card strong,
+    .matching-game__stat-card strong,
+    .matching-game__board-top h2,
+    .matching-game__side h3,
+    .matching-game__feedback h4,
+    .matching-game__column h3 {
+        font-size: 1rem;
+    }
+
     .matching-game__nav-button {
         width: auto;
         min-height: 34px;
@@ -493,5 +528,44 @@
     .matching-game__steps span {
         width: 100%;
         text-align: center;
+        font-size: 0.78rem;
+    }
+
+    .matching-game__column--answers .matching-game__column-note {
+        margin-bottom: 10px;
+        font-size: 0.82rem;
+    }
+
+    .matching-game__option-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 8px;
+    }
+
+    .matching-game__option {
+        min-height: 54px;
+        padding: 10px 8px;
+        border-radius: 16px;
+        font-size: 0.74rem;
+        line-height: 1.25;
+        text-align: center;
+    }
+
+    .matching-game__prompt-card {
+        padding: 15px;
+    }
+
+    .matching-game__prompt-top strong {
+        font-size: 0.95rem;
+    }
+
+    .matching-game__prompt-top span {
+        font-size: 0.68rem;
+    }
+
+    .matching-game__mini-button,
+    .matching-game__primary-button,
+    .matching-game__secondary-button,
+    .matching-game__ghost-button {
+        font-size: 0.84rem;
     }
 }

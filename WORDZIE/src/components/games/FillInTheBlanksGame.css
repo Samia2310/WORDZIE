@@ -383,6 +383,10 @@
 }
 
 @media (max-width: 640px) {
+    .blanks-game {
+        font-size: 14px;
+    }
+
     .blanks-game__shell {
         width: calc(100% - 18px);
         padding-top: 22px;
@@ -409,6 +413,37 @@
         border-radius: 22px;
     }
 
+    .blanks-game__hero h1,
+    .blanks-game__summary h1 {
+        font-size: clamp(2rem, 10vw, 2.5rem);
+    }
+
+    .blanks-game__hero p,
+    .blanks-game__side p,
+    .blanks-game__summary p,
+    .blanks-game__hint-card p,
+    .blanks-game__tip p,
+    .blanks-game__answer-feedback p {
+        font-size: 0.9rem;
+        line-height: 1.55;
+    }
+
+    .blanks-game__question-card h2,
+    .blanks-game__side h3 {
+        font-size: 1rem;
+    }
+
+    .blanks-game__sentence {
+        font-size: 1.02rem;
+        line-height: 1.65;
+    }
+
+    .blanks-game__option {
+        min-height: 58px;
+        padding: 12px;
+        font-size: 0.92rem;
+    }
+
     .blanks-game__nav-button {
         width: auto;
         min-height: 34px;
@@ -418,5 +453,18 @@
     .blanks-game__nav-button--home {
         margin-left: auto;
         padding: 0 11px;
+    }
+
+    .blanks-game__question-tool-button {
+        width: 100%;
+        font-size: 0.86rem;
+    }
+
+    .blanks-game__question-tool-button--check {
+        order: 1;
+    }
+
+    .blanks-game__question-tool-button--hint {
+        order: 2;
     }
 }

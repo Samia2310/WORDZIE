@@ -144,7 +144,7 @@ const MatchingGame = ({ onBackToGameSelect, onBackToHome }) => {
                         </div>
 
                         <div className="matching-game__board-grid">
-                            <div className="matching-game__column">
+                            <div className="matching-game__column matching-game__column--prompts">
                                 <h3>Prompt cards</h3>
                                 {session.prompts.map((prompt) => {
                                     const optionId = assignments[prompt.id];
@@ -228,7 +228,7 @@ const MatchingGame = ({ onBackToGameSelect, onBackToHome }) => {
                                 })}
                             </div>
 
-                            <div className="matching-game__column">
+                            <div className="matching-game__column matching-game__column--answers">
                                 <h3>Answer tiles</h3>
                                 <p className="matching-game__column-note">
                                     Drag tiles onto a prompt card, or select a prompt first and then

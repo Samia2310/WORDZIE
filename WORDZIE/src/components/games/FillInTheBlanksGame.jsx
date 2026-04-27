@@ -186,14 +186,14 @@ const FillInTheBlanksGame = ({ onBackToGameSelect, onBackToHome }) => {
 
                         <div className="blanks-game__question-tools">
                             <button
-                                className="blanks-game__secondary-button"
+                                className="blanks-game__secondary-button blanks-game__question-tool-button blanks-game__question-tool-button--hint"
                                 onClick={() => setShowHint((current) => !current)}
                             >
                                 <CircleHelp size={16} />
                                 <span>{showHint ? 'Hide hint' : 'Show hint'}</span>
                             </button>
                             <button
-                                className="blanks-game__primary-button"
+                                className="blanks-game__primary-button blanks-game__question-tool-button blanks-game__question-tool-button--check"
                                 disabled={!selectedOption || hasChecked}
                                 onClick={handleCheck}
                             >
