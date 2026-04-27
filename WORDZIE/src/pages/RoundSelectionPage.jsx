@@ -1,47 +1,83 @@
 import React from 'react';
+import { ArrowLeft, ArrowRight, Layers3, Sparkles } from 'lucide-react';
 import './RoundSelectionPage.css';
-import { ArrowRight } from 'lucide-react';
 
 const RoundSelectionPage = ({ selectedLetter, rounds, onRoundSelect, onBack }) => {
+    const totalWords = (rounds || []).reduce((total, round) => total + (round.words?.length || 0), 0);
+
     return (
         <div className="round-selection-container">
-            <header className="round-selection-header">
-                <button onClick={onBack} className="back-button">
-                    ← Back to Home
-                </button>
-                <h1 className="round-selection-title">
-                    <span className="letter-title">Rounds for {selectedLetter.toUpperCase()}</span>
-                </h1>
-                <p className="round-selection-subtitle">
-                    Select a round to begin your vocabulary journey.
-                </p>
-            </header>
+            <div className="round-selection-shell">
+                <header className="round-page-hero">
+                    <div className="round-page-hero__top">
+                        <button onClick={onBack} className="round-page-back-button" type="button">
+                            <ArrowLeft size={18} /> Back to Home
+                        </button>
+                    </div>
 
-            {rounds && rounds.length > 0 ? (
-                <div className="round-cards-grid">
-                    {rounds.map((round, index) => (
-                        <div
-                            key={index}
-                            onClick={() => onRoundSelect(round)}
-                            className="round-card"
-                        >
-                            <div className="card-header">
-                                <h2 className="card-title">{round.name}</h2>
-                                <span className="word-count-tag">{round.words.length} Words</span>
-                            </div>
-                            <p className="card-description">{round.description}</p>
-                            <div className="card-footer">
-                                <span className="start-text">Explore words</span>
-                                <ArrowRight className="start-arrow" size={20} />
-                            </div>
-                        </div>
-                    ))}
-                </div>
-            ) : (
-                <div className="no-rounds-message">
-                    <p>No rounds found for this letter yet!</p>
-                </div>
-            )}
+                    <div className="round-page-hero__content">
+                        <span className="round-page-kicker">
+                            <Sparkles size={14} /> Vocabulary Rounds
+                        </span>
+                        <h1 className="round-page-title">
+                            Rounds for <span>{selectedLetter.toUpperCase()}</span>
+                        </h1>
+                        <p className="round-page-subtitle">
+                            Choose a round to start a focused study session. Each round groups a manageable
+                            set of words so learning feels organized and easy to continue.
+                        </p>
+                    </div>
+
+                    <div className="round-page-stats">
+                        <article className="round-page-stat">
+                            <span>Selected letter</span>
+                            <strong>{selectedLetter.toUpperCase()}</strong>
+                        </article>
+                        <article className="round-page-stat">
+                            <span>Total rounds</span>
+                            <strong>{rounds?.length || 0}</strong>
+                        </article>
+                        <article className="round-page-stat">
+                            <span>Total words</span>
+                            <strong>{totalWords}</strong>
+                        </article>
+                    </div>
+                </header>
+
+                {rounds && rounds.length > 0 ? (
+                    <section className="round-page-grid">
+                        {rounds.map((round, index) => (
+                            <button
+                                key={round.id || `${selectedLetter}-${index}`}
+                                onClick={() => onRoundSelect(round)}
+                                className="round-page-card"
+                                type="button"
+                            >
+                                <div className="round-page-card__header">
+                                    <div>
+                                        <span className="round-page-card__eyebrow">Round {index + 1}</span>
+                                        <h2 className="round-page-card__title">{round.name}</h2>
+                                    </div>
+                                    <span className="round-page-card__count">{round.words.length} words</span>
+                                </div>
+                                <div className="round-page-card__meta">
+                                    <span className="round-page-card__tag">
+                                        <Layers3 size={14} /> Study set
+                                    </span>
+                                    <span className="round-page-card__cta">
+                                        Open round <ArrowRight size={16} />
+                                    </span>
+                                </div>
+                            </button>
+                        ))}
+                    </section>
+                ) : (
+                    <section className="round-page-empty">
+                        <h2>No rounds available yet</h2>
+                        <p>We could not find any vocabulary rounds for this letter right now.</p>
+                    </section>
+                )}
+            </div>
         </div>
     );
 };

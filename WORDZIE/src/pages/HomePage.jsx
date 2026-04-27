@@ -1,97 +1,76 @@
 import React from 'react';
-import { Play, BookOpen, Zap, Award, ArrowRight, Gamepad2 } from 'lucide-react';
-import './HomePage.css'; 
+import {
+    ArrowRight,
+    Award,
+    BookOpen,
+    Gamepad2,
+    Play,
+    Zap,
+} from 'lucide-react';
+import './HomePage.css';
 
-// NOTE: wordData is expected to be passed from App.jsx as a prop.
 const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
 
-// --- getLetterPosition helper function (needed for CircularLetterSelector) ---
 const getLetterPosition = (index, total) => {
-    const radius = 135; 
-    const centerX = 160; 
-    const centerY = 160; 
+    const radius = 135;
+    const centerX = 160;
+    const centerY = 160;
     const angle = (index * 2 * Math.PI) / total - Math.PI / 2;
+
     return {
         x: centerX + radius * Math.cos(angle),
         y: centerY + radius * Math.sin(angle),
     };
 };
 
-// --- Sub-component: GameModeCallout ---
-const GameModeCallout = ({ onNavigateToGameSelect }) => {
-    return (
-        <div className="game-mode-callout">
-            <Gamepad2 className="game-mode-icon" size={32} />
-            <div className="game-mode-text">
-                <h3 className="game-mode-title-gradient">Challenge Modes</h3>
-                <p className="game-mode-description">
-                    Ready for a quiz? Play a quick game based on difficulty, topic, or word types!
-                </p>
-            </div>
-            <button 
-                className="game-mode-button"
-                onClick={onNavigateToGameSelect}
-            >
-                Start a Quiz <ArrowRight className="button-icon" />
-            </button>
-        </div>
-    );
-};
-
-// --- Sub-component: CircularLetterSelector (ADJUSTED FOR CONSISTENT LOOK) ---
-const CircularLetterSelector = ({ onLetterSelect, selectedLetter, wordData }) => { 
-    const isLetterAvailable = (letter) => {
-        return true; 
-    };
-    
-    // Handler that calls the navigation function passed from App.jsx
-    const handleCircleClick = (letter) => {
-        onLetterSelect(letter); 
-    };
-
-    // Standard center coordinates for the 320x320 viewBox
-    const centerX = 160;
+const CircularLetterSelector = ({ onLetterSelect, selectedLetter, wordData }) => {
+    const isLetterAvailable = (letter) => Boolean(wordData?.[letter]?.length);
 
     return (
-        <div className="circular-selector-wrapper">
-            <svg viewBox="0 0 320 320" className="circular-selector-svg"> 
-                
-                {/* Center Circle and Text - Adjusted Y coordinates for better vertical spacing */}
-                <circle cx={centerX} cy={centerX} r="50" className="center-circle" /> 
-                <text x={centerX} y={centerX - 15} textAnchor="middle" className="center-text-top">Choose a</text>
-                <text x={centerX} y={centerX + 10} textAnchor="middle" className="center-text-middle">LETTER</text>
-                <text x={centerX} y={centerX + 32} textAnchor="middle" className="center-text-bottom">to start!</text> {/* Adjusted to 32 */}
+        <div className="alphabet-selector">
+            <svg viewBox="0 0 320 320" className="alphabet-selector__svg">
+                <circle cx="160" cy="160" r="52" className="alphabet-selector__core" />
+                <text x="160" y="145" textAnchor="middle" className="alphabet-selector__core-line alphabet-selector__core-line--top">
+                    Choose a
+                </text>
+                <text x="160" y="171" textAnchor="middle" className="alphabet-selector__core-line alphabet-selector__core-line--middle">
+                    LETTER
+                </text>
+                <text x="160" y="196" textAnchor="middle" className="alphabet-selector__core-line alphabet-selector__core-line--bottom">
+                    to start!
+                </text>
 
-                {/* Letter Circles */}
                 {alphabet.map((letter, index) => {
                     const { x, y } = getLetterPosition(index, alphabet.length);
                     const isAvailable = isLetterAvailable(letter);
                     const isSelected = selectedLetter === letter;
 
-                    let circleClasses = 'letter-circle';
-                    let textClasses = 'letter-text';
+                    let circleClassName = 'alphabet-selector__letter-ring';
+                    let textClassName = 'alphabet-selector__letter-text';
 
                     if (isAvailable) {
-                        circleClasses += ' available';
-                        textClasses += ' available';
-                        if (isSelected) {
-                            circleClasses += ' selected';
-                        }
+                        circleClassName += ' is-available';
+                        textClassName += ' is-available';
                     } else {
-                        circleClasses += ' unavailable';
-                        textClasses += ' unavailable';
+                        circleClassName += ' is-unavailable';
+                        textClassName += ' is-unavailable';
+                    }
+
+                    if (isSelected) {
+                        circleClassName += ' is-selected';
+                        textClassName += ' is-selected';
                     }
 
                     return (
-                        <g 
-                            key={letter} 
-                            onClick={() => isAvailable && handleCircleClick(letter)} 
+                        <g
+                            key={letter}
+                            onClick={() => isAvailable && onLetterSelect(letter)}
                             style={{ cursor: isAvailable ? 'pointer' : 'not-allowed' }}
                         >
-                            {/* Circle radius is 15 (defined by original JS) */}
-                            <circle cx={x} cy={y} r="15" className={circleClasses} transform={`translate(0, 0)`} /> 
-                            {/* Text Y offset is 5 (defined by original JS) */}
-                            <text x={x} y={y + 5} textAnchor="middle" className={textClasses}>{letter}</text>
+                            <circle cx={x} cy={y} r="15" className={circleClassName} />
+                            <text x={x} y={y + 5} textAnchor="middle" className={textClassName}>
+                                {letter}
+                            </text>
                         </g>
                     );
                 })}
@@ -100,90 +79,201 @@ const CircularLetterSelector = ({ onLetterSelect, selectedLetter, wordData }) =>
     );
 };
 
-// --- Sub-component: FeatureCard / StatsCard ---
-const FeatureCard = ({ icon: Icon, title, description, color, delay }) => {
+const ExperienceCard = ({
+    icon: Icon,
+    eyebrow,
+    title,
+    description,
+    footer,
+    onClick,
+    actionLabel,
+}) => {
+    const isInteractive = Boolean(onClick);
+    const Tag = isInteractive ? 'button' : 'article';
+
     return (
-        <div className="feature-card" style={{ animationDelay: `${delay}ms` }}>
-            <div className={`feature-icon-container ${color}`}><Icon className="feature-icon" /></div>
-            <h3 className="feature-title">{title}</h3>
-            <p className="feature-description">{description}</p>
-        </div>
+        <Tag
+            className={isInteractive ? 'home-card home-card--interactive' : 'home-card'}
+            onClick={onClick}
+            type={isInteractive ? 'button' : undefined}
+        >
+            <div className="home-card__icon">
+                <Icon size={20} />
+            </div>
+            <span className="home-card__eyebrow">{eyebrow}</span>
+            <h3 className="home-card__title">{title}</h3>
+            <p className="home-card__description">{description}</p>
+            <div className="home-card__footer">
+                <span>{footer}</span>
+                {isInteractive && (
+                    <span className="home-card__action">
+                        {actionLabel} <ArrowRight size={16} />
+                    </span>
+                )}
+            </div>
+        </Tag>
     );
 };
 
-// --- Main Component: HomePage (CREDENTIAL MOVED OUTSIDE MAIN WRAPPER) ---
-const HomePage = ({ onLetterSelect, onNavigateToGameSelect, selectedLetter, wordData }) => { 
-    
+const HomePage = ({
+    onLetterSelect,
+    onNavigateToGameSelect,
+    onOpenFlashcardPreview,
+    selectedLetter,
+    wordData,
+}) => {
+    const totalWords = Object.values(wordData || {}).flat().length;
+    const availableLetters = Object.values(wordData || {}).filter((words) => words?.length).length;
     return (
-        <div className="homepage-container">
-            {/* Header */}
-            <header className="header-container">
-                <div className="header-content-wrapper">
-                    <h1 className="header-title">WORDZIE</h1>
-                    <div className="header-separator">
-                        <div className="separator-line-left"></div>
-                        <Zap className="separator-icon" />
-                        <div className="separator-line-right"></div>
+        <div className="home-page">
+            <div className="home-shell">
+                <header className="home-topbar">
+                    <div className="home-brand">
+                        <h1>WORDZIE</h1>
+                        <p>Vocabulary learning, made focused and memorable.</p>
                     </div>
-                    <p className="header-subtitle">Expand your vocabulary, Shape your vision</p>
-                    <div className="streak-info-container">
-                        <div className="streak-info">
-                            <div className="streak-dot"></div>
-                            <span className="streak-text">Daily Streak: 7 Days</span>
+                </header>
+
+                <section className="home-hero home-hero--banner">
+                    <div className="home-hero__copy home-hero__copy--full">
+                        <div className="home-badge">
+                            <Zap size={16} />
+                            <span>Vocabulary studio for focused daily learning</span>
                         </div>
-                    </div>
-                </div>
-            </header>
-            
-            {/* Main Content */}
-            <main className="main-content-wrapper">
-                
-                {/* Game Mode Callout Section */}
-                <section className="game-mode-select-section">
-                    <GameModeCallout onNavigateToGameSelect={onNavigateToGameSelect} />
-                </section>
-                
-                {/* Letter Selector Section */}
-                <section className="letter-selector-section">
-                    <h2 className="section-title">Choose by Letter</h2>
-                    <p className="section-subtitle">Select a letter for a focused learning session</p>
-                    <CircularLetterSelector 
-                        onLetterSelect={onLetterSelect} 
-                        selectedLetter={selectedLetter}
-                        wordData={wordData}
-                    />
-                    
-                    {/* Call to Action - Moved under circular selector */}
-                    <div className="cta-card-compact">
-                        <h2 className="cta-title-compact">Ready to Expand Your Vocabulary?</h2>
-                        <p className="cta-subtitle-compact">Join thousands of learners improving their vocabulary daily</p>
-                        <div className="cta-buttons-compact">
-                            <button className="cta-button-primary-compact" onClick={onNavigateToGameSelect}>Start Challenge</button>
-                            <button className="cta-button-secondary-compact" onClick={() => alert('Feature coming soon!')}>Learn More</button>
+
+                        <h1 className="home-title">Learn words through a richer, more intentional flow.</h1>
+
+                        <p className="home-description">
+                            WORDZIE combines alphabet-based study, interactive flashcards, and challenge
+                            modes into one polished learning space. Start from the circular selector or
+                            explore a guided preview instantly.
+                        </p>
+
+                        <div className="home-actions">
+                            <button className="home-button home-button--primary" onClick={onOpenFlashcardPreview}>
+                                <BookOpen size={18} /> Open Flashcard Preview
+                            </button>
+                            <button className="home-button home-button--secondary" onClick={onNavigateToGameSelect}>
+                                <Gamepad2 size={18} /> Explore Challenge Modes
+                            </button>
+                        </div>
+
+                        <div className="home-metrics">
+                            <article className="home-metric">
+                                <strong>{totalWords}+</strong>
+                                <span>Vocabulary entries</span>
+                            </article>
+                            <article className="home-metric">
+                                <strong>{availableLetters}</strong>
+                                <span>Active letter tracks</span>
+                            </article>
+                            <article className="home-metric">
+                                <strong>2</strong>
+                                <span>Study styles</span>
+                            </article>
+                            <article className="home-metric">
+                                <strong>7 days</strong>
+                                <span>Current streak</span>
+                            </article>
                         </div>
                     </div>
                 </section>
 
-                <section className="features-section">
-                    <h2 className="section-title">Discover Amazing Features</h2>
-                    <div className="features-grid"> 
-                        <FeatureCard icon={BookOpen} title="Interactive Flashcards" description="Learn words with engaging flashcards that show definitions, synonyms, and antonyms" color="blue" delay={0}/>
-                        <FeatureCard icon={Play} title="Fun Quizzes" description="Test your knowledge with interactive quizzes and track your learning progress" color="purple" delay={150}/>
-                        <FeatureCard icon={Award} title="Achievement System" description="Earn badges and maintain streaks as you master new vocabulary words" color="pink" delay={300}/>
+                <section className="home-selector-stage">
+                    <div className="home-selector-card">
+                        <div className="home-selector-card__header">
+                            <span className="home-section-kicker">Alphabet Navigator</span>
+                            <h2>Choose a letter and go straight into focused vocabulary practice.</h2>
+                            <p>
+                                Each letter opens a dedicated word collection so learning feels structured,
+                                approachable, and easy to continue.
+                            </p>
+                        </div>
+
+                        <CircularLetterSelector
+                            onLetterSelect={onLetterSelect}
+                            selectedLetter={selectedLetter}
+                            wordData={wordData}
+                        />
                     </div>
                 </section>
-            </main>
 
-            {/* Credential Watermark Section - NOW OUTSIDE MAIN WRAPPER */}
-            <section className="credential-section">
-                <div className="credential-watermark">
-                    <div className="credential-main">
-                        <div>Crafted with passion by</div>
-                        <div>Samia Tabassum Chowdhury</div>
+                <section className="home-experiences">
+                    <div className="home-section-heading">
+                        <h2>Choose the learning style that fits your next step.</h2>
                     </div>
-                    <div className="credential-subtitle">4th Year Undergrad Student, BRAC University</div>
-                </div>
-            </section>
+
+                    <div className="home-card-grid">
+                        <ExperienceCard
+                            icon={BookOpen}
+                            eyebrow="Interactive"
+                            title="Flashcard Studio"
+                            description="Preview definitions, synonyms, antonyms, and usage in an experience designed around recall and confidence."
+                            footer="Best for warming up and building retention"
+                            onClick={onOpenFlashcardPreview}
+                            actionLabel="Try now"
+                        />
+                        <ExperienceCard
+                            icon={Play}
+                            eyebrow="Practice"
+                            title="Challenge Modes"
+                            description="Move from review to action with quiz-style practice that turns vocabulary into something more dynamic."
+                            footer="Best for testing understanding under pressure"
+                            onClick={onNavigateToGameSelect}
+                            actionLabel="Open modes"
+                        />
+                        <ExperienceCard
+                            icon={Award}
+                            eyebrow="Progress"
+                            title="Consistent Growth"
+                            description="Follow a clear journey: choose a letter, learn the words, review with flashcards, then challenge yourself."
+                            footer="Designed for steady, repeatable improvement"
+                        />
+                    </div>
+                </section>
+
+                <section className="home-lower-grid">
+                    <article className="home-journey-card">
+                        <span className="home-section-kicker">How It Flows</span>
+                        <h2>A simple path from discovery to practice.</h2>
+
+                        <div className="home-steps">
+                            <div className="home-step">
+                                <span className="home-step__number">01</span>
+                                <div>
+                                    <h3>Pick a letter</h3>
+                                    <p>Use the circular selector to jump into a focused vocabulary track.</p>
+                                </div>
+                            </div>
+                            <div className="home-step">
+                                <span className="home-step__number">02</span>
+                                <div>
+                                    <h3>Study with intention</h3>
+                                    <p>Read the words, then reinforce memory through the flashcard studio.</p>
+                                </div>
+                            </div>
+                            <div className="home-step">
+                                <span className="home-step__number">03</span>
+                                <div>
+                                    <h3>Test and revisit</h3>
+                                    <p>Switch to challenge mode when you want to convert recognition into recall.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <aside className="home-signature-card home-credential-card">
+                        <span className="home-section-kicker">Crafted By</span>
+                        <div className="home-credential-card__frame">
+                            <span className="home-credential-card__label">Creator Credential</span>
+                            <strong className="home-credential-card__name">Samia Tabassum Chowdhury</strong>
+                            <span className="home-credential-card__role">
+                                4th Year Undergrad Student, BRAC University
+                            </span>
+                        </div>
+                    </aside>
+                </section>
+            </div>
         </div>
     );
 };

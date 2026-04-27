@@ -1,118 +1,167 @@
-import React, { useState } from 'react'; 
-import {RefreshCw, ArrowLeft, BookOpen, ChevronDown, ChevronUp } from 'lucide-react'; 
-import './WordListPage.css'; 
+import React, { useState } from 'react';
+import {
+    ArrowLeft,
+    BookOpen,
+    ChevronDown,
+    ChevronUp,
+    Home,
+    RefreshCw,
+    Sparkles,
+} from 'lucide-react';
+import './WordListPage.css';
 
-const SimpleWordCard = ({ wordItem }) => {
+const SimpleWordCard = ({ wordItem, index }) => {
     const [isDetailsVisible, setIsDetailsVisible] = useState(false);
-
-    const toggleDetails = () => {
-        setIsDetailsVisible(!isDetailsVisible);
-    };
-
     const ToggleIcon = isDetailsVisible ? ChevronUp : ChevronDown;
 
     return (
-        <div className="word-list-card">
-            <div className="word-list-card-header">
-                <h3 className="word-list-word-title">{wordItem.word}</h3>
-                
-                <button 
-                    onClick={toggleDetails} 
-                    className="word-list-toggle-button"
+        <article className="word-list-card">
+            <div className="word-list-card__header">
+                <div className="word-list-card__heading">
+                    <span className="word-list-card__eyebrow">Word {index + 1}</span>
+                    <h3 className="word-list-card__title">{wordItem.word}</h3>
+                </div>
+
+                <button
+                    onClick={() => setIsDetailsVisible((value) => !value)}
+                    className="word-list-card__toggle"
                     aria-expanded={isDetailsVisible}
                     aria-controls={`details-${wordItem.word}`}
+                    type="button"
                 >
-                    <ToggleIcon size={20} className="word-list-icon" />
+                    <ToggleIcon size={18} className="word-list-icon" />
                 </button>
             </div>
-            
-            <p className="word-list-word-definition">
-                <BookOpen size={14} className="word-list-icon" /> {wordItem.definition}
+
+            <p className="word-list-card__definition">
+                <BookOpen size={15} className="word-list-icon" />
+                <span>{wordItem.definition}</span>
             </p>
 
-            <div 
-                className={`word-list-word-details ${isDetailsVisible ? 'visible' : 'hidden'}`}
+            <div
+                className={`word-list-card__details ${isDetailsVisible ? 'is-visible' : ''}`}
                 id={`details-${wordItem.word}`}
             >
-                <span className="word-list-detail-tag">
-                    <strong className="word-list-detail-label">Synonyms:</strong> {wordItem.synonyms?.join(', ') || 'N/A'}
-                </span>
-                <span className="word-list-detail-tag">
-                    <strong className="word-list-detail-label">Antonyms:</strong> {wordItem.antonyms?.join(', ') || 'N/A'}
-                </span>
-                
-                {wordItem.sentences && wordItem.sentences.length > 0 && (
-                    <div className="word-list-detail-tag">
-                        <strong className="word-list-detail-label">Sentences:</strong>
-                        <ul className="word-list-sentences">
-                            {wordItem.sentences.map((sentence, index) => (
-                                <li key={index} className="word-list-sentence">{sentence}</li>
+                <div className="word-list-card__detail-row">
+                    <strong>Synonyms</strong>
+                    <span>{wordItem.synonyms?.join(', ') || 'N/A'}</span>
+                </div>
+
+                <div className="word-list-card__detail-row">
+                    <strong>Antonyms</strong>
+                    <span>{wordItem.antonyms?.join(', ') || 'N/A'}</span>
+                </div>
+
+                {wordItem.sentences?.length > 0 && (
+                    <div className="word-list-card__detail-block">
+                        <strong>Sentence</strong>
+                        <ul className="word-list-card__sentences">
+                            {wordItem.sentences.map((sentence, sentenceIndex) => (
+                                <li key={sentenceIndex}>{sentence}</li>
                             ))}
                         </ul>
                     </div>
                 )}
             </div>
-        </div>
+        </article>
     );
 };
 
-const WordListPage = ({ 
-    wordsForRound, 
-    roundName, 
-    selectedLetter, 
-    handleBackToRounds, 
-    handleStartFlashcard, // ✅ CORRECT: This is the prop name expected from App.jsx
-    handleBackToHome 
+const WordListPage = ({
+    wordsForRound,
+    roundName,
+    selectedLetter,
+    handleBackToRounds,
+    handleStartFlashcard,
+    handleBackToHome,
 }) => {
-    
-    const words = wordsForRound;
+    const words = wordsForRound || [];
 
-    const startFlashcardSession = () => { // ✅ CORRECT: Descriptive internal handler
-        handleStartFlashcard(); // ✅ CORRECT: Calls the new prop
-    };
-
-    if (!words || words.length === 0) {
+    if (words.length === 0) {
         return (
-            <div className="word-list-container word-list-no-words">
-                <button onClick={handleBackToHome} className="word-list-home-button">
-                    Back to Home <ArrowLeft size={20} className="word-list-icon" />
-                </button>
-                <h1 className="word-list-title">No Words Found for Round "{roundName}"</h1>
-                <p className="word-list-subtitle">Please return to the round selection page.</p>
-                <button onClick={handleBackToRounds} className="word-list-back-button">
-                    <ArrowLeft size={20} className="word-list-icon" /> Back to Rounds
-                </button>
+            <div className="word-list-page">
+                <div className="word-list-shell">
+                    <section className="word-list-empty">
+                        <div className="word-list-empty__actions">
+                            <button onClick={handleBackToHome} className="word-list-ghost-button" type="button">
+                                <Home size={18} /> Back to Home
+                            </button>
+                            <button onClick={handleBackToRounds} className="word-list-ghost-button" type="button">
+                                <ArrowLeft size={18} /> Back to Rounds
+                            </button>
+                        </div>
+
+                        <h1>No words found for {roundName}</h1>
+                        <p>Please return to the round selection page and choose another set.</p>
+                    </section>
+                </div>
             </div>
         );
     }
 
     return (
-        <div className="word-list-container">
-            <header className="word-list-header">
-                <button onClick={handleBackToRounds} className="word-list-back-button">
-                    ← Back to Rounds
-                </button>
-                <button onClick={handleBackToHome} className="word-list-home-button">
-                    Back to Home →
-                </button>
-                <h1 className="word-list-title">{roundName}</h1> 
-            </header>
-            
-            <main className="word-list-grid">
-                {words.map((wordItem) => (
-                    <SimpleWordCard key={wordItem.word} wordItem={wordItem} />
-                ))}
-            </main>
-            
-            <footer className="word-list-footer-cta">
-                <button 
-                    className="word-list-primary-button"
-                    onClick={startFlashcardSession} // ✅ CORRECT: Calls the handler
-                >
-                    <RefreshCw size={24} className="word-list-icon" /> Start Flashcard Session
-                     
-                </button>
-            </footer>
+        <div className="word-list-page">
+            <div className="word-list-shell">
+                <header className="word-list-hero">
+                    <div className="word-list-hero__top">
+                        <button onClick={handleBackToRounds} className="word-list-ghost-button" type="button">
+                            <ArrowLeft size={18} /> Back to Rounds
+                        </button>
+
+                        <button onClick={handleBackToHome} className="word-list-ghost-button" type="button">
+                            <Home size={18} /> Back to Home
+                        </button>
+                    </div>
+
+                    <div className="word-list-hero__content">
+                        <span className="word-list-kicker">
+                            <Sparkles size={14} /> Focused Vocabulary Set
+                        </span>
+                        <h1 className="word-list-title">{roundName}</h1>
+                        <p className="word-list-subtitle">
+                            Review each word carefully, expand the details when you want more context,
+                            then move into flashcards when you are ready to reinforce recall.
+                        </p>
+                    </div>
+
+                    <div className="word-list-stats">
+                        <article className="word-list-stat">
+                            <span>Selected letter</span>
+                            <strong>{selectedLetter?.toUpperCase?.() || 'Set'}</strong>
+                        </article>
+                        <article className="word-list-stat">
+                            <span>Total words</span>
+                            <strong>{words.length}</strong>
+                        </article>
+                        <article className="word-list-stat">
+                            <span>Next step</span>
+                            <strong>Flashcards</strong>
+                        </article>
+                    </div>
+                </header>
+
+                <main className="word-list-grid">
+                    {words.map((wordItem, index) => (
+                        <SimpleWordCard key={wordItem.word} wordItem={wordItem} index={index} />
+                    ))}
+                </main>
+
+                <footer className="word-list-footer">
+                    <div className="word-list-footer__panel">
+                        <div className="word-list-footer__copy">
+                            <span className="word-list-kicker">Study Continuation</span>
+                            <h2>Take this set into interactive flashcards</h2>
+                            <p>
+                                Switch from reading mode to active recall and practice what you just reviewed.
+                            </p>
+                        </div>
+
+                        <button className="word-list-primary-button" onClick={handleStartFlashcard} type="button">
+                            <RefreshCw size={20} className="word-list-icon" /> Start Flashcard Session
+                        </button>
+                    </div>
+                </footer>
+            </div>
         </div>
     );
 };

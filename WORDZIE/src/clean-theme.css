@@ -1,0 +1,423 @@
+:root {
+    --clean-bg: #08070d;
+    --clean-bg-alt: #120d1d;
+    --clean-surface: rgba(20, 16, 34, 0.94);
+    --clean-surface-soft: rgba(31, 24, 51, 0.9);
+    --clean-border: rgba(168, 85, 247, 0.18);
+    --clean-border-strong: rgba(192, 132, 252, 0.4);
+    --clean-text: #f5f3ff;
+    --clean-muted: #a59bbb;
+    --clean-accent: #a855f7;
+    --clean-accent-strong: #c084fc;
+    --clean-accent-hover: #9333ea;
+    --clean-accent-soft: rgba(168, 85, 247, 0.16);
+    --clean-success: #34d399;
+    --clean-warning: #fbbf24;
+    --clean-danger: #fb7185;
+    --clean-shadow: 0 28px 56px rgba(0, 0, 0, 0.34);
+    --clean-shadow-sm: 0 18px 38px rgba(0, 0, 0, 0.28);
+}
+
+body {
+    background:
+        radial-gradient(circle at top left, rgba(168, 85, 247, 0.16), transparent 26%),
+        radial-gradient(circle at top right, rgba(91, 33, 182, 0.16), transparent 24%),
+        linear-gradient(180deg, var(--clean-bg) 0%, var(--clean-bg-alt) 100%);
+    color: var(--clean-text);
+}
+
+.homepage-container,
+.round-selection-container,
+.word-list-container,
+.game-select-container,
+.quiz-page-container,
+.flashcard-container,
+.flashcard-game-view,
+.flashcard-session-container {
+    background:
+        radial-gradient(circle at top left, rgba(168, 85, 247, 0.14), transparent 24%) !important,
+        radial-gradient(circle at bottom right, rgba(91, 33, 182, 0.14), transparent 22%) !important,
+        linear-gradient(180deg, var(--clean-bg) 0%, var(--clean-bg-alt) 100%) !important;
+    color: var(--clean-text) !important;
+}
+
+.main-content-wrapper,
+.game-mode-callout,
+.circular-selector-wrapper,
+.cta-card-compact,
+.feature-card,
+.credential-watermark,
+.round-card,
+.word-list-card,
+.game-mode-card,
+.stats-container,
+.quiz-placeholder,
+.definition-game-container,
+.context-game-container,
+.pair-game-container,
+.spelling-game-container,
+.result-display,
+.loading-message,
+.error-message {
+    background: var(--clean-surface) !important;
+    border: 1px solid var(--clean-border) !important;
+    box-shadow: var(--clean-shadow-sm) !important;
+    backdrop-filter: blur(10px) !important;
+}
+
+.main-content-wrapper {
+    border-radius: 1.5rem !important;
+    padding-top: 2rem !important;
+    padding-bottom: 2rem !important;
+}
+
+.header-title,
+.section-title,
+.game-mode-title-gradient,
+.feature-title,
+.round-selection-title,
+.round-selection-title .gradient-text-label,
+.round-selection-title .letter-title,
+.word-list-title,
+.word-list-letter-title,
+.word-list-word-title,
+.game-select-main-title,
+.quiz-title,
+.game-mode-title,
+.stat-number,
+.quiz-placeholder h2,
+.quiz-placeholder h3,
+.definition-game-title,
+.context-game-title,
+.pair-game-title,
+.spelling-game-title,
+.result-display h2 {
+    color: var(--clean-text) !important;
+    background: none !important;
+    -webkit-text-fill-color: initial !important;
+    -webkit-background-clip: initial !important;
+    background-clip: initial !important;
+    text-shadow: none !important;
+    filter: none !important;
+    animation: none !important;
+}
+
+.header-title {
+    font-family: 'Inter', sans-serif !important;
+    letter-spacing: -0.04em !important;
+}
+
+.header-subtitle,
+.section-subtitle,
+.game-mode-description,
+.feature-description,
+.credential-subtitle,
+.round-selection-subtitle,
+.card-description,
+.word-list-subtitle,
+.word-list-word-definition,
+.word-list-detail-tag,
+.game-select-subtitle,
+.quiz-subtitle,
+.stat-label,
+.quiz-placeholder p,
+.definition-game-text,
+.context-game-text,
+.pair-game-text,
+.spelling-game-text,
+.loading-message,
+.error-message,
+.game-stats p {
+    color: var(--clean-muted) !important;
+    text-shadow: none !important;
+}
+
+.header-container,
+.round-selection-header,
+.word-list-header,
+.game-select-header,
+.game-select-title-section,
+.quiz-header,
+.game-header,
+.session-header {
+    max-width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.game-header,
+.session-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 2rem 1rem 1rem;
+}
+
+.game-header h2,
+.session-header h1 {
+    margin: 0;
+    color: var(--clean-text);
+}
+
+.game-area,
+.game-completion-screen {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 1rem 2rem;
+}
+
+.loading-message,
+.error-message {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 2rem;
+    border-radius: 1.25rem;
+    text-align: center;
+}
+
+.completion-actions {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-top: 1.5rem;
+}
+
+.result-display {
+    border-radius: 1.25rem;
+    padding: 2rem;
+    text-align: center;
+}
+
+.game-stats {
+    display: grid;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.separator-line-left,
+.separator-line-right,
+.stat-separator {
+    background: var(--clean-border) !important;
+    box-shadow: none !important;
+}
+
+.separator-icon,
+.game-mode-icon,
+.feature-icon,
+.word-list-icon,
+.start-arrow,
+.definition-game-icon,
+.context-game-icon,
+.pair-game-icon,
+.spelling-game-icon {
+    color: var(--clean-accent-strong, #c084fc) !important;
+    filter: none !important;
+}
+
+.feature-icon-container,
+.game-mode-icon-wrapper {
+    background: var(--clean-accent-soft) !important;
+    box-shadow: none !important;
+    border: 1px solid rgba(192, 132, 252, 0.18) !important;
+}
+
+.feature-icon-container.purple,
+.feature-icon-container.pink {
+    background: rgba(168, 85, 247, 0.16) !important;
+}
+
+.feature-icon-container.pink .feature-icon {
+    color: #f0abfc !important;
+}
+
+.center-circle {
+    fill: rgba(255, 255, 255, 0.05) !important;
+    stroke: var(--clean-border-strong) !important;
+}
+
+.center-text-top,
+.center-text-middle,
+.center-text-bottom,
+.letter-text.available,
+.letter-text.unavailable {
+    fill: var(--clean-text) !important;
+}
+
+.letter-circle.available {
+    fill: rgba(255, 255, 255, 0.04) !important;
+    stroke: rgba(192, 132, 252, 0.24) !important;
+}
+
+.letter-circle.available.selected {
+    fill: rgba(168, 85, 247, 0.22) !important;
+    stroke: var(--clean-accent-strong, #c084fc) !important;
+}
+
+.letter-circle.unavailable {
+    fill: rgba(255, 255, 255, 0.03) !important;
+    stroke: rgba(255, 255, 255, 0.08) !important;
+}
+
+.letter-text.available.selected {
+    fill: #e9d5ff !important;
+}
+
+.streak-info,
+.word-count-tag,
+.game-mode-difficulty,
+.preview-word,
+.preview-more {
+    background: rgba(255, 255, 255, 0.05) !important;
+    color: var(--clean-text) !important;
+    border: 1px solid var(--clean-border) !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+}
+
+.easy .game-mode-difficulty {
+    background: rgba(52, 211, 153, 0.12) !important;
+    color: #6ee7b7 !important;
+    border-color: rgba(52, 211, 153, 0.26) !important;
+}
+
+.medium .game-mode-difficulty {
+    background: rgba(251, 191, 36, 0.12) !important;
+    color: #fcd34d !important;
+    border-color: rgba(251, 191, 36, 0.26) !important;
+}
+
+.hard .game-mode-difficulty {
+    background: rgba(251, 113, 133, 0.12) !important;
+    color: #fda4af !important;
+    border-color: rgba(251, 113, 133, 0.24) !important;
+}
+
+.word-count-dot {
+    background: var(--clean-accent-strong, #c084fc) !important;
+    box-shadow: none !important;
+}
+
+.word-list-word-details,
+.game-mode-footer,
+.round-card .card-footer {
+    border-top-color: rgba(192, 132, 252, 0.14) !important;
+}
+
+.back-button,
+.word-list-back-button,
+.word-list-home-button,
+.back-to-home-button,
+.quiz-back-button,
+.quiz-home-button,
+.back-button-secondary {
+    background: transparent !important;
+    color: var(--clean-muted) !important;
+    border: none !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+}
+
+.back-button:hover,
+.word-list-back-button:hover,
+.word-list-home-button:hover,
+.back-to-home-button:hover,
+.quiz-back-button:hover,
+.quiz-home-button:hover,
+.back-button-secondary:hover {
+    color: #e9d5ff !important;
+}
+
+.game-mode-button,
+.cta-button-primary-compact,
+.word-list-primary-button,
+.play-again-button,
+.definition-game-button,
+.context-game-button,
+.pair-game-button,
+.spelling-game-button,
+.quiz-button {
+    background: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%) !important;
+    color: #ffffff !important;
+    border: 1px solid rgba(216, 180, 254, 0.3) !important;
+    border-radius: 0.85rem !important;
+    box-shadow: 0 16px 34px rgba(124, 58, 237, 0.24) !important;
+    text-shadow: none !important;
+    text-transform: none !important;
+    letter-spacing: normal !important;
+}
+
+.game-mode-button:hover,
+.cta-button-primary-compact:hover,
+.word-list-primary-button:hover,
+.play-again-button:hover,
+.definition-game-button:hover,
+.context-game-button:hover,
+.pair-game-button:hover,
+.spelling-game-button:hover,
+.quiz-button:hover {
+    background: linear-gradient(135deg, #9333ea 0%, #c084fc 100%) !important;
+    border-color: rgba(233, 213, 255, 0.42) !important;
+    transform: translateY(-1px) !important;
+}
+
+.cta-button-secondary-compact {
+    background: rgba(255, 255, 255, 0.04) !important;
+    color: #ddd6fe !important;
+    border: 1px solid var(--clean-border-strong) !important;
+    box-shadow: none !important;
+}
+
+.cta-button-secondary-compact:hover {
+    background: rgba(168, 85, 247, 0.14) !important;
+}
+
+.round-card:hover,
+.word-list-card:hover,
+.game-mode-card:hover,
+.feature-card:hover,
+.game-mode-callout:hover,
+.quiz-card:hover,
+.definition-game-container:hover,
+.context-game-container:hover,
+.pair-game-container:hover,
+.spelling-game-container:hover {
+    transform: translateY(-3px) !important;
+    border-color: var(--clean-border-strong) !important;
+    box-shadow: 0 22px 40px rgba(0, 0, 0, 0.34) !important;
+}
+
+.round-card .card-title,
+.round-card .start-text,
+.game-mode-start,
+.word-list-detail-label {
+    color: var(--clean-text) !important;
+    text-shadow: none !important;
+}
+
+.trophy-success {
+    color: var(--clean-success) !important;
+}
+
+.trophy-neutral {
+    color: #ddd6fe !important;
+}
+
+@media (max-width: 768px) {
+    .game-header,
+    .session-header,
+    .quiz-header,
+    .word-list-header,
+    .round-selection-header,
+    .game-select-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .main-content-wrapper {
+        margin: 1rem;
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+    }
+}

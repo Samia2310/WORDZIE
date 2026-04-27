@@ -1,0 +1,367 @@
+.matching-game {
+    min-height: 100vh;
+    background:
+        radial-gradient(circle at top, rgba(148, 210, 255, 0.55), transparent 30%),
+        linear-gradient(180deg, #ddf3ff 0%, #c7e8ff 45%, #b2ddff 100%);
+    color: #12324e;
+    font-family: 'Poppins', sans-serif;
+}
+
+.matching-game__shell {
+    width: min(1180px, calc(100% - 28px));
+    margin: 0 auto;
+    padding: 26px 0 40px;
+}
+
+.matching-game__topbar,
+.matching-game__board-top,
+.matching-game__actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+}
+
+.matching-game__nav-button,
+.matching-game__ghost-button,
+.matching-game__primary-button,
+.matching-game__secondary-button,
+.matching-game__option,
+.matching-game__mini-button {
+    font: inherit;
+    cursor: pointer;
+}
+
+.matching-game__nav-button,
+.matching-game__ghost-button,
+.matching-game__secondary-button,
+.matching-game__mini-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    min-height: 44px;
+    padding: 0 16px;
+    border-radius: 999px;
+    color: #17517d;
+    border: none;
+    background: #ffffff;
+    box-shadow: 0 12px 24px rgba(34, 104, 161, 0.12);
+}
+
+.matching-game__hero,
+.matching-game__board,
+.matching-game__side {
+    position: relative;
+    overflow: hidden;
+    border-radius: 30px;
+    background: #fdfefe;
+    box-shadow: 0 24px 48px rgba(24, 92, 145, 0.14);
+}
+
+.matching-game__hero::before,
+.matching-game__board::before,
+.matching-game__side::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(circle at top right, rgba(110, 197, 255, 0.18), transparent 28%),
+        linear-gradient(135deg, rgba(255, 255, 255, 0.8), rgba(229, 245, 255, 0.94));
+    pointer-events: none;
+}
+
+.matching-game__hero {
+    margin-top: 20px;
+    padding: 28px 30px;
+    display: grid;
+    grid-template-columns: minmax(0, 1.35fr) minmax(280px, 0.65fr);
+    gap: 20px;
+}
+
+.matching-game__hero-copy,
+.matching-game__hud,
+.matching-game__board,
+.matching-game__side {
+    position: relative;
+    z-index: 1;
+}
+
+.matching-game__eyebrow,
+.matching-game__panel-kicker {
+    display: inline-flex;
+    width: fit-content;
+    padding: 8px 13px;
+    border-radius: 999px;
+    background: #dff1ff;
+    color: #1d71ae;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.matching-game__hero-copy h1 {
+    margin: 16px 0 10px;
+    font-size: clamp(2.5rem, 4vw, 4rem);
+    line-height: 0.97;
+    letter-spacing: -0.04em;
+    color: #0f3e62;
+}
+
+.matching-game__hero-copy p,
+.matching-game__side p,
+.matching-game__feedback p,
+.matching-game__tip p,
+.matching-game__column-note,
+.matching-game__prompt-card p {
+    margin: 0;
+    color: #4a6d89;
+    line-height: 1.68;
+}
+
+.matching-game__hud {
+    display: grid;
+    gap: 12px;
+}
+
+.matching-game__hud-card,
+.matching-game__stat-card,
+.matching-game__feedback,
+.matching-game__tip {
+    padding: 16px;
+    border-radius: 22px;
+    background: #ffffff;
+    box-shadow: inset 0 0 0 1px rgba(121, 194, 246, 0.2);
+}
+
+.matching-game__hud-card span,
+.matching-game__stat-card span,
+.matching-game__prompt-top span {
+    display: block;
+    color: #2d7bb1;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+.matching-game__hud-card strong,
+.matching-game__stat-card strong {
+    display: block;
+    margin-top: 6px;
+    color: #12324e;
+}
+
+.matching-game__layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.26fr) minmax(270px, 0.74fr);
+    gap: 18px;
+    margin-top: 18px;
+}
+
+.matching-game__board,
+.matching-game__side {
+    padding: 24px;
+}
+
+.matching-game__steps {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 16px 0 14px;
+}
+
+.matching-game__steps span {
+    padding: 8px 12px;
+    border-radius: 999px;
+    background: #edf8ff;
+    color: #226699;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.matching-game__board-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 0.95fr);
+    gap: 18px;
+}
+
+.matching-game__column h3 {
+    margin: 0 0 12px;
+    color: #0f3e62;
+}
+
+.matching-game__column-note {
+    margin-bottom: 12px;
+    font-size: 0.92rem;
+}
+
+.matching-game__prompt-card,
+.matching-game__option {
+    border: none;
+    border-radius: 20px;
+    background: #ffffff;
+    color: #12324e;
+    box-shadow:
+        0 12px 22px rgba(70, 138, 191, 0.08),
+        inset 0 0 0 1px rgba(126, 195, 241, 0.18);
+}
+
+.matching-game__prompt-card {
+    width: 100%;
+    padding: 18px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    transition:
+        transform 0.18s ease,
+        box-shadow 0.18s ease;
+}
+
+.matching-game__prompt-card:hover {
+    transform: translateY(-1px);
+}
+
+.matching-game__prompt-card.is-active {
+    box-shadow:
+        0 16px 28px rgba(70, 138, 191, 0.12),
+        inset 0 0 0 2px rgba(74, 165, 228, 0.44);
+    background: linear-gradient(180deg, #ffffff, #eef8ff);
+}
+
+.matching-game__prompt-card.is-drop-target {
+    box-shadow:
+        0 16px 28px rgba(70, 138, 191, 0.12),
+        inset 0 0 0 3px rgba(56, 189, 248, 0.28);
+}
+
+.matching-game__prompt-card.is-correct {
+    background: linear-gradient(180deg, #f1fff4, #ddf9e5);
+    box-shadow: inset 0 0 0 2px rgba(74, 222, 128, 0.34);
+}
+
+.matching-game__prompt-card.is-wrong {
+    background: linear-gradient(180deg, #fff5f2, #ffe0d7);
+    box-shadow: inset 0 0 0 2px rgba(248, 113, 113, 0.28);
+}
+
+.matching-game__prompt-top,
+.matching-game__answer-preview {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.matching-game__answer-preview {
+    margin-top: 12px;
+}
+
+.matching-game__mini-button {
+    min-height: 32px;
+    padding: 0 12px;
+    font-size: 0.8rem;
+}
+
+.matching-game__option-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+}
+
+.matching-game__option {
+    min-height: 68px;
+    padding: 15px;
+    font-weight: 700;
+    transition:
+        transform 0.18s ease,
+        box-shadow 0.18s ease,
+        opacity 0.18s ease,
+        background-color 0.18s ease;
+}
+
+.matching-game__option:hover {
+    transform: translateY(-2px);
+    background: linear-gradient(180deg, #ffffff, #edf7ff);
+}
+
+.matching-game__option.is-used {
+    opacity: 0.58;
+}
+
+.matching-game__option.is-dragging {
+    opacity: 0.82;
+    box-shadow:
+        0 18px 30px rgba(70, 138, 191, 0.18),
+        inset 0 0 0 2px rgba(56, 189, 248, 0.38);
+}
+
+.matching-game__actions {
+    margin-top: 18px;
+}
+
+.matching-game__primary-button {
+    min-height: 50px;
+    padding: 0 22px;
+    border-radius: 18px;
+    color: #ffffff;
+    border: none;
+    background: linear-gradient(135deg, #1d76c4 0%, #44c0ff 100%);
+    box-shadow: 0 18px 34px rgba(37, 128, 199, 0.24);
+}
+
+.matching-game__primary-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+.matching-game__secondary-button {
+    min-height: 44px;
+    padding: 0 15px;
+    border-radius: 16px;
+}
+
+.matching-game__side {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    background:
+        radial-gradient(circle at bottom right, rgba(140, 214, 255, 0.25), transparent 34%),
+        linear-gradient(180deg, #fbfeff, #eef8ff);
+}
+
+.matching-game__tip {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+}
+
+@media (max-width: 1024px) {
+    .matching-game__hero,
+    .matching-game__layout,
+    .matching-game__board-grid,
+    .matching-game__option-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 760px) {
+    .matching-game__shell {
+        width: calc(100% - 18px);
+        padding-top: 22px;
+    }
+
+    .matching-game__topbar,
+    .matching-game__board-top,
+    .matching-game__actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .matching-game__hero,
+    .matching-game__board,
+    .matching-game__side {
+        padding: 20px;
+        border-radius: 24px;
+    }
+}

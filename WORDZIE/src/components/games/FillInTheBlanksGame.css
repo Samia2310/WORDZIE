@@ -1,0 +1,329 @@
+.blanks-game {
+    min-height: 100vh;
+    background:
+        radial-gradient(circle at top, rgba(255, 235, 149, 0.62), transparent 30%),
+        linear-gradient(180deg, #fff7cb 0%, #ffeeb3 44%, #ffe38e 100%);
+    color: #574200;
+    font-family: 'Poppins', sans-serif;
+}
+
+.blanks-game__shell {
+    width: min(1100px, calc(100% - 28px));
+    margin: 0 auto;
+    padding: 26px 0 40px;
+}
+
+.blanks-game__shell--summary {
+    display: grid;
+    place-items: center;
+    min-height: 100vh;
+}
+
+.blanks-game__topbar,
+.blanks-game__question-top,
+.blanks-game__question-tools {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+}
+
+.blanks-game__nav-button,
+.blanks-game__ghost-button,
+.blanks-game__secondary-button,
+.blanks-game__primary-button,
+.blanks-game__option {
+    font: inherit;
+    cursor: pointer;
+    border: none;
+}
+
+.blanks-game__nav-button,
+.blanks-game__ghost-button,
+.blanks-game__secondary-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    min-height: 44px;
+    padding: 0 16px;
+    border-radius: 999px;
+    color: #7b5800;
+    background: #fffdf4;
+    box-shadow: 0 12px 24px rgba(180, 137, 0, 0.12);
+}
+
+.blanks-game__hero,
+.blanks-game__question-card,
+.blanks-game__side,
+.blanks-game__summary {
+    position: relative;
+    overflow: hidden;
+    border-radius: 30px;
+    background: #fffdf5;
+    box-shadow: 0 24px 50px rgba(171, 131, 0, 0.14);
+}
+
+.blanks-game__hero::before,
+.blanks-game__question-card::before,
+.blanks-game__side::before,
+.blanks-game__summary::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(circle at top right, rgba(255, 214, 68, 0.2), transparent 32%),
+        linear-gradient(135deg, rgba(255, 255, 255, 0.8), rgba(255, 250, 226, 0.94));
+    pointer-events: none;
+}
+
+.blanks-game__hero,
+.blanks-game__question-card,
+.blanks-game__side,
+.blanks-game__summary {
+    position: relative;
+}
+
+.blanks-game__hero > *,
+.blanks-game__question-card > *,
+.blanks-game__side > *,
+.blanks-game__summary > * {
+    position: relative;
+    z-index: 1;
+}
+
+.blanks-game__hero {
+    margin-top: 20px;
+    padding: 28px;
+    display: grid;
+    grid-template-columns: minmax(0, 1.25fr) minmax(240px, 0.75fr);
+    gap: 18px;
+}
+
+.blanks-game__eyebrow,
+.blanks-game__panel-kicker {
+    display: inline-flex;
+    width: fit-content;
+    padding: 8px 13px;
+    border-radius: 999px;
+    background: #fff0ab;
+    color: #9a7100;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.blanks-game__hero h1,
+.blanks-game__summary h1 {
+    margin: 16px 0 10px;
+    font-size: clamp(2.3rem, 4vw, 3.8rem);
+    line-height: 1;
+    letter-spacing: -0.04em;
+    color: #624900;
+}
+
+.blanks-game__hero p,
+.blanks-game__side p,
+.blanks-game__summary p,
+.blanks-game__hint-card p,
+.blanks-game__tip p,
+.blanks-game__answer-feedback p {
+    margin: 0;
+    color: #7f6510;
+    line-height: 1.72;
+}
+
+.blanks-game__hero-stats {
+    display: grid;
+    gap: 12px;
+}
+
+.blanks-game__hero-stats div,
+.blanks-game__stat-card,
+.blanks-game__hint-card,
+.blanks-game__tip,
+.blanks-game__answer-feedback {
+    padding: 16px;
+    border-radius: 22px;
+    background: #ffffff;
+    box-shadow: inset 0 0 0 1px rgba(245, 206, 68, 0.2);
+}
+
+.blanks-game__hero-stats span,
+.blanks-game__stat-card span,
+.blanks-game__review-item span {
+    display: block;
+    color: #ba8a00;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+.blanks-game__hero-stats strong,
+.blanks-game__stat-card strong {
+    display: block;
+    margin-top: 6px;
+    color: #574200;
+}
+
+.blanks-game__layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.18fr) minmax(260px, 0.82fr);
+    gap: 18px;
+    margin-top: 18px;
+}
+
+.blanks-game__question-card,
+.blanks-game__side {
+    padding: 24px;
+}
+
+.blanks-game__sentence {
+    margin: 22px 0 0;
+    font-size: 1.28rem;
+    line-height: 1.8;
+    color: #5a4300;
+}
+
+.blanks-game__option-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+    margin-top: 20px;
+}
+
+.blanks-game__option {
+    min-height: 68px;
+    padding: 14px;
+    text-align: left;
+    border-radius: 20px;
+    background: #fffef9;
+    box-shadow:
+        0 12px 22px rgba(190, 154, 34, 0.08),
+        inset 0 0 0 1px rgba(246, 214, 93, 0.18);
+    color: #574200;
+    transition:
+        transform 0.18s ease,
+        box-shadow 0.18s ease,
+        background-color 0.18s ease;
+}
+
+.blanks-game__option:hover {
+    transform: translateY(-2px);
+}
+
+.blanks-game__option.is-selected {
+    background: linear-gradient(180deg, #fff6ca, #ffedaa);
+    box-shadow:
+        0 14px 26px rgba(190, 154, 34, 0.12),
+        inset 0 0 0 2px rgba(236, 182, 26, 0.32);
+}
+
+.blanks-game__option.is-correct {
+    background: linear-gradient(180deg, #f0fff0, #daf5d3);
+    box-shadow: inset 0 0 0 2px rgba(74, 222, 128, 0.32);
+}
+
+.blanks-game__option.is-wrong {
+    background: linear-gradient(180deg, #fff4ef, #ffe0d5);
+    box-shadow: inset 0 0 0 2px rgba(248, 113, 113, 0.26);
+}
+
+.blanks-game__primary-button {
+    min-height: 50px;
+    padding: 0 22px;
+    border-radius: 18px;
+    color: #ffffff;
+    background: linear-gradient(135deg, #efb900 0%, #ffcc33 100%);
+    box-shadow: 0 16px 32px rgba(222, 169, 0, 0.22);
+}
+
+.blanks-game__primary-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+.blanks-game__side {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    background:
+        radial-gradient(circle at bottom right, rgba(255, 221, 96, 0.24), transparent 34%),
+        linear-gradient(180deg, #fffef7, #fff4ca);
+}
+
+.blanks-game__tip {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+}
+
+.blanks-game__answer-feedback.is-correct {
+    box-shadow: inset 0 0 0 2px rgba(74, 222, 128, 0.34);
+}
+
+.blanks-game__answer-feedback.is-wrong {
+    box-shadow: inset 0 0 0 2px rgba(248, 113, 113, 0.28);
+}
+
+.blanks-game__review-list {
+    display: grid;
+    gap: 12px;
+    margin: 18px 0 24px;
+}
+
+.blanks-game__review-item {
+    padding: 14px 16px;
+    border-radius: 18px;
+    background: #ffffff;
+    box-shadow: inset 0 0 0 1px rgba(245, 206, 68, 0.18);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.blanks-game__review-item.is-correct {
+    box-shadow: inset 0 0 0 2px rgba(74, 222, 128, 0.26);
+}
+
+.blanks-game__review-item.is-wrong {
+    box-shadow: inset 0 0 0 2px rgba(248, 113, 113, 0.22);
+}
+
+.blanks-game__summary {
+    width: min(760px, calc(100% - 24px));
+    padding: 30px;
+}
+
+@media (max-width: 1024px) {
+    .blanks-game__hero,
+    .blanks-game__layout,
+    .blanks-game__option-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 760px) {
+    .blanks-game__shell {
+        width: calc(100% - 18px);
+        padding-top: 22px;
+    }
+
+    .blanks-game__topbar,
+    .blanks-game__question-top,
+    .blanks-game__question-tools {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .blanks-game__hero,
+    .blanks-game__question-card,
+    .blanks-game__side,
+    .blanks-game__summary {
+        padding: 20px;
+        border-radius: 24px;
+    }
+}
