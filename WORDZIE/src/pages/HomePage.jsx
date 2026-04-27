@@ -141,7 +141,7 @@ const HomePage = ({
                             <span>Vocabulary studio for focused daily learning</span>
                         </div>
 
-                        <h1 className="home-title">Learn words through a richer, more intentional flow.</h1>
+                        <h1 className="home-title">Build vocabulary with clarity and purpose</h1>
 
                         <p className="home-description">
                             WORDZIE combines alphabet-based study, interactive flashcards, and challenge
@@ -183,7 +183,7 @@ const HomePage = ({
                     <div className="home-selector-card">
                         <div className="home-selector-card__header">
                             <span className="home-section-kicker">Alphabet Navigator</span>
-                            <h2>Choose a letter and go straight into focused vocabulary practice.</h2>
+                            <h2>Choose a letter to start practicing</h2>
                             <p>
                                 Each letter opens a dedicated word collection so learning feels structured,
                                 approachable, and easy to continue.
