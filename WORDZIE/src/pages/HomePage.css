@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Unbounded:wght@700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Sora:wght@700;800&family=Unbounded:wght@700;800&display=swap');
 
 .home-page {
     min-height: 100vh;
@@ -50,18 +50,34 @@
 
 .home-brand h1 {
     margin: 0;
-    font-family: 'Unbounded', sans-serif;
-    font-size: clamp(2.8rem, 7vw, 5.8rem);
-    line-height: 0.92;
-    letter-spacing: -0.06em;
+    font-family: 'Sora', 'Plus Jakarta Sans', sans-serif;
+    font-size: clamp(2.85rem, 7vw, 5.6rem);
+    font-weight: 800;
+    line-height: 0.9;
+    letter-spacing: -0.085em;
     color: #f8f5ff;
+    text-transform: uppercase;
     text-shadow:
         0 0 24px rgba(168, 85, 247, 0.16),
         0 10px 30px rgba(0, 0, 0, 0.35);
+    position: relative;
+    display: inline-block;
+}
+
+.home-brand h1::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: -0.45rem;
+    width: min(48%, 160px);
+    height: 0.22rem;
+    transform: translateX(-50%);
+    border-radius: 999px;
+    background: linear-gradient(90deg, rgba(216, 180, 254, 0.18), rgba(192, 132, 252, 0.72), rgba(216, 180, 254, 0.18));
 }
 
 .home-brand p {
-    margin: 0.8rem 0 0;
+    margin: 1rem 0 0;
     color: #b7adc9;
     font-size: 0.98rem;
     letter-spacing: 0.01em;

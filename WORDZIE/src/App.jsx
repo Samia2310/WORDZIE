@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import HomePage from './pages/HomePage.jsx';
 import RoundSelectionPage from './pages/RoundSelectionPage.jsx';
 import WordListPage from './pages/WordListPage.jsx';
@@ -83,6 +83,50 @@ const getRouteStateFromHash = (hash, wordData) => {
     };
 };
 
+const buildHashFromRouteState = ({
+    currentView,
+    selectedLetter,
+    selectedRound,
+    selectedMode,
+    flashcardEntry,
+}) => {
+    const params = new URLSearchParams();
+
+    if (currentView !== 'home') {
+        params.set('view', currentView);
+    }
+
+    if (selectedLetter) {
+        params.set('letter', selectedLetter);
+    }
+
+    if (selectedRound?.id) {
+        params.set('round', selectedRound.id);
+    }
+
+    if (selectedMode) {
+        params.set('mode', selectedMode);
+    }
+
+    if (flashcardEntry !== 'words') {
+        params.set('flashcardEntry', flashcardEntry);
+    }
+
+    return params.toString();
+};
+
+const scrollPageToTop = () => {
+    if (typeof window === 'undefined') {
+        return;
+    }
+
+    window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: 'auto',
+    });
+};
+
 const UpdatedHomePage = ({
     onLetterClick,
     onNavigateToGameSelect,
@@ -111,96 +155,146 @@ const App = () => {
     const [selectedMode, setSelectedMode] = useState(initialRouteState.selectedMode);
     const [flashcardEntry, setFlashcardEntry] = useState(initialRouteState.flashcardEntry);
 
+    const applyRouteState = useCallback((nextRouteState) => {
+        setCurrentView(nextRouteState.currentView);
+        setSelectedLetter(nextRouteState.selectedLetter);
+        setSelectedRound(nextRouteState.selectedRound);
+        setSelectedMode(nextRouteState.selectedMode);
+        setFlashcardEntry(nextRouteState.flashcardEntry);
+    }, []);
+
+    const navigateToRoute = useCallback(
+        (nextRouteState, options = {}) => {
+            const normalizedRouteState = {
+                flashcardEntry: 'words',
+                selectedLetter: '',
+                selectedRound: null,
+                selectedMode: '',
+                ...nextRouteState,
+            };
+            const nextHash = buildHashFromRouteState(normalizedRouteState);
+            const nextUrl = `${window.location.pathname}${window.location.search}${
+                nextHash ? `#${nextHash}` : ''
+            }`;
+            const currentUrl = `${window.location.pathname}${window.location.search}${window.location.hash}`;
+
+            applyRouteState(normalizedRouteState);
+
+            if (nextUrl !== currentUrl) {
+                if (options.replace) {
+                    window.history.replaceState(null, '', nextUrl);
+                } else {
+                    window.history.pushState(null, '', nextUrl);
+                }
+            }
+
+            scrollPageToTop();
+        },
+        [applyRouteState],
+    );
+
     useEffect(() => {
-        const handleHashChange = () => {
+        const syncRouteFromLocation = () => {
             const nextRouteState = getRouteStateFromHash(window.location.hash, wordDataByLetter);
-            setCurrentView(nextRouteState.currentView);
-            setSelectedLetter(nextRouteState.selectedLetter);
-            setSelectedRound(nextRouteState.selectedRound);
-            setSelectedMode(nextRouteState.selectedMode);
-            setFlashcardEntry(nextRouteState.flashcardEntry);
+            applyRouteState(nextRouteState);
+            scrollPageToTop();
         };
 
-        window.addEventListener('hashchange', handleHashChange);
+        window.addEventListener('hashchange', syncRouteFromLocation);
+        window.addEventListener('popstate', syncRouteFromLocation);
 
         return () => {
-            window.removeEventListener('hashchange', handleHashChange);
+            window.removeEventListener('hashchange', syncRouteFromLocation);
+            window.removeEventListener('popstate', syncRouteFromLocation);
         };
+    }, [applyRouteState]);
+
+    useEffect(() => {
+        navigateToRoute(initialRouteState, { replace: true });
+        // We only want to normalize the initial URL once on mount.
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     useEffect(() => {
-        const params = new URLSearchParams();
-
-        if (currentView !== 'home') {
-            params.set('view', currentView);
+        if (currentView === 'flashcards' && !selectedRound) {
+            navigateToRoute({
+                currentView: selectedLetter ? 'rounds' : 'home',
+                selectedLetter,
+                selectedRound: null,
+                selectedMode: '',
+                flashcardEntry: 'words',
+            }, { replace: true });
         }
-
-        if (selectedLetter) {
-            params.set('letter', selectedLetter);
-        }
-
-        if (selectedRound?.id) {
-            params.set('round', selectedRound.id);
-        }
-
-        if (selectedMode) {
-            params.set('mode', selectedMode);
-        }
-
-        if (flashcardEntry !== 'words') {
-            params.set('flashcardEntry', flashcardEntry);
-        }
-
-        const nextHash = params.toString();
-        const nextUrl = `${window.location.pathname}${window.location.search}${nextHash ? `#${nextHash}` : ''}`;
-
-        window.history.replaceState(null, '', nextUrl);
-    }, [currentView, selectedLetter, selectedRound, selectedMode, flashcardEntry]);
+    }, [currentView, navigateToRoute, selectedLetter, selectedRound]);
 
     const handleLetterClick = (letter) => {
-        setSelectedLetter(letter);
-        setSelectedRound(null);
-        setSelectedMode('');
-        setFlashcardEntry('words');
-        setCurrentView('rounds');
+        navigateToRoute({
+            currentView: 'rounds',
+            selectedLetter: letter,
+            selectedRound: null,
+            selectedMode: '',
+            flashcardEntry: 'words',
+        });
     };
 
     const handleRoundSelect = (round) => {
-        setSelectedRound(round);
-        setCurrentView('words');
+        navigateToRoute({
+            currentView: 'words',
+            selectedLetter,
+            selectedRound: round,
+            selectedMode: '',
+            flashcardEntry: 'words',
+        });
     };
 
     const handleNavigateToGameSelect = () => {
-        setSelectedMode('');
-        setCurrentView('gameSelect');
+        navigateToRoute({
+            currentView: 'gameSelect',
+            selectedLetter: '',
+            selectedRound: null,
+            selectedMode: '',
+            flashcardEntry: 'words',
+        });
     };
 
     const handleBackToHome = () => {
-        setCurrentView('home');
-        setSelectedLetter('');
-        setSelectedRound(null);
-        setSelectedMode('');
-        setFlashcardEntry('words');
+        navigateToRoute({
+            currentView: 'home',
+            selectedLetter: '',
+            selectedRound: null,
+            selectedMode: '',
+            flashcardEntry: 'words',
+        });
     };
 
     const handleBackToRounds = () => {
-        setCurrentView('rounds');
-        setSelectedRound(null);
-        setSelectedMode('');
-        setFlashcardEntry('words');
+        navigateToRoute({
+            currentView: 'rounds',
+            selectedLetter,
+            selectedRound: null,
+            selectedMode: '',
+            flashcardEntry: 'words',
+        });
     };
 
     const handleStartFlashcardSession = () => {
-        setFlashcardEntry('words');
-        setCurrentView('flashcards');
+        navigateToRoute({
+            currentView: 'flashcards',
+            selectedLetter,
+            selectedRound,
+            selectedMode: '',
+            flashcardEntry: 'words',
+        });
     };
 
     const handleOpenFlashcardPreview = () => {
-        setSelectedLetter('');
-        setSelectedMode('');
-        setSelectedRound(createFeaturedFlashcardRound(wordDataByLetter));
-        setFlashcardEntry('home');
-        setCurrentView('flashcards');
+        navigateToRoute({
+            currentView: 'flashcards',
+            selectedLetter: '',
+            selectedRound: createFeaturedFlashcardRound(wordDataByLetter),
+            selectedMode: '',
+            flashcardEntry: 'home',
+        });
     };
 
     const handleBackToWordList = () => {
@@ -224,18 +318,33 @@ const App = () => {
     };
 
     const handleModeSelect = (mode) => {
-        setSelectedMode(mode);
-        setSelectedLetter('');
-        setSelectedRound(null);
-        setCurrentView('quiz');
+        navigateToRoute({
+            currentView: 'quiz',
+            selectedLetter: '',
+            selectedRound: null,
+            selectedMode: mode,
+            flashcardEntry: 'words',
+        });
     };
 
     const handleBackToGameSelect = () => {
-        setCurrentView('gameSelect');
+        navigateToRoute({
+            currentView: 'gameSelect',
+            selectedLetter: '',
+            selectedRound: null,
+            selectedMode: '',
+            flashcardEntry: 'words',
+        });
     };
 
     const handleBackToWords = () => {
-        setCurrentView('words');
+        navigateToRoute({
+            currentView: 'words',
+            selectedLetter,
+            selectedRound,
+            selectedMode: '',
+            flashcardEntry: 'words',
+        });
     };
 
     if (currentView === 'home') {
@@ -281,7 +390,6 @@ const App = () => {
 
     if (currentView === 'flashcards') {
         if (!selectedRound) {
-            handleBackToRounds();
             return null;
         }
 

@@ -94,7 +94,6 @@ const GameStudio = ({ onModeSelect, onBackToHome }) => {
                 <section className="game-studio__grid-section">
                     <div className="game-studio__heading">
                         <span className="game-studio__eyebrow">Pick a game</span>
-                        <h2>Four separate game files. Four different visual identities.</h2>
                     </div>
 
                     <div className="game-studio__grid">
@@ -105,7 +104,9 @@ const GameStudio = ({ onModeSelect, onBackToHome }) => {
                             return (
                                 <article
                                     key={gameKey}
-                                    className={`game-studio__card ${isActive ? 'is-active' : ''}`}
+                                    className={`game-studio__card game-studio__card--${gameKey} ${
+                                        isActive ? 'is-active' : ''
+                                    }`}
                                     onMouseEnter={() => setActiveGameKey(gameKey)}
                                     onFocus={() => setActiveGameKey(gameKey)}
                                     onClick={() => setActiveGameKey(gameKey)}

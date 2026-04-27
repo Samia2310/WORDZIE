@@ -36,7 +36,7 @@ export const GAME_CATALOG = {
         title: 'Word Builder',
         tagline: 'Rebuild the correct word from shuffled letters.',
         description:
-            'Students see a definition and a scrambled version of the target word, then rearrange the letters and type the correct answer.',
+            'Students see a definition and a scrambled version of the target word, then drag the letters into place to rebuild the answer.',
         skills: ['Spelling recall', 'Form recognition', 'Definition linking'],
         difficulty: 'Spelling practice',
     },

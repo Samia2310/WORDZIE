@@ -9,30 +9,95 @@ import {
 import { createWordBuilderSession, normalizeText } from './gameData.js';
 import './WordBuilderGame.css';
 
+const createEmptySlots = (question) => Array.from({ length: question?.word.length || 0 }, () => null);
+
 const WordBuilderGame = ({ onBackToGameSelect, onBackToHome }) => {
     const [session, setSession] = useState(() => createWordBuilderSession());
     const [currentIndex, setCurrentIndex] = useState(0);
-    const [guess, setGuess] = useState('');
+    const [answerSlots, setAnswerSlots] = useState(() => createEmptySlots(session.questions[0]));
     const [hasChecked, setHasChecked] = useState(false);
     const [showHint, setShowHint] = useState(false);
     const [score, setScore] = useState(0);
     const [history, setHistory] = useState([]);
+    const [selectedTileId, setSelectedTileId] = useState('');
+    const [draggedTileId, setDraggedTileId] = useState('');
 
     const currentQuestion = session.questions[currentIndex];
     const isComplete = currentIndex >= session.questions.length;
+    const letterTiles = currentQuestion
+        ? currentQuestion.shuffled.split('').map((letter, index) => ({
+              id: `${currentQuestion.id}-tile-${index}`,
+              letter,
+          }))
+        : [];
+    const tileMap = new Map(letterTiles.map((tile) => [tile.id, tile]));
+    const guess = answerSlots.map((tileId) => tileMap.get(tileId)?.letter || '').join('');
+    const placedTileIds = answerSlots.filter(Boolean);
+    const availableTiles = letterTiles.filter((tile) => !placedTileIds.includes(tile.id));
 
-    const restartGame = () => {
-        setSession(createWordBuilderSession());
-        setCurrentIndex(0);
-        setGuess('');
+    const resetRoundState = (question) => {
+        setAnswerSlots(createEmptySlots(question));
+        setSelectedTileId('');
+        setDraggedTileId('');
         setHasChecked(false);
         setShowHint(false);
+    };
+
+    const restartGame = () => {
+        const nextSession = createWordBuilderSession();
+        setSession(nextSession);
+        setCurrentIndex(0);
+        resetRoundState(nextSession.questions[0]);
         setScore(0);
         setHistory([]);
     };
 
+    const placeTileInSlot = (slotIndex, tileId) => {
+        if (hasChecked || slotIndex < 0 || !tileId) {
+            return;
+        }
+
+        setAnswerSlots((current) => {
+            const next = current.map((currentTileId) =>
+                currentTileId === tileId ? null : currentTileId,
+            );
+            next[slotIndex] = tileId;
+            return next;
+        });
+        setSelectedTileId('');
+        setDraggedTileId('');
+    };
+
+    const clearSlot = (slotIndex) => {
+        if (hasChecked) {
+            return;
+        }
+
+        setAnswerSlots((current) => {
+            if (!current[slotIndex]) {
+                return current;
+            }
+
+            const next = [...current];
+            next[slotIndex] = null;
+            return next;
+        });
+    };
+
+    const returnTileToBank = (tileId) => {
+        if (hasChecked || !tileId) {
+            return;
+        }
+
+        setAnswerSlots((current) =>
+            current.map((currentTileId) => (currentTileId === tileId ? null : currentTileId)),
+        );
+        setSelectedTileId('');
+        setDraggedTileId('');
+    };
+
     const handleCheck = () => {
-        if (!guess.trim() || hasChecked || !currentQuestion) {
+        if (!guess.trim() || hasChecked || !currentQuestion || answerSlots.includes(null)) {
             return;
         }
 
@@ -59,10 +124,9 @@ const WordBuilderGame = ({ onBackToGameSelect, onBackToHome }) => {
             return;
         }
 
-        setCurrentIndex((current) => current + 1);
-        setGuess('');
-        setHasChecked(false);
-        setShowHint(false);
+        const nextIndex = currentIndex + 1;
+        setCurrentIndex(nextIndex);
+        resetRoundState(session.questions[nextIndex]);
     };
 
     if (isComplete) {
@@ -87,7 +151,7 @@ const WordBuilderGame = ({ onBackToGameSelect, onBackToHome }) => {
                                 >
                                     <strong>{item.word}</strong>
                                     <span>
-                                        {item.isCorrect ? 'Correct' : `You wrote: ${item.guess}`}
+                                        {item.isCorrect ? 'Correct' : `You built: ${item.guess}`}
                                     </span>
                                 </div>
                             ))}
@@ -112,7 +176,10 @@ const WordBuilderGame = ({ onBackToGameSelect, onBackToHome }) => {
                         <ArrowLeft size={18} />
                         <span>Back to Games</span>
                     </button>
-                    <button onClick={onBackToHome} className="builder-game__nav-button">
+                    <button
+                        onClick={onBackToHome}
+                        className="builder-game__nav-button builder-game__nav-button--home"
+                    >
                         <Home size={18} />
                         <span>Home</span>
                     </button>
@@ -123,8 +190,8 @@ const WordBuilderGame = ({ onBackToGameSelect, onBackToHome }) => {
                         <span className="builder-game__eyebrow">Neon Builder</span>
                         <h1>Word Builder</h1>
                         <p>
-                            Unscramble the letters, think through the definition, and build the
-                            right vocabulary word from memory.
+                            Drag the shuffled letters into the answer slots, think through the
+                            definition, and rebuild the right vocabulary word from memory.
                         </p>
                     </div>
                     <div className="builder-game__hero-stats">
@@ -146,7 +213,7 @@ const WordBuilderGame = ({ onBackToGameSelect, onBackToHome }) => {
                                 <span className="builder-game__panel-kicker">
                                     Round {currentIndex + 1}
                                 </span>
-                                <h2>Rebuild the word from the shuffled letters.</h2>
+                                <h2>Drag the letters into order and rebuild the word.</h2>
                             </div>
                             <button className="builder-game__ghost-button" onClick={restartGame}>
                                 <RefreshCw size={16} />
@@ -154,15 +221,131 @@ const WordBuilderGame = ({ onBackToGameSelect, onBackToHome }) => {
                             </button>
                         </div>
 
-                        <div className="builder-game__tiles">
-                            {currentQuestion.shuffled.split('').map((letter, index) => (
-                                <span
-                                    key={`${currentQuestion.id}-${index}`}
-                                    className="builder-game__tile"
-                                >
-                                    {letter}
-                                </span>
-                            ))}
+                        <div className="builder-game__build-card">
+                            <div className="builder-game__answer-row">
+                                {answerSlots.map((tileId, slotIndex) => {
+                                    const tile = tileMap.get(tileId);
+                                    const expectedLetter = currentQuestion.word[slotIndex];
+                                    const isCorrectSlot =
+                                        hasChecked &&
+                                        tile &&
+                                        tile.letter.toLowerCase() === expectedLetter.toLowerCase();
+
+                                    return (
+                                        <button
+                                            key={`${currentQuestion.id}-slot-${slotIndex}`}
+                                            className={`builder-game__answer-slot ${
+                                                tile ? 'has-letter' : ''
+                                            } ${
+                                                hasChecked
+                                                    ? isCorrectSlot
+                                                        ? 'is-correct'
+                                                        : tile
+                                                          ? 'is-wrong'
+                                                          : ''
+                                                    : ''
+                                            } ${draggedTileId ? 'is-drop-target' : ''}`}
+                                            onClick={() => {
+                                                if (selectedTileId) {
+                                                    placeTileInSlot(slotIndex, selectedTileId);
+                                                    return;
+                                                }
+
+                                                clearSlot(slotIndex);
+                                            }}
+                                            onDragOver={(event) => {
+                                                if (!hasChecked) {
+                                                    event.preventDefault();
+                                                }
+                                            }}
+                                            onDrop={(event) => {
+                                                event.preventDefault();
+                                                if (hasChecked) {
+                                                    return;
+                                                }
+
+                                                const droppedTileId =
+                                                    event.dataTransfer.getData('text/plain') ||
+                                                    draggedTileId;
+                                                placeTileInSlot(slotIndex, droppedTileId);
+                                            }}
+                                            draggable={!hasChecked && Boolean(tileId)}
+                                            onDragStart={(event) => {
+                                                if (hasChecked || !tileId) {
+                                                    event.preventDefault();
+                                                    return;
+                                                }
+
+                                                setDraggedTileId(tileId);
+                                                setSelectedTileId(tileId);
+                                                event.dataTransfer.effectAllowed = 'move';
+                                                event.dataTransfer.setData('text/plain', tileId);
+                                            }}
+                                            onDragEnd={() => setDraggedTileId('')}
+                                            disabled={hasChecked}
+                                        >
+                                            <span>{tile?.letter || ''}</span>
+                                        </button>
+                                    );
+                                })}
+                            </div>
+
+                            <div
+                                className="builder-game__bank"
+                                onDragOver={(event) => {
+                                    if (!hasChecked) {
+                                        event.preventDefault();
+                                    }
+                                }}
+                                onDrop={(event) => {
+                                    event.preventDefault();
+                                    if (hasChecked) {
+                                        return;
+                                    }
+
+                                    const droppedTileId =
+                                        event.dataTransfer.getData('text/plain') || draggedTileId;
+                                    returnTileToBank(droppedTileId);
+                                }}
+                            >
+                                <div className="builder-game__bank-header">
+                                    <strong>Letter bank</strong>
+                                    <span>Drag or tap a letter, then place it into a slot.</span>
+                                </div>
+
+                                <div className="builder-game__tiles">
+                                    {availableTiles.map((tile) => (
+                                        <button
+                                            key={tile.id}
+                                            className={`builder-game__tile ${
+                                                selectedTileId === tile.id ? 'is-selected' : ''
+                                            } ${
+                                                draggedTileId === tile.id ? 'is-dragging' : ''
+                                            }`}
+                                            onClick={() =>
+                                                setSelectedTileId((current) =>
+                                                    current === tile.id ? '' : tile.id,
+                                                )
+                                            }
+                                            draggable={!hasChecked}
+                                            onDragStart={(event) => {
+                                                if (hasChecked) {
+                                                    event.preventDefault();
+                                                    return;
+                                                }
+
+                                                setDraggedTileId(tile.id);
+                                                setSelectedTileId(tile.id);
+                                                event.dataTransfer.effectAllowed = 'move';
+                                                event.dataTransfer.setData('text/plain', tile.id);
+                                            }}
+                                            onDragEnd={() => setDraggedTileId('')}
+                                        >
+                                            {tile.letter}
+                                        </button>
+                                    ))}
+                                </div>
+                            </div>
                         </div>
 
                         <div className="builder-game__clue-card">
@@ -171,20 +354,25 @@ const WordBuilderGame = ({ onBackToGameSelect, onBackToHome }) => {
                             <small>{currentQuestion.example}</small>
                         </div>
 
+                        <div className="builder-game__progress-card">
+                            <span>Current build</span>
+                            <strong>{guess || 'Start placing letters'}</strong>
+                        </div>
+
                         <div className="builder-game__input-row">
-                            <input
-                                className="builder-game__input"
-                                value={guess}
-                                onChange={(event) => setGuess(event.target.value)}
-                                placeholder="Type the correct word"
-                                disabled={hasChecked}
-                            />
                             <button
                                 className="builder-game__primary-button"
-                                disabled={!guess.trim() || hasChecked}
+                                disabled={!guess.trim() || hasChecked || answerSlots.includes(null)}
                                 onClick={handleCheck}
                             >
                                 Check word
+                            </button>
+                            <button
+                                className="builder-game__secondary-button"
+                                onClick={() => resetRoundState(currentQuestion)}
+                                disabled={hasChecked}
+                            >
+                                Clear letters
                             </button>
                         </div>
 
@@ -251,8 +439,8 @@ const WordBuilderGame = ({ onBackToGameSelect, onBackToHome }) => {
                         <div className="builder-game__tip">
                             <CircleHelp size={16} />
                             <p>
-                                Look for familiar chunks inside the shuffled tiles before typing
-                                the full answer. That makes long words easier to rebuild.
+                                Look for familiar chunks inside the letter bank before placing
+                                every slot. That makes long words easier to rebuild.
                             </p>
                         </div>
                     </aside>

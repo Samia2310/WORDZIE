@@ -114,7 +114,10 @@ const FillInTheBlanksGame = ({ onBackToGameSelect, onBackToHome }) => {
                         <ArrowLeft size={18} />
                         <span>Back to Games</span>
                     </button>
-                    <button onClick={onBackToHome} className="blanks-game__nav-button">
+                    <button
+                        onClick={onBackToHome}
+                        className="blanks-game__nav-button blanks-game__nav-button--home"
+                    >
                         <Home size={18} />
                         <span>Home</span>
                     </button>

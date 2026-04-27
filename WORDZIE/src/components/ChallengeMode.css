@@ -87,10 +87,11 @@
 
 .game-studio__hero-copy h1 {
     margin: 18px 0 14px;
-    max-width: 11ch;
-    font-size: clamp(2.6rem, 4.8vw, 4.8rem);
+    max-width: 18ch;
+    font-size: clamp(1.85rem, 3vw, 2.8rem);
     line-height: 0.98;
     letter-spacing: -0.05em;
+    text-wrap: balance;
 }
 
 .game-studio__hero-copy p,
@@ -220,10 +221,26 @@
 }
 
 .game-studio__card {
+    --game-card-bg: rgba(17, 12, 28, 0.95);
+    --game-card-bg-active: rgba(28, 20, 44, 0.98);
+    --game-card-border: rgba(197, 181, 255, 0.1);
+    --game-card-border-active: rgba(197, 181, 255, 0.28);
+    --game-card-shadow: rgba(6, 3, 12, 0.28);
+    --game-card-text: #c8bbde;
+    --game-card-title: #f6f2ff;
+    --game-card-icon-bg: rgba(255, 255, 255, 0.08);
+    --game-card-icon-color: #f6f2ff;
+    --game-card-badge-bg: rgba(255, 255, 255, 0.1);
+    --game-card-badge-color: #f8f4ff;
+    --game-card-skill-bg: rgba(255, 255, 255, 0.08);
+    --game-card-skill-color: #f1eaff;
+    --game-card-button-bg: rgba(255, 255, 255, 0.08);
+    --game-card-button-border: rgba(255, 255, 255, 0.16);
+    --game-card-button-color: #ffffff;
     padding: 22px;
     border-radius: 24px;
-    border: 1px solid rgba(197, 181, 255, 0.1);
-    background: rgba(17, 12, 28, 0.95);
+    border: 1px solid var(--game-card-border);
+    background: var(--game-card-bg);
     display: flex;
     flex-direction: column;
     gap: 16px;
@@ -239,9 +256,9 @@
 .game-studio__card:focus-visible,
 .game-studio__card.is-active {
     transform: translateY(-2px);
-    border-color: rgba(197, 181, 255, 0.28);
-    background: rgba(28, 20, 44, 0.98);
-    box-shadow: 0 18px 40px rgba(6, 3, 12, 0.28);
+    border-color: var(--game-card-border-active);
+    background: var(--game-card-bg-active);
+    box-shadow: 0 18px 40px var(--game-card-shadow);
     outline: none;
 }
 
@@ -255,8 +272,8 @@
 .game-studio__card-badge {
     padding: 7px 12px;
     border-radius: 999px;
-    background: rgba(124, 58, 237, 0.12);
-    color: #d9cdff;
+    background: var(--game-card-badge-bg);
+    color: var(--game-card-badge-color);
     font-size: 0.76rem;
     text-transform: uppercase;
     letter-spacing: 0.08em;
@@ -265,6 +282,11 @@
 .game-studio__card h3 {
     margin: 0;
     font-size: 1.35rem;
+    color: var(--game-card-title);
+}
+
+.game-studio__card p {
+    color: var(--game-card-text);
 }
 
 .game-studio__benefits {
@@ -281,6 +303,114 @@
 
 .game-studio__benefit-card h3 {
     margin: 0 0 8px;
+}
+
+.game-studio__card .game-studio__card-icon {
+    background: var(--game-card-icon-bg);
+    color: var(--game-card-icon-color);
+}
+
+.game-studio__card .game-studio__card-skills span {
+    background: var(--game-card-skill-bg);
+    color: var(--game-card-skill-color);
+}
+
+.game-studio__card .game-studio__card-button {
+    color: var(--game-card-button-color);
+    border-color: var(--game-card-button-border);
+    background: var(--game-card-button-bg);
+}
+
+.game-studio__card--puzzle {
+    --game-card-bg:
+        linear-gradient(180deg, rgba(28, 20, 18, 0.94), rgba(14, 10, 9, 0.98)),
+        #120b09;
+    --game-card-bg-active:
+        linear-gradient(180deg, rgba(41, 26, 20, 0.96), rgba(18, 12, 9, 0.99)),
+        #18100c;
+    --game-card-border: rgba(255, 168, 84, 0.22);
+    --game-card-border-active: rgba(255, 189, 124, 0.42);
+    --game-card-shadow: rgba(104, 39, 0, 0.34);
+    --game-card-text: #d9c6bc;
+    --game-card-title: #fff7f1;
+    --game-card-icon-bg: rgba(255, 162, 72, 0.14);
+    --game-card-icon-color: #ffb577;
+    --game-card-badge-bg: rgba(255, 162, 72, 0.14);
+    --game-card-badge-color: #ffd4af;
+    --game-card-skill-bg: rgba(255, 162, 72, 0.1);
+    --game-card-skill-color: #ffd6b1;
+    --game-card-button-bg: rgba(255, 162, 72, 0.08);
+    --game-card-button-border: rgba(255, 168, 84, 0.22);
+    --game-card-button-color: #fff7f1;
+}
+
+.game-studio__card--matching {
+    --game-card-bg:
+        linear-gradient(180deg, rgba(18, 24, 34, 0.94), rgba(9, 13, 21, 0.98)),
+        #090d15;
+    --game-card-bg-active:
+        linear-gradient(180deg, rgba(20, 31, 47, 0.96), rgba(10, 16, 26, 0.99)),
+        #0b1220;
+    --game-card-border: rgba(97, 196, 255, 0.22);
+    --game-card-border-active: rgba(144, 217, 255, 0.42);
+    --game-card-shadow: rgba(7, 42, 77, 0.34);
+    --game-card-text: #c2d5e7;
+    --game-card-title: #f6fbff;
+    --game-card-icon-bg: rgba(97, 196, 255, 0.14);
+    --game-card-icon-color: #8fd9ff;
+    --game-card-badge-bg: rgba(97, 196, 255, 0.14);
+    --game-card-badge-color: #d0efff;
+    --game-card-skill-bg: rgba(97, 196, 255, 0.1);
+    --game-card-skill-color: #d5f0ff;
+    --game-card-button-bg: rgba(97, 196, 255, 0.08);
+    --game-card-button-border: rgba(97, 196, 255, 0.22);
+    --game-card-button-color: #f8fcff;
+}
+
+.game-studio__card--fill_blanks {
+    --game-card-bg:
+        linear-gradient(180deg, rgba(31, 29, 16, 0.94), rgba(16, 14, 8, 0.98)),
+        #110f09;
+    --game-card-bg-active:
+        linear-gradient(180deg, rgba(40, 35, 18, 0.96), rgba(18, 15, 9, 0.99)),
+        #16120a;
+    --game-card-border: rgba(255, 214, 82, 0.22);
+    --game-card-border-active: rgba(255, 227, 130, 0.42);
+    --game-card-shadow: rgba(95, 73, 0, 0.34);
+    --game-card-text: #dcd1af;
+    --game-card-title: #fffef2;
+    --game-card-icon-bg: rgba(255, 214, 82, 0.14);
+    --game-card-icon-color: #ffd873;
+    --game-card-badge-bg: rgba(255, 214, 82, 0.14);
+    --game-card-badge-color: #fff0b5;
+    --game-card-skill-bg: rgba(255, 214, 82, 0.1);
+    --game-card-skill-color: #fff1bb;
+    --game-card-button-bg: rgba(255, 214, 82, 0.08);
+    --game-card-button-border: rgba(255, 214, 82, 0.22);
+    --game-card-button-color: #fffef5;
+}
+
+.game-studio__card--word_builder {
+    --game-card-bg:
+        linear-gradient(180deg, rgba(16, 31, 22, 0.94), rgba(8, 16, 11, 0.98)),
+        #09110c;
+    --game-card-bg-active:
+        linear-gradient(180deg, rgba(18, 39, 27, 0.96), rgba(9, 19, 13, 0.99)),
+        #0b1510;
+    --game-card-border: rgba(79, 170, 110, 0.22);
+    --game-card-border-active: rgba(120, 198, 146, 0.42);
+    --game-card-shadow: rgba(14, 58, 35, 0.34);
+    --game-card-text: #c4d9ca;
+    --game-card-title: #f7fff9;
+    --game-card-icon-bg: rgba(79, 170, 110, 0.14);
+    --game-card-icon-color: #8ad0a4;
+    --game-card-badge-bg: rgba(79, 170, 110, 0.14);
+    --game-card-badge-color: #d4f2de;
+    --game-card-skill-bg: rgba(79, 170, 110, 0.1);
+    --game-card-skill-color: #d5f0de;
+    --game-card-button-bg: rgba(79, 170, 110, 0.08);
+    --game-card-button-border: rgba(79, 170, 110, 0.22);
+    --game-card-button-color: #f8fffa;
 }
 
 @media (max-width: 1024px) {

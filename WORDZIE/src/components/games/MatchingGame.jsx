@@ -84,7 +84,10 @@ const MatchingGame = ({ onBackToGameSelect, onBackToHome }) => {
                         <ArrowLeft size={18} />
                         <span>Back to Games</span>
                     </button>
-                    <button onClick={onBackToHome} className="matching-game__nav-button">
+                    <button
+                        onClick={onBackToHome}
+                        className="matching-game__nav-button matching-game__nav-button--home"
+                    >
                         <Home size={18} />
                         <span>Home</span>
                     </button>
@@ -126,7 +129,7 @@ const MatchingGame = ({ onBackToGameSelect, onBackToHome }) => {
                         <div className="matching-game__board-top">
                             <div>
                                 <span className="matching-game__panel-kicker">How to play</span>
-                                <h2>Read the relation first, then match carefully.</h2>
+                                <h2>Read the relation first, then drag or select the right answer.</h2>
                             </div>
                             <button className="matching-game__ghost-button" onClick={restartGame}>
                                 <RefreshCw size={16} />
@@ -136,7 +139,7 @@ const MatchingGame = ({ onBackToGameSelect, onBackToHome }) => {
 
                         <div className="matching-game__steps">
                             <span>1. Read the prompt</span>
-                            <span>2. Drag or click a tile</span>
+                            <span>2. Drag or select a tile</span>
                             <span>3. Check the full board</span>
                         </div>
 
@@ -228,8 +231,8 @@ const MatchingGame = ({ onBackToGameSelect, onBackToHome }) => {
                             <div className="matching-game__column">
                                 <h3>Answer tiles</h3>
                                 <p className="matching-game__column-note">
-                                    Drag tiles onto a prompt card, or select a prompt first and click
-                                    a tile.
+                                    Drag tiles onto a prompt card, or select a prompt first and then
+                                    select a tile.
                                 </p>
                                 <div className="matching-game__option-grid">
                                     {session.options.map((option) => {

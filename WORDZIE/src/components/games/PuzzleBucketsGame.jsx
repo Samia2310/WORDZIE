@@ -81,7 +81,10 @@ const PuzzleBucketsGame = ({ onBackToGameSelect, onBackToHome }) => {
                         <ArrowLeft size={18} />
                         <span>Back to Games</span>
                     </button>
-                    <button onClick={onBackToHome} className="puzzle-game__nav-button">
+                    <button
+                        onClick={onBackToHome}
+                        className="puzzle-game__nav-button puzzle-game__nav-button--home"
+                    >
                         <Home size={18} />
                         <span>Home</span>
                     </button>
@@ -120,7 +123,7 @@ const PuzzleBucketsGame = ({ onBackToGameSelect, onBackToHome }) => {
                         <div className="puzzle-game__board-top">
                             <div>
                                 <span className="puzzle-game__panel-kicker">How to play</span>
-                                <h2>Drag tiles into the right slots and complete all four buckets.</h2>
+                                <h2>Drag or select tiles into the right slots and complete all four buckets.</h2>
                             </div>
                             <button className="puzzle-game__ghost-button" onClick={restartGame}>
                                 <RefreshCw size={16} />
@@ -129,8 +132,8 @@ const PuzzleBucketsGame = ({ onBackToGameSelect, onBackToHome }) => {
                         </div>
 
                         <div className="puzzle-game__steps">
-                            <span>1. Choose a tile</span>
-                            <span>2. Drag or click to place it</span>
+                            <span>1. Choose or select a tile</span>
+                            <span>2. Drag or select to place it</span>
                             <span>3. Submit the board</span>
                         </div>
 
