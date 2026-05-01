@@ -7,6 +7,7 @@ import ChallengeMode from './components/ChallengeMode.jsx';
 import './styles.css';
 import './clean-theme.css';
 import { wordDataByLetter } from './data/wordCollection.js';
+import { GAME_IDS } from './components/games/gameData.js';
 
 const createRoundsForLetter = (letter, wordData) => {
     const words = wordData[letter] || [];
@@ -16,7 +17,7 @@ const createRoundsForLetter = (letter, wordData) => {
     for (let i = 0; i < words.length; i += wordsPerRound) {
         const roundWords = words.slice(i, i + wordsPerRound);
         rounds.push({
-            name: `Round: ${rounds.length + 1}`,
+            name: `Page ${rounds.length + 1}`,
             description: '',
             words: roundWords,
             id: `${letter}-${rounds.length + 1}`,
@@ -131,6 +132,7 @@ const UpdatedHomePage = ({
     onLetterClick,
     onNavigateToGameSelect,
     onOpenFlashcardPreview,
+    onOpenQuickQuiz,
     selectedLetter,
     wordData,
 }) => (
@@ -138,6 +140,7 @@ const UpdatedHomePage = ({
         onLetterSelect={onLetterClick}
         onNavigateToGameSelect={onNavigateToGameSelect}
         onOpenFlashcardPreview={onOpenFlashcardPreview}
+        onOpenQuickQuiz={onOpenQuickQuiz}
         selectedLetter={selectedLetter}
         wordData={wordData}
     />
@@ -297,6 +300,16 @@ const App = () => {
         });
     };
 
+    const handleOpenQuickQuiz = () => {
+        navigateToRoute({
+            currentView: 'quiz',
+            selectedLetter: '',
+            selectedRound: null,
+            selectedMode: GAME_IDS.QUICK_QUIZ,
+            flashcardEntry: 'words',
+        });
+    };
+
     const handleBackToWordList = () => {
         if (flashcardEntry === 'home') {
             handleBackToHome();
@@ -353,6 +366,7 @@ const App = () => {
                 onLetterClick={handleLetterClick}
                 onNavigateToGameSelect={handleNavigateToGameSelect}
                 onOpenFlashcardPreview={handleOpenFlashcardPreview}
+                onOpenQuickQuiz={handleOpenQuickQuiz}
                 selectedLetter={selectedLetter}
                 wordData={wordDataByLetter}
             />

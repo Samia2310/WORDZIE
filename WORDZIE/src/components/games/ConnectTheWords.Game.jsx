@@ -11,14 +11,14 @@ import {
     findNextUnassignedPrompt,
     getMatchingResults,
 } from './gameData.js';
-import './MatchingGame.css';
+import './ConnectTheWordsGame.css';
 
 const getPromptPlaceholder = (relation) =>
     relation === 'antonym'
         ? 'Drag or select an antonym tile'
         : 'Drag or select a synonym tile';
 
-const MatchingGame = ({ onBackToGameSelect, onBackToHome }) => {
+const ConnectTheWordsGame = ({ onBackToGameSelect, onBackToHome }) => {
     const [session, setSession] = useState(() => createMatchingSession());
     const [activePromptId, setActivePromptId] = useState(session.prompts[0]?.id || '');
     const [assignments, setAssignments] = useState({});
@@ -335,4 +335,4 @@ const MatchingGame = ({ onBackToGameSelect, onBackToHome }) => {
     );
 };
 
-export default MatchingGame;
+export default ConnectTheWordsGame;

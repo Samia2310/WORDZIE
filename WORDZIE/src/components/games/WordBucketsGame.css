@@ -1,4 +1,4 @@
-.puzzle-game {
+.word-bucket-game {
     min-height: 100vh;
     background:
         radial-gradient(circle at top, rgba(255, 214, 153, 0.7), transparent 28%),
@@ -7,41 +7,41 @@
     font-family: 'Poppins', sans-serif;
 }
 
-.puzzle-game__shell {
+.word-bucket-game__shell {
     width: min(1180px, calc(100% - 28px));
     margin: 0 auto;
     padding: 26px 0 40px;
 }
 
-.puzzle-game__topbar,
-.puzzle-game__board-top,
-.puzzle-game__actions {
+.word-bucket-game__topbar,
+.word-bucket-game__board-top,
+.word-bucket-game__actions {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 14px;
 }
 
-.puzzle-game__topbar {
+.word-bucket-game__topbar {
     justify-content: space-between;
     flex-wrap: wrap;
     gap: 16px;
 }
 
-.puzzle-game__nav-button,
-.puzzle-game__ghost-button,
-.puzzle-game__primary-button,
-.puzzle-game__secondary-button,
-.puzzle-game__chip,
-.puzzle-game__slot {
+.word-bucket-game__nav-button,
+.word-bucket-game__ghost-button,
+.word-bucket-game__primary-button,
+.word-bucket-game__secondary-button,
+.word-bucket-game__chip,
+.word-bucket-game__slot {
     border: none;
     cursor: pointer;
     font: inherit;
 }
 
-.puzzle-game__nav-button,
-.puzzle-game__ghost-button,
-.puzzle-game__secondary-button {
+.word-bucket-game__nav-button,
+.word-bucket-game__ghost-button,
+.word-bucket-game__secondary-button {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -54,14 +54,14 @@
     box-shadow: none;
 }
 
-.puzzle-game__ghost-button {
+.word-bucket-game__ghost-button {
     font-size: 0.88rem;
     font-weight: 700;
     white-space: nowrap;
     flex-shrink: 0;
 }
 
-.puzzle-game__nav-button {
+.word-bucket-game__nav-button {
     justify-content: flex-start;
     min-height: 36px;
     padding: 0 12px;
@@ -76,31 +76,31 @@
         box-shadow 0.18s ease;
 }
 
-.puzzle-game__nav-button:hover,
-.puzzle-game__nav-button:focus-visible {
+.word-bucket-game__nav-button:hover,
+.word-bucket-game__nav-button:focus-visible {
     background: rgba(255, 246, 231, 0.62);
     border-color: rgba(110, 43, 0, 0.24);
     box-shadow: 0 8px 18px rgba(145, 62, 0, 0.08);
     outline: none;
 }
 
-.puzzle-game__nav-button--home {
+.word-bucket-game__nav-button--home {
     margin-left: auto;
     border-color: rgba(110, 43, 0, 0.18);
     background: rgba(255, 246, 231, 0.52);
 }
 
-.puzzle-game__nav-button--home:hover,
-.puzzle-game__nav-button--home:focus-visible {
+.word-bucket-game__nav-button--home:hover,
+.word-bucket-game__nav-button--home:focus-visible {
     background: rgba(255, 246, 231, 0.82);
     border-color: rgba(110, 43, 0, 0.32);
     box-shadow: 0 10px 22px rgba(145, 62, 0, 0.12);
     outline: none;
 }
 
-.puzzle-game__hero,
-.puzzle-game__board,
-.puzzle-game__side {
+.word-bucket-game__hero,
+.word-bucket-game__board,
+.word-bucket-game__side {
     position: relative;
     overflow: hidden;
     border-radius: 30px;
@@ -108,9 +108,9 @@
     box-shadow: 0 26px 50px rgba(139, 61, 2, 0.18);
 }
 
-.puzzle-game__hero::before,
-.puzzle-game__board::before,
-.puzzle-game__side::before {
+.word-bucket-game__hero::before,
+.word-bucket-game__board::before,
+.word-bucket-game__side::before {
     content: '';
     position: absolute;
     inset: 0;
@@ -120,7 +120,7 @@
     pointer-events: none;
 }
 
-.puzzle-game__hero {
+.word-bucket-game__hero {
     margin-top: 20px;
     padding: 28px 30px;
     display: grid;
@@ -128,17 +128,17 @@
     gap: 18px;
 }
 
-.puzzle-game__hero > *,
-.puzzle-game__board > *,
-.puzzle-game__side > * {
+.word-bucket-game__hero > *,
+.word-bucket-game__board > *,
+.word-bucket-game__side > * {
     position: relative;
     z-index: 1;
 }
 
-.puzzle-game__eyebrow,
-.puzzle-game__panel-kicker,
-.puzzle-game__bucket-label,
-.puzzle-game__slot-label {
+.word-bucket-game__eyebrow,
+.word-bucket-game__panel-kicker,
+.word-bucket-game__bucket-label,
+.word-bucket-game__slot-label {
     display: inline-flex;
     width: fit-content;
     padding: 8px 13px;
@@ -151,7 +151,7 @@
     text-transform: uppercase;
 }
 
-.puzzle-game__hero-copy h1 {
+.word-bucket-game__hero-copy h1 {
     margin: 16px 0 12px;
     font-size: clamp(2.6rem, 4vw, 4.2rem);
     line-height: 0.95;
@@ -159,33 +159,33 @@
     color: #662300;
 }
 
-.puzzle-game__hero-copy p,
-.puzzle-game__side p,
-.puzzle-game__bucket-header small,
-.puzzle-game__feedback p,
-.puzzle-game__tip p {
+.word-bucket-game__hero-copy p,
+.word-bucket-game__side p,
+.word-bucket-game__bucket-header small,
+.word-bucket-game__feedback p,
+.word-bucket-game__tip p {
     margin: 0;
     color: #7a3b10;
     line-height: 1.7;
 }
 
-.puzzle-game__hud {
+.word-bucket-game__hud {
     display: grid;
     gap: 12px;
 }
 
-.puzzle-game__hud-card,
-.puzzle-game__stat-card,
-.puzzle-game__feedback,
-.puzzle-game__tip {
+.word-bucket-game__hud-card,
+.word-bucket-game__stat-card,
+.word-bucket-game__feedback,
+.word-bucket-game__tip {
     padding: 16px;
     border-radius: 22px;
     background: linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(255, 243, 220, 0.98));
     box-shadow: inset 0 0 0 1px rgba(255, 164, 73, 0.18);
 }
 
-.puzzle-game__hud-card span,
-.puzzle-game__stat-card span {
+.word-bucket-game__hud-card span,
+.word-bucket-game__stat-card span {
     display: block;
     color: #b85a14;
     font-size: 0.78rem;
@@ -193,41 +193,41 @@
     letter-spacing: 0.08em;
 }
 
-.puzzle-game__hud-card strong,
-.puzzle-game__stat-card strong,
-.puzzle-game__slot strong {
+.word-bucket-game__hud-card strong,
+.word-bucket-game__stat-card strong,
+.word-bucket-game__slot strong {
     display: block;
     margin-top: 6px;
     color: #572100;
 }
 
-.puzzle-game__layout {
+.word-bucket-game__layout {
     display: grid;
     grid-template-columns: minmax(0, 1.32fr) minmax(280px, 0.68fr);
     gap: 18px;
     margin-top: 18px;
 }
 
-.puzzle-game__board,
-.puzzle-game__side {
+.word-bucket-game__board,
+.word-bucket-game__side {
     padding: 24px;
 }
 
-.puzzle-game__board-top h2,
-.puzzle-game__side h3,
-.puzzle-game__feedback h4 {
+.word-bucket-game__board-top h2,
+.word-bucket-game__side h3,
+.word-bucket-game__feedback h4 {
     margin: 10px 0 0;
     color: #612500;
 }
 
-.puzzle-game__steps {
+.word-bucket-game__steps {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
     margin: 18px 0 16px;
 }
 
-.puzzle-game__steps span {
+.word-bucket-game__steps span {
     padding: 9px 13px;
     border-radius: 999px;
     background: #fff0d7;
@@ -236,14 +236,14 @@
     font-weight: 600;
 }
 
-.puzzle-game__manual-note {
+.word-bucket-game__manual-note {
     margin: 0 0 16px;
     color: #844012;
     font-size: 0.92rem;
     line-height: 1.6;
 }
 
-.puzzle-game__chip-bank {
+.word-bucket-game__chip-bank {
     display: flex;
     flex-wrap: wrap;
     gap: 12px;
@@ -255,7 +255,7 @@
     box-shadow: inset 0 0 0 2px rgba(255, 171, 84, 0.18);
 }
 
-.puzzle-game__chip {
+.word-bucket-game__chip {
     max-width: 100%;
     padding: 11px 16px;
     border-radius: 999px;
@@ -270,23 +270,23 @@
         opacity 0.18s ease;
 }
 
-.puzzle-game__chip:hover {
+.word-bucket-game__chip:hover {
     transform: translateY(-2px);
 }
 
-.puzzle-game__chip.is-selected {
+.word-bucket-game__chip.is-selected {
     background: linear-gradient(180deg, #ff8a26, #ea5d00);
     box-shadow:
         0 0 0 3px rgba(255, 213, 166, 0.9),
         0 14px 28px rgba(205, 91, 12, 0.28);
 }
 
-.puzzle-game__chip:active,
-.puzzle-game__chip[draggable='true'] {
+.word-bucket-game__chip:active,
+.word-bucket-game__chip[draggable='true'] {
     touch-action: none;
 }
 
-.puzzle-game__bucket-grid {
+.word-bucket-game__bucket-grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 14px;
@@ -294,27 +294,27 @@
     align-items: start;
 }
 
-.puzzle-game__bucket-card {
+.word-bucket-game__bucket-card {
     padding: 18px;
     border-radius: 24px;
     background: linear-gradient(180deg, #fff8ea, #ffefcf);
     box-shadow: inset 0 0 0 2px rgba(255, 178, 98, 0.16);
 }
 
-.puzzle-game__bucket-header p {
+.word-bucket-game__bucket-header p {
     margin: 10px 0 0;
     font-size: 0.95rem;
     line-height: 1.56;
     color: #5e2500;
 }
 
-.puzzle-game__slot-grid {
+.word-bucket-game__slot-grid {
     display: grid;
     gap: 10px;
     margin-top: 14px;
 }
 
-.puzzle-game__slot {
+.word-bucket-game__slot {
     min-height: 78px;
     padding: 12px 14px;
     text-align: left;
@@ -328,43 +328,43 @@
         background-color 0.18s ease;
 }
 
-.puzzle-game__slot strong {
+.word-bucket-game__slot strong {
     overflow-wrap: anywhere;
 }
 
-.puzzle-game__slot:hover {
+.word-bucket-game__slot:hover {
     transform: translateY(-1px);
 }
 
-.puzzle-game__slot.has-chip {
+.word-bucket-game__slot.has-chip {
     background: linear-gradient(180deg, #fff0dc, #ffe3b8);
 }
 
-.puzzle-game__slot.is-drop-target {
+.word-bucket-game__slot.is-drop-target {
     box-shadow:
         inset 0 0 0 2px rgba(255, 139, 43, 0.44),
         0 0 0 4px rgba(255, 202, 147, 0.6);
 }
 
-.puzzle-game__slot.is-correct {
+.word-bucket-game__slot.is-correct {
     background: linear-gradient(180deg, #efffde, #dff7c6);
     box-shadow: inset 0 0 0 2px rgba(92, 180, 74, 0.34);
 }
 
-.puzzle-game__slot.is-wrong {
+.word-bucket-game__slot.is-wrong {
     background: linear-gradient(180deg, #fff1e6, #ffd7bf);
     box-shadow: inset 0 0 0 2px rgba(255, 116, 51, 0.28);
 }
 
-.puzzle-game__slot-label {
+.word-bucket-game__slot-label {
     margin-bottom: 8px;
 }
 
-.puzzle-game__actions {
+.word-bucket-game__actions {
     margin-top: 18px;
 }
 
-.puzzle-game__primary-button {
+.word-bucket-game__primary-button {
     min-height: 52px;
     padding: 0 24px;
     border-radius: 18px;
@@ -373,19 +373,19 @@
     box-shadow: 0 18px 34px rgba(214, 86, 5, 0.25);
 }
 
-.puzzle-game__primary-button:disabled {
+.word-bucket-game__primary-button:disabled {
     opacity: 0.58;
     cursor: not-allowed;
     box-shadow: none;
 }
 
-.puzzle-game__secondary-button {
+.word-bucket-game__secondary-button {
     min-height: 44px;
     padding: 0 15px;
     border-radius: 16px;
 }
 
-.puzzle-game__side {
+.word-bucket-game__side {
     display: flex;
     flex-direction: column;
     gap: 12px;
@@ -394,81 +394,82 @@
         linear-gradient(180deg, #fff1db, #ffe1b7);
 }
 
-.puzzle-game__tip {
+.word-bucket-game__tip {
     display: flex;
     gap: 10px;
     align-items: flex-start;
 }
 
 @media (max-width: 1180px) {
-    .puzzle-game__hero,
-    .puzzle-game__layout,
-    .puzzle-game__bucket-grid {
+    .word-bucket-game__hero,
+    .word-bucket-game__layout,
+    .word-bucket-game__bucket-grid {
         grid-template-columns: 1fr;
     }
 
-    .puzzle-game__board-top {
+    .word-bucket-game__board-top {
         flex-direction: column;
         align-items: stretch;
     }
 
-    .puzzle-game__ghost-button {
+    .word-bucket-game__ghost-button {
         align-self: flex-start;
     }
 }
 
 @media (max-width: 900px) {
-    .puzzle-game__shell {
+    .word-bucket-game__shell {
         width: calc(100% - 22px);
     }
 
-    .puzzle-game__hero,
-    .puzzle-game__board,
-    .puzzle-game__side {
+    .word-bucket-game__hero,
+    .word-bucket-game__board,
+    .word-bucket-game__side {
         padding: 22px;
         border-radius: 26px;
     }
 }
 
 @media (max-width: 640px) {
-    .puzzle-game__shell {
+    .word-bucket-game__shell {
         width: calc(100% - 18px);
         padding-top: 20px;
     }
 
-    .puzzle-game__board-top,
-    .puzzle-game__actions {
+    .word-bucket-game__board-top,
+    .word-bucket-game__actions {
         flex-direction: column;
         align-items: stretch;
     }
 
-    .puzzle-game__topbar {
+    .word-bucket-game__topbar {
         flex-direction: row;
         align-items: center;
         justify-content: space-between;
         gap: 14px;
     }
 
-    .puzzle-game__hero,
-    .puzzle-game__board,
-    .puzzle-game__side {
+    .word-bucket-game__hero,
+    .word-bucket-game__board,
+    .word-bucket-game__side {
         padding: 18px;
         border-radius: 22px;
     }
 
-    .puzzle-game__nav-button {
+    .word-bucket-game__nav-button {
         width: auto;
         min-height: 34px;
         font-size: 0.88rem;
     }
 
-    .puzzle-game__nav-button--home {
+    .word-bucket-game__nav-button--home {
         margin-left: auto;
         padding: 0 11px;
     }
 
-    .puzzle-game__steps span {
+    .word-bucket-game__steps span {
         width: 100%;
         text-align: center;
     }
 }
+

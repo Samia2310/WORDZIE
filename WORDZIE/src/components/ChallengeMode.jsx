@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import {
     ArrowLeft,
     ArrowRight,
+    Award,
     BookOpen,
     Brain,
     Gamepad2,
@@ -10,21 +11,23 @@ import {
     Target,
 } from 'lucide-react';
 import { allWords, GAME_CATALOG, GAME_IDS } from './games/gameData.js';
-import PuzzleBucketsGame from './games/PuzzleBucketsGame.jsx';
-import MatchingGame from './games/MatchingGame.jsx';
+import WordBucketsGame from './games/WordBucketsGame.jsx';
+import ConnectTheWordsGame from './games/ConnectTheWords.Game.jsx';
 import FillInTheBlanksGame from './games/FillInTheBlanksGame.jsx';
+import QuickQuizGame from './games/QuickQuizGame.jsx';
 import WordBuilderGame from './games/WordBuilderGame.jsx';
 import './ChallengeMode.css';
 
 const gameIcons = {
-    [GAME_IDS.PUZZLE]: LayoutGrid,
+    [GAME_IDS.WORD_BUCKETS]: LayoutGrid,
     [GAME_IDS.MATCHING]: Target,
     [GAME_IDS.FILL_BLANKS]: BookOpen,
+    [GAME_IDS.QUICK_QUIZ]: Award,
     [GAME_IDS.WORD_BUILDER]: Brain,
 };
 
 const GameStudio = ({ onModeSelect, onBackToHome }) => {
-    const [activeGameKey, setActiveGameKey] = useState(GAME_IDS.PUZZLE);
+    const [activeGameKey, setActiveGameKey] = useState(GAME_IDS.WORD_BUCKETS);
 
     return (
         <div className="game-studio">
@@ -47,7 +50,7 @@ const GameStudio = ({ onModeSelect, onBackToHome }) => {
                         </div>
                         <h1>Choose a vocabulary game for focused practice.</h1>
                         <p>
-                            Challenge Mode brings four distinct practice styles into one place, so
+                            Challenge Mode brings five distinct practice styles into one place, so
                             you can open the activity that best matches the vocabulary skill you
                             want to build next.
                         </p>
@@ -56,6 +59,7 @@ const GameStudio = ({ onModeSelect, onBackToHome }) => {
                             <span>Word families</span>
                             <span>Synonym and antonym practice</span>
                             <span>Context clues</span>
+                            <span>Quick mixed quiz</span>
                             <span>Spelling recall</span>
                         </div>
 
@@ -68,7 +72,7 @@ const GameStudio = ({ onModeSelect, onBackToHome }) => {
                                 <span>Open selected game</span>
                             </button>
                             <div className="game-studio__stat-pill">
-                                <strong>4</strong>
+                                <strong>5</strong>
                                 <span>Different game experiences</span>
                             </div>
                             <div className="game-studio__stat-pill">
@@ -150,9 +154,9 @@ const ChallengeMode = ({
     }
 
     if (currentView === 'quiz') {
-        if (selectedMode === GAME_IDS.PUZZLE) {
+        if (selectedMode === GAME_IDS.WORD_BUCKETS) {
             return (
-                <PuzzleBucketsGame
+                <WordBucketsGame
                     onBackToGameSelect={handleBackToGameSelect}
                     onBackToHome={handleBackToHome}
                 />
@@ -161,7 +165,7 @@ const ChallengeMode = ({
 
         if (selectedMode === GAME_IDS.MATCHING) {
             return (
-                <MatchingGame
+                <ConnectTheWordsGame
                     onBackToGameSelect={handleBackToGameSelect}
                     onBackToHome={handleBackToHome}
                 />
@@ -171,6 +175,15 @@ const ChallengeMode = ({
         if (selectedMode === GAME_IDS.FILL_BLANKS) {
             return (
                 <FillInTheBlanksGame
+                    onBackToGameSelect={handleBackToGameSelect}
+                    onBackToHome={handleBackToHome}
+                />
+            );
+        }
+
+        if (selectedMode === GAME_IDS.QUICK_QUIZ) {
+            return (
+                <QuickQuizGame
                     onBackToGameSelect={handleBackToGameSelect}
                     onBackToHome={handleBackToHome}
                 />

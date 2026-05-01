@@ -119,6 +119,7 @@ const HomePage = ({
     onLetterSelect,
     onNavigateToGameSelect,
     onOpenFlashcardPreview,
+    onOpenQuickQuiz,
     selectedLetter,
     wordData,
 }) => {
@@ -156,6 +157,9 @@ const HomePage = ({
                             <button className="home-button home-button--secondary" onClick={onNavigateToGameSelect}>
                                 <Gamepad2 size={18} /> Explore Challenge Modes
                             </button>
+                            <button className="home-button home-button--tertiary" onClick={onOpenQuickQuiz}>
+                                <Award size={18} /> Start Quick Quiz
+                            </button>
                         </div>
 
                         <div className="home-metrics">
@@ -168,8 +172,8 @@ const HomePage = ({
                                 <span>Active letter tracks</span>
                             </article>
                             <article className="home-metric">
-                                <strong>2</strong>
-                                <span>Study styles</span>
+                                <strong>5</strong>
+                                <span>Challenge games</span>
                             </article>
                             <article className="home-metric">
                                 <strong>7 days</strong>
@@ -183,9 +187,9 @@ const HomePage = ({
                     <div className="home-selector-card">
                         <div className="home-selector-card__header">
                             <span className="home-section-kicker">Alphabet Navigator</span>
-                            <h2>Choose a letter to start practicing</h2>
+                            <h2>Choose a round to start practicing</h2>
                             <p>
-                                Each letter opens a dedicated word collection so learning feels structured,
+                                Each letter opens its own round with multiple study pages, so learning feels structured,
                                 approachable, and easy to continue.
                             </p>
                         </div>
@@ -209,7 +213,6 @@ const HomePage = ({
                             eyebrow="Interactive"
                             title="Flashcard Studio"
                             description="Preview definitions, synonyms, antonyms, and usage in an experience designed around recall and confidence."
-                            footer="Best for warming up and building retention"
                             onClick={onOpenFlashcardPreview}
                             actionLabel="Try now"
                         />
@@ -218,16 +221,16 @@ const HomePage = ({
                             eyebrow="Practice"
                             title="Challenge Modes"
                             description="Move from review to action with quiz-style practice that turns vocabulary into something more dynamic."
-                            footer="Best for testing understanding under pressure"
                             onClick={onNavigateToGameSelect}
                             actionLabel="Open modes"
                         />
                         <ExperienceCard
                             icon={Award}
-                            eyebrow="Progress"
-                            title="Consistent Growth"
-                            description="Follow a clear journey: choose a letter, learn the words, review with flashcards, then challenge yourself."
-                            footer="Designed for steady, repeatable improvement"
+                            eyebrow="Test"
+                            title="Quick Quiz"
+                            description="Choose a quiz mode and get instant feedback that helps you understand what you already know and what needs more practice."
+                            onClick={onOpenQuickQuiz}
+                            actionLabel="Start quiz"
                         />
                     </div>
                 </section>
@@ -241,8 +244,8 @@ const HomePage = ({
                             <div className="home-step">
                                 <span className="home-step__number">01</span>
                                 <div>
-                                    <h3>Pick a letter</h3>
-                                    <p>Use the circular selector to jump into a focused vocabulary track.</p>
+                                    <h3>Pick a round</h3>
+                                    <p>Use the circular selector to jump into a focused vocabulary round by letter.</p>
                                 </div>
                             </div>
                             <div className="home-step">
@@ -263,7 +266,6 @@ const HomePage = ({
                     </article>
 
                     <aside className="home-signature-card home-credential-card">
-                        <span className="home-section-kicker">Crafted By</span>
                         <div className="home-credential-card__frame">
                             <span className="home-credential-card__label">Creator Credential</span>
                             <strong className="home-credential-card__name">Samia Tabassum Chowdhury</strong>

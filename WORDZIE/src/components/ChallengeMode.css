@@ -307,7 +307,7 @@
     background: var(--game-card-button-bg);
 }
 
-.game-studio__card--puzzle {
+.game-studio__card--word_buckets {
     --game-card-bg:
         linear-gradient(180deg, rgba(28, 20, 18, 0.94), rgba(14, 10, 9, 0.98)),
         #120b09;
@@ -374,6 +374,29 @@
     --game-card-button-bg: rgba(255, 214, 82, 0.08);
     --game-card-button-border: rgba(255, 214, 82, 0.22);
     --game-card-button-color: #fffef5;
+}
+
+.game-studio__card--quick_quiz {
+    --game-card-bg:
+        linear-gradient(180deg, rgba(245, 245, 245, 0.96), rgba(221, 221, 221, 0.98)),
+        #e8e8e8;
+    --game-card-bg-active:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(232, 232, 232, 0.99)),
+        #f0f0f0;
+    --game-card-border: rgba(255, 255, 255, 0.28);
+    --game-card-border-active: rgba(255, 255, 255, 0.56);
+    --game-card-shadow: rgba(220, 220, 220, 0.22);
+    --game-card-text: #1c1c1c;
+    --game-card-title: #000000;
+    --game-card-icon-bg: rgba(0, 0, 0, 0.08);
+    --game-card-icon-color: #050505;
+    --game-card-badge-bg: rgba(0, 0, 0, 0.08);
+    --game-card-badge-color: #111111;
+    --game-card-skill-bg: rgba(0, 0, 0, 0.06);
+    --game-card-skill-color: #181818;
+    --game-card-button-bg: rgba(0, 0, 0, 0.06);
+    --game-card-button-border: rgba(0, 0, 0, 0.12);
+    --game-card-button-color: #050505;
 }
 
 .game-studio__card--word_builder {

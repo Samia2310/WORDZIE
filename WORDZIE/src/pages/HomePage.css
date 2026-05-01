@@ -159,6 +159,7 @@
     flex-wrap: wrap;
     gap: 0.75rem;
     justify-content: center;
+    align-items: center;
 }
 
 .home-button {
@@ -171,6 +172,7 @@
     align-items: center;
     justify-content: center;
     gap: 0.65rem;
+    min-width: 220px;
     transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
 }
 
@@ -187,6 +189,13 @@
     border: 1px solid rgba(192, 132, 252, 0.18);
 }
 
+.home-button--tertiary {
+    background: linear-gradient(180deg, rgba(28, 22, 46, 0.96) 0%, rgba(20, 16, 34, 0.96) 100%);
+    color: #efe7ff;
+    border: 1px solid rgba(216, 180, 254, 0.22);
+    box-shadow: 0 16px 30px rgba(0, 0, 0, 0.22);
+}
+
 .home-button:hover {
     transform: translateY(-1px);
 }
@@ -194,6 +203,13 @@
 .home-button--secondary:hover {
     border-color: rgba(216, 180, 254, 0.4);
     box-shadow: 0 16px 30px rgba(0, 0, 0, 0.28);
+}
+
+.home-button--tertiary:hover {
+    border-color: rgba(216, 180, 254, 0.42);
+    box-shadow:
+        0 16px 32px rgba(0, 0, 0, 0.26),
+        0 0 0 1px rgba(192, 132, 252, 0.12);
 }
 
 .home-metrics {
@@ -518,8 +534,8 @@
     align-items: flex-end;
     align-self: end;
     justify-self: end;
-    gap: 0.65rem;
-    width: min(100%, 340px);
+    gap: 0.4rem;
+    width: min(100%, 290px);
     padding: 0;
     background: transparent;
     border: none;
@@ -529,8 +545,8 @@
 .home-credential-card__frame {
     position: relative;
     width: 100%;
-    padding: 1rem 1rem 0.95rem;
-    border-radius: 1.1rem;
+    padding: 0.78rem 0.88rem 0.82rem;
+    border-radius: 0.95rem;
     background:
         linear-gradient(180deg, rgba(255, 255, 255, 0.04) 0%, rgba(168, 85, 247, 0.08) 100%);
     border: 1px solid rgba(192, 132, 252, 0.18);
@@ -557,26 +573,26 @@
 
 .home-credential-card__label {
     color: #c4b5fd;
-    font-size: 0.68rem;
+    font-size: 0.6rem;
     font-weight: 700;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.38rem;
 }
 
 .home-credential-card__name {
     font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(1.6rem, 1.9vw, 2.2rem);
-    line-height: 0.94;
+    font-size: clamp(1.28rem, 1.5vw, 1.75rem);
+    line-height: 0.98;
     letter-spacing: -0.03em;
     color: #f8f5ff;
-    margin-bottom: 0.35rem;
+    margin-bottom: 0.2rem;
 }
 
 .home-credential-card__role {
     color: #b7adc9;
-    font-size: 0.88rem;
-    line-height: 1.45;
+    font-size: 0.76rem;
+    line-height: 1.35;
 }
 
 @media (max-width: 1100px) {

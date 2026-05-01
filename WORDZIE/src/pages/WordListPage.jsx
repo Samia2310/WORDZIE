@@ -87,7 +87,7 @@ const WordListPage = ({
                                 <Home size={18} /> Back to Home
                             </button>
                             <button onClick={handleBackToRounds} className="word-list-ghost-button" type="button">
-                                <ArrowLeft size={18} /> Back to Rounds
+                                <ArrowLeft size={18} /> Back to Pages
                             </button>
                         </div>
 
@@ -105,7 +105,7 @@ const WordListPage = ({
                 <header className="word-list-hero">
                     <div className="word-list-hero__top">
                         <button onClick={handleBackToRounds} className="word-list-ghost-button" type="button">
-                            <ArrowLeft size={18} /> Back to Rounds
+                            <ArrowLeft size={18} /> Back to Pages
                         </button>
 
                         <button onClick={handleBackToHome} className="word-list-ghost-button" type="button">
@@ -126,8 +126,12 @@ const WordListPage = ({
 
                     <div className="word-list-stats">
                         <article className="word-list-stat">
-                            <span>Selected letter</span>
-                            <strong>{selectedLetter?.toUpperCase?.() || 'Set'}</strong>
+                            <span>Current round</span>
+                            <strong>
+                                {selectedLetter?.toUpperCase?.()
+                                    ? `Round ${selectedLetter.toUpperCase()}`
+                                    : 'Set'}
+                            </strong>
                         </article>
                         <article className="word-list-stat">
                             <span>Total words</span>

@@ -17,24 +17,24 @@ const RoundSelectionPage = ({ selectedLetter, rounds, onRoundSelect, onBack }) =
 
                     <div className="round-page-hero__content">
                         <span className="round-page-kicker">
-                            <Sparkles size={14} /> Vocabulary Rounds
+                            <Sparkles size={14} /> Vocabulary Round
                         </span>
                         <h1 className="round-page-title">
-                            Rounds for <span>{selectedLetter.toUpperCase()}</span>
+                            Round <span>{selectedLetter.toUpperCase()}</span>
                         </h1>
                         <p className="round-page-subtitle">
-                            Choose a round to start a focused study session. Each round groups a manageable
+                            Choose a page to start a focused study session. Each page inside this round groups a manageable
                             set of words so learning feels organized and easy to continue.
                         </p>
                     </div>
 
                     <div className="round-page-stats">
                         <article className="round-page-stat">
-                            <span>Selected letter</span>
-                            <strong>{selectedLetter.toUpperCase()}</strong>
+                            <span>Current round</span>
+                            <strong>Round {selectedLetter.toUpperCase()}</strong>
                         </article>
                         <article className="round-page-stat">
-                            <span>Total rounds</span>
+                            <span>Total pages</span>
                             <strong>{rounds?.length || 0}</strong>
                         </article>
                         <article className="round-page-stat">
@@ -55,7 +55,7 @@ const RoundSelectionPage = ({ selectedLetter, rounds, onRoundSelect, onBack }) =
                             >
                                 <div className="round-page-card__header">
                                     <div>
-                                        <span className="round-page-card__eyebrow">Round {index + 1}</span>
+                                        <span className="round-page-card__eyebrow">Page {index + 1}</span>
                                         <h2 className="round-page-card__title">{round.name}</h2>
                                     </div>
                                     <span className="round-page-card__count">{round.words.length} words</span>
@@ -65,7 +65,7 @@ const RoundSelectionPage = ({ selectedLetter, rounds, onRoundSelect, onBack }) =
                                         <Layers3 size={14} /> Study set
                                     </span>
                                     <span className="round-page-card__cta">
-                                        Open round <ArrowRight size={16} />
+                                        Open page <ArrowRight size={16} />
                                     </span>
                                 </div>
                             </button>
@@ -73,8 +73,8 @@ const RoundSelectionPage = ({ selectedLetter, rounds, onRoundSelect, onBack }) =
                     </section>
                 ) : (
                     <section className="round-page-empty">
-                        <h2>No rounds available yet</h2>
-                        <p>We could not find any vocabulary rounds for this letter right now.</p>
+                        <h2>No pages available yet</h2>
+                        <p>We could not find any vocabulary pages for this letter right now.</p>
                     </section>
                 )}
             </div>
