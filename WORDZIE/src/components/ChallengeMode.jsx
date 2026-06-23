@@ -26,6 +26,13 @@ const gameIcons = {
     [GAME_IDS.WORD_BUILDER]: Brain,
 };
 
+const CHALLENGE_GAME_IDS = [
+    GAME_IDS.WORD_BUCKETS,
+    GAME_IDS.MATCHING,
+    GAME_IDS.FILL_BLANKS,
+    GAME_IDS.WORD_BUILDER,
+];
+
 const GameStudio = ({ onModeSelect, onBackToHome }) => {
     const [activeGameKey, setActiveGameKey] = useState(GAME_IDS.WORD_BUCKETS);
 
@@ -50,7 +57,7 @@ const GameStudio = ({ onModeSelect, onBackToHome }) => {
                         </div>
                         <h1>Choose a vocabulary game for focused practice.</h1>
                         <p>
-                            Challenge Mode brings five distinct practice styles into one place, so
+                            Challenge Mode brings four distinct practice styles into one place, so
                             you can open the activity that best matches the vocabulary skill you
                             want to build next.
                         </p>
@@ -59,7 +66,6 @@ const GameStudio = ({ onModeSelect, onBackToHome }) => {
                             <span>Word families</span>
                             <span>Synonym and antonym practice</span>
                             <span>Context clues</span>
-                            <span>Quick mixed quiz</span>
                             <span>Spelling recall</span>
                         </div>
 
@@ -72,7 +78,7 @@ const GameStudio = ({ onModeSelect, onBackToHome }) => {
                                 <span>Open selected game</span>
                             </button>
                             <div className="game-studio__stat-pill">
-                                <strong>5</strong>
+                                <strong>4</strong>
                                 <span>Different game experiences</span>
                             </div>
                             <div className="game-studio__stat-pill">
@@ -89,7 +95,8 @@ const GameStudio = ({ onModeSelect, onBackToHome }) => {
                     </div>
 
                     <div className="game-studio__grid">
-                        {Object.entries(GAME_CATALOG).map(([gameKey, game]) => {
+                        {CHALLENGE_GAME_IDS.map((gameKey) => {
+                            const game = GAME_CATALOG[gameKey];
                             const IconComponent = gameIcons[gameKey];
                             const isActive = activeGameKey === gameKey;
 

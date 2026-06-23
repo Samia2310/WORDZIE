@@ -352,6 +352,12 @@
     filter: drop-shadow(0 0 18px rgba(216, 180, 254, 0.46));
 }
 
+.alphabet-selector__letter-ring.is-marked {
+    fill: rgba(16, 185, 129, 0.52);
+    stroke: rgba(167, 243, 208, 0.72);
+    filter: drop-shadow(0 0 14px rgba(52, 211, 153, 0.28));
+}
+
 .alphabet-selector__letter-text {
     font-size: 0.95rem;
     font-weight: 800;
@@ -368,6 +374,93 @@
 
 .alphabet-selector__letter-text.is-selected {
     fill: #ffffff;
+}
+
+.alphabet-selector__letter-text.is-marked {
+    fill: #ecfdf5;
+}
+
+.alphabet-selector__marked-dot {
+    fill: #a7f3d0;
+    stroke: rgba(5, 46, 22, 0.7);
+    stroke-width: 1.5px;
+}
+
+.home-round-mark-panel {
+    display: grid;
+    gap: 0.8rem;
+    padding: 1rem;
+    border-radius: 1.25rem;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(192, 132, 252, 0.14);
+}
+
+.home-round-mark-panel__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.8rem;
+    color: #cfc6e5;
+    font-size: 0.88rem;
+}
+
+.home-round-mark-panel__header span {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+}
+
+.home-round-mark-panel__header strong {
+    color: #f5f3ff;
+}
+
+.home-round-mark-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(112px, 1fr));
+    gap: 0.55rem;
+}
+
+.home-round-mark-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.6rem;
+    min-height: 2.8rem;
+    padding: 0.62rem 0.75rem;
+    border-radius: 0.95rem;
+    border: 1px solid rgba(192, 132, 252, 0.16);
+    background: rgba(255, 255, 255, 0.04);
+    color: #ddd6fe;
+    font: inherit;
+    cursor: pointer;
+    transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease, background-color 180ms ease;
+}
+
+.home-round-mark-button:hover {
+    transform: translateY(-1px);
+    border-color: rgba(216, 180, 254, 0.36);
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.24);
+}
+
+.home-round-mark-button span {
+    font-size: 0.82rem;
+    color: #b7adc9;
+}
+
+.home-round-mark-button strong {
+    color: #ede9fe;
+    font-size: 0.76rem;
+    letter-spacing: 0.04em;
+}
+
+.home-round-mark-button.is-marked {
+    background: rgba(52, 211, 153, 0.12);
+    border-color: rgba(52, 211, 153, 0.32);
+}
+
+.home-round-mark-button.is-marked span,
+.home-round-mark-button.is-marked strong {
+    color: #a7f3d0;
 }
 
 .home-experiences,

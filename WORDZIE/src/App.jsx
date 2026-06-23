@@ -9,6 +9,29 @@ import './clean-theme.css';
 import { wordDataByLetter } from './data/wordCollection.js';
 import { GAME_IDS } from './components/games/gameData.js';
 
+const MARKED_PROGRESS_STORAGE_KEY = 'wordzie-marked-progress';
+
+const createEmptyMarkedProgress = () => ({
+    pages: {},
+});
+
+const readMarkedProgress = () => {
+    if (typeof window === 'undefined') {
+        return createEmptyMarkedProgress();
+    }
+
+    try {
+        const storedProgress = window.localStorage.getItem(MARKED_PROGRESS_STORAGE_KEY);
+        const parsedProgress = storedProgress ? JSON.parse(storedProgress) : null;
+
+        return {
+            pages: parsedProgress?.pages || {},
+        };
+    } catch {
+        return createEmptyMarkedProgress();
+    }
+};
+
 const createRoundsForLetter = (letter, wordData) => {
     const words = wordData[letter] || [];
     const wordsPerRound = 10;
@@ -26,6 +49,18 @@ const createRoundsForLetter = (letter, wordData) => {
 
     return rounds;
 };
+
+const getCompletedLettersFromMarkedPages = (wordData, markedPages = {}) =>
+    Object.fromEntries(
+        Object.keys(wordData || {}).map((letter) => {
+            const rounds = createRoundsForLetter(letter, wordData);
+            const isComplete =
+                rounds.length > 0 &&
+                rounds.every((round, index) => markedPages[round.id || `${letter}-${index}`]);
+
+            return [letter, isComplete];
+        }),
+    );
 
 const createFeaturedFlashcardRound = (wordData) => {
     const previewWords = Object.keys(wordData)
@@ -133,6 +168,7 @@ const UpdatedHomePage = ({
     onNavigateToGameSelect,
     onOpenFlashcardPreview,
     onOpenQuickQuiz,
+    completedLetters,
     selectedLetter,
     wordData,
 }) => (
@@ -141,6 +177,7 @@ const UpdatedHomePage = ({
         onNavigateToGameSelect={onNavigateToGameSelect}
         onOpenFlashcardPreview={onOpenFlashcardPreview}
         onOpenQuickQuiz={onOpenQuickQuiz}
+        completedLetters={completedLetters}
         selectedLetter={selectedLetter}
         wordData={wordData}
     />
@@ -157,6 +194,7 @@ const App = () => {
     const [selectedRound, setSelectedRound] = useState(initialRouteState.selectedRound);
     const [selectedMode, setSelectedMode] = useState(initialRouteState.selectedMode);
     const [flashcardEntry, setFlashcardEntry] = useState(initialRouteState.flashcardEntry);
+    const [markedProgress, setMarkedProgress] = useState(readMarkedProgress);
 
     const applyRouteState = useCallback((nextRouteState) => {
         setCurrentView(nextRouteState.currentView);
@@ -219,6 +257,14 @@ const App = () => {
     }, []);
 
     useEffect(() => {
+        if (typeof window === 'undefined') {
+            return;
+        }
+
+        window.localStorage.setItem(MARKED_PROGRESS_STORAGE_KEY, JSON.stringify(markedProgress));
+    }, [markedProgress]);
+
+    useEffect(() => {
         if (currentView === 'flashcards' && !selectedRound) {
             navigateToRoute({
                 currentView: selectedLetter ? 'rounds' : 'home',
@@ -248,6 +294,25 @@ const App = () => {
             selectedMode: '',
             flashcardEntry: 'words',
         });
+    };
+
+    const toggleMarkedValue = (collection, key) => {
+        const nextCollection = { ...collection };
+
+        if (nextCollection[key]) {
+            delete nextCollection[key];
+        } else {
+            nextCollection[key] = true;
+        }
+
+        return nextCollection;
+    };
+
+    const handleTogglePageMarked = (pageKey) => {
+        setMarkedProgress((currentProgress) => ({
+            ...currentProgress,
+            pages: toggleMarkedValue(currentProgress.pages, pageKey),
+        }));
     };
 
     const handleNavigateToGameSelect = () => {
@@ -361,12 +426,15 @@ const App = () => {
     };
 
     if (currentView === 'home') {
+        const completedLetters = getCompletedLettersFromMarkedPages(wordDataByLetter, markedProgress.pages);
+
         return (
             <UpdatedHomePage
                 onLetterClick={handleLetterClick}
                 onNavigateToGameSelect={handleNavigateToGameSelect}
                 onOpenFlashcardPreview={handleOpenFlashcardPreview}
                 onOpenQuickQuiz={handleOpenQuickQuiz}
+                completedLetters={completedLetters}
                 selectedLetter={selectedLetter}
                 wordData={wordDataByLetter}
             />
@@ -380,7 +448,9 @@ const App = () => {
             <RoundSelectionPage
                 selectedLetter={selectedLetter}
                 rounds={rounds}
+                markedPages={markedProgress.pages}
                 onRoundSelect={handleRoundSelect}
+                onTogglePageMarked={handleTogglePageMarked}
                 onBack={handleBackToHome}
             />
         );

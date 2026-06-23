@@ -23,7 +23,7 @@ const getLetterPosition = (index, total) => {
     };
 };
 
-const CircularLetterSelector = ({ onLetterSelect, selectedLetter, wordData }) => {
+const CircularLetterSelector = ({ onLetterSelect, selectedLetter, wordData, completedLetters }) => {
     const isLetterAvailable = (letter) => Boolean(wordData?.[letter]?.length);
 
     return (
@@ -44,6 +44,7 @@ const CircularLetterSelector = ({ onLetterSelect, selectedLetter, wordData }) =>
                     const { x, y } = getLetterPosition(index, alphabet.length);
                     const isAvailable = isLetterAvailable(letter);
                     const isSelected = selectedLetter === letter;
+                    const isMarked = Boolean(completedLetters?.[letter]);
 
                     let circleClassName = 'alphabet-selector__letter-ring';
                     let textClassName = 'alphabet-selector__letter-text';
@@ -61,6 +62,11 @@ const CircularLetterSelector = ({ onLetterSelect, selectedLetter, wordData }) =>
                         textClassName += ' is-selected';
                     }
 
+                    if (isMarked) {
+                        circleClassName += ' is-marked';
+                        textClassName += ' is-marked';
+                    }
+
                     return (
                         <g
                             key={letter}
@@ -71,6 +77,14 @@ const CircularLetterSelector = ({ onLetterSelect, selectedLetter, wordData }) =>
                             <text x={x} y={y + 5} textAnchor="middle" className={textClassName}>
                                 {letter}
                             </text>
+                            {isMarked && (
+                                <circle
+                                    cx={x + 10}
+                                    cy={y - 10}
+                                    r="4"
+                                    className="alphabet-selector__marked-dot"
+                                />
+                            )}
                         </g>
                     );
                 })}
@@ -120,11 +134,13 @@ const HomePage = ({
     onNavigateToGameSelect,
     onOpenFlashcardPreview,
     onOpenQuickQuiz,
+    completedLetters,
     selectedLetter,
     wordData,
 }) => {
     const totalWords = Object.values(wordData || {}).flat().length;
     const availableLetters = Object.values(wordData || {}).filter((words) => words?.length).length;
+
     return (
         <div className="home-page">
             <div className="home-shell">
@@ -172,7 +188,7 @@ const HomePage = ({
                                 <span>Active letter tracks</span>
                             </article>
                             <article className="home-metric">
-                                <strong>5</strong>
+                                <strong>4</strong>
                                 <span>Challenge games</span>
                             </article>
                             <article className="home-metric">
@@ -198,6 +214,7 @@ const HomePage = ({
                             onLetterSelect={onLetterSelect}
                             selectedLetter={selectedLetter}
                             wordData={wordData}
+                            completedLetters={completedLetters}
                         />
                     </div>
                 </section>
