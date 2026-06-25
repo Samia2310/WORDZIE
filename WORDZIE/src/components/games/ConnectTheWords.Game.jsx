@@ -211,7 +211,7 @@ const ConnectTheWordsGame = ({ onBackToGameSelect, onBackToHome }) => {
                                         >
                                             <div className="matching-game__prompt-top">
                                                 <strong>{prompt.word}</strong>
-                                                <span>{prompt.relation}</span>
+                                                <span>{prompt.relation === 'antonym' ? 'Add Antonym' : 'Add Synonym'}</span>
                                             </div>
                                             <p>{prompt.clue}</p>
                                             <div className="matching-game__answer-preview">
