@@ -276,7 +276,7 @@ const HomePage = ({
                                 <span className="home-step__number">03</span>
                                 <div>
                                     <h3>Test and revisit</h3>
-                                    <p>Switch to challenge mode when you want to convert recognition into recall.</p>
+                                    <p>Switch to challenge mode and quiz when you want to convert recognition into recall.</p>
                                 </div>
                             </div>
                         </div>
