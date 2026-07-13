@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import {
     ArrowLeft,
     ArrowRight,
+    BookmarkCheck,
+    BookmarkPlus,
     BookOpen,
     Brain,
     Check,
@@ -68,6 +70,9 @@ const FlashcardSessionPage = ({
     roundName = 'Flashcard Session',
     handleBackToWordList,
     handleRoundComplete,
+    onAddToMyWordlist,
+    onRemoveFromMyWordlist,
+    isWordInMyWordlist,
 }) => {
     const [deck, setDeck] = useState([]);
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -101,6 +106,7 @@ const FlashcardSessionPage = ({
         Math.round(((sessionCompletedAt ?? Date.now()) - sessionStartedAt) / 1000),
     );
     const currentConfidence = currentCard ? confidenceByCard[currentCard.cardKey] : null;
+    const isCurrentCardSaved = currentCard ? isWordInMyWordlist?.(currentCard) || false : false;
     const masteryScore = deck.length
         ? Math.round((((masteredCount * 1) + (familiarCount * 0.65)) / deck.length) * 100)
         : 0;
@@ -228,6 +234,21 @@ const FlashcardSessionPage = ({
         setConfidenceByCard({});
         setSessionStartedAt(Date.now());
         setSessionCompletedAt(null);
+    };
+
+    const handleWordlistToggle = () => {
+        if (!currentCard) {
+            return;
+        }
+
+        if (isCurrentCardSaved) {
+            onRemoveFromMyWordlist?.(currentCard);
+            return;
+        }
+
+        onAddToMyWordlist?.(currentCard, {
+            roundName,
+        });
     };
 
     if (!wordsForRound || wordsForRound.length === 0) {
@@ -475,16 +496,34 @@ const FlashcardSessionPage = ({
                 <section className="flashcard-studio__main-stage">
                     <div className="flashcard-studio__card-meta">
                         <span>Card {currentIndex + 1} of {deck.length}</span>
-                        {currentConfidence ? (
-                            <span className={`flashcard-studio__status-pill is-${currentConfidence}`}>
-                                {
-                                    CONFIDENCE_LEVELS.find((level) => level.id === currentConfidence)
-                                        ?.shortLabel
+                        <div className="flashcard-studio__card-meta-actions">
+                            <button
+                                type="button"
+                                className={
+                                    isCurrentCardSaved
+                                        ? 'flashcard-studio__save-button is-saved'
+                                        : 'flashcard-studio__save-button'
                                 }
-                            </span>
-                        ) : (
-                            <span className="flashcard-studio__status-pill">Not rated yet</span>
-                        )}
+                                onClick={handleWordlistToggle}
+                            >
+                                {isCurrentCardSaved ? (
+                                    <BookmarkCheck size={16} />
+                                ) : (
+                                    <BookmarkPlus size={16} />
+                                )}
+                                {isCurrentCardSaved ? 'Saved' : 'Add Wordlist'}
+                            </button>
+                            {currentConfidence ? (
+                                <span className={`flashcard-studio__status-pill is-${currentConfidence}`}>
+                                    {
+                                        CONFIDENCE_LEVELS.find((level) => level.id === currentConfidence)
+                                            ?.shortLabel
+                                    }
+                                </span>
+                            ) : (
+                                <span className="flashcard-studio__status-pill">Not rated yet</span>
+                            )}
+                        </div>
                     </div>
 
                     <div

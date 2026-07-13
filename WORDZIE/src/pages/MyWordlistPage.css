@@ -1,0 +1,390 @@
+.my-wordlist-page {
+    min-height: 100vh;
+    padding: 2rem 1.25rem 3rem;
+    background:
+        radial-gradient(circle at top left, rgba(20, 184, 166, 0.13), transparent 24%),
+        radial-gradient(circle at top right, rgba(168, 85, 247, 0.18), transparent 24%),
+        radial-gradient(circle at bottom center, rgba(245, 158, 11, 0.1), transparent 30%),
+        linear-gradient(180deg, #05050a 0%, #0b0813 48%, #120d1d 100%);
+    color: #f5f3ff;
+}
+
+.my-wordlist-shell {
+    max-width: 1180px;
+    margin: 0 auto;
+    display: grid;
+    gap: 1.25rem;
+}
+
+.my-wordlist-hero,
+.my-wordlist-toolbar,
+.my-wordlist-empty,
+.my-wordlist-group,
+.my-wordlist-card {
+    background: linear-gradient(180deg, rgba(18, 14, 31, 0.96) 0%, rgba(12, 10, 22, 0.98) 100%);
+    border: 1px solid rgba(168, 85, 247, 0.18);
+    border-radius: 1.5rem;
+    box-shadow: 0 24px 52px rgba(0, 0, 0, 0.32);
+}
+
+.my-wordlist-hero {
+    padding: clamp(1.35rem, 2.5vw, 2.2rem);
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 1.35rem;
+    align-items: start;
+}
+
+.my-wordlist-hero__content {
+    max-width: 72ch;
+}
+
+.my-wordlist-kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    width: fit-content;
+    padding: 0.38rem 0.78rem;
+    border-radius: 999px;
+    background: rgba(20, 184, 166, 0.12);
+    border: 1px solid rgba(45, 212, 191, 0.22);
+    color: #ccfbf1;
+    font-size: 0.74rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.my-wordlist-hero h1 {
+    margin: 0.9rem 0 0.7rem;
+    font-size: clamp(2.25rem, 4.6vw, 4.4rem);
+    line-height: 0.96;
+    letter-spacing: -0.05em;
+    color: #f8f5ff;
+}
+
+.my-wordlist-hero p,
+.my-wordlist-empty p,
+.my-wordlist-group__heading p,
+.my-wordlist-card__definition,
+.my-wordlist-card__details p {
+    margin: 0;
+    color: #b7adc9;
+    line-height: 1.65;
+}
+
+.my-wordlist-ghost-button,
+.my-wordlist-filter button,
+.my-wordlist-card__remove,
+.my-wordlist-card__source-button {
+    border: none;
+    font: inherit;
+    cursor: pointer;
+    transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease, background-color 180ms ease;
+}
+
+.my-wordlist-ghost-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.55rem;
+    padding: 0.85rem 1.05rem;
+    border-radius: 999px;
+    color: #ddd6fe;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(192, 132, 252, 0.18);
+}
+
+.my-wordlist-ghost-button:hover,
+.my-wordlist-filter button:hover,
+.my-wordlist-card__source-button:hover,
+.my-wordlist-card__remove:hover {
+    transform: translateY(-1px);
+    border-color: rgba(216, 180, 254, 0.38);
+    box-shadow: 0 16px 30px rgba(0, 0, 0, 0.28);
+}
+
+.my-wordlist-stats {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.85rem;
+}
+
+.my-wordlist-stats article {
+    padding: 1rem 1.05rem;
+    border-radius: 1.05rem;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.my-wordlist-stats span,
+.my-wordlist-card__meta {
+    color: #a59bbb;
+    font-size: 0.86rem;
+}
+
+.my-wordlist-stats strong {
+    display: block;
+    margin-top: 0.3rem;
+    color: #f5f3ff;
+    font-size: 1.35rem;
+    text-transform: capitalize;
+}
+
+.my-wordlist-toolbar {
+    padding: 1rem;
+    display: grid;
+    grid-template-columns: minmax(240px, 0.9fr) minmax(0, 1.4fr);
+    gap: 1rem;
+    align-items: center;
+}
+
+.my-wordlist-search {
+    min-height: 3rem;
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    padding: 0 0.95rem;
+    border-radius: 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(192, 132, 252, 0.16);
+    color: #c4b5fd;
+}
+
+.my-wordlist-search input {
+    width: 100%;
+    border: none;
+    outline: none;
+    background: transparent;
+    color: #f5f3ff;
+    font: inherit;
+}
+
+.my-wordlist-search input::placeholder {
+    color: #8f83ab;
+}
+
+.my-wordlist-filter {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+
+.my-wordlist-filter button {
+    min-width: 2.55rem;
+    min-height: 2.55rem;
+    padding: 0 0.85rem;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(192, 132, 252, 0.14);
+    color: #ddd6fe;
+    font-weight: 700;
+}
+
+.my-wordlist-filter button.is-active {
+    color: #042f2e;
+    background: linear-gradient(135deg, #5eead4 0%, #facc15 100%);
+    border-color: rgba(254, 240, 138, 0.52);
+}
+
+.my-wordlist-empty {
+    padding: 2.5rem 1.5rem;
+    text-align: center;
+}
+
+.my-wordlist-empty__icon {
+    width: 4rem;
+    height: 4rem;
+    margin: 0 auto 1rem;
+    display: grid;
+    place-items: center;
+    border-radius: 1.2rem;
+    background: rgba(20, 184, 166, 0.12);
+    border: 1px solid rgba(45, 212, 191, 0.22);
+    color: #99f6e4;
+}
+
+.my-wordlist-empty h2 {
+    margin: 0 0 0.5rem;
+    color: #f8f5ff;
+}
+
+.my-wordlist-groups {
+    display: grid;
+    gap: 1rem;
+}
+
+.my-wordlist-group {
+    padding: 1.15rem;
+    display: grid;
+    gap: 1rem;
+}
+
+.my-wordlist-group__heading {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+}
+
+.my-wordlist-group__heading > span {
+    width: 3.1rem;
+    height: 3.1rem;
+    display: grid;
+    place-items: center;
+    border-radius: 1rem;
+    background: linear-gradient(135deg, rgba(20, 184, 166, 0.2) 0%, rgba(168, 85, 247, 0.2) 100%);
+    border: 1px solid rgba(45, 212, 191, 0.22);
+    color: #f8f5ff;
+    font-weight: 800;
+    font-size: 1.35rem;
+}
+
+.my-wordlist-group__heading h2 {
+    margin: 0 0 0.2rem;
+    color: #f8f5ff;
+    letter-spacing: -0.03em;
+}
+
+.my-wordlist-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+}
+
+.my-wordlist-card {
+    padding: 1.25rem;
+    display: grid;
+    gap: 1rem;
+    border-color: rgba(45, 212, 191, 0.14);
+}
+
+.my-wordlist-card__top {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    align-items: flex-start;
+}
+
+.my-wordlist-card__source {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: #99f6e4;
+    font-size: 0.76rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.my-wordlist-card h3 {
+    margin: 0.4rem 0 0;
+    color: #f8f5ff;
+    font-size: 1.65rem;
+    letter-spacing: -0.04em;
+    text-transform: capitalize;
+}
+
+.my-wordlist-card__remove {
+    width: 2.45rem;
+    height: 2.45rem;
+    display: grid;
+    place-items: center;
+    border-radius: 999px;
+    color: #fecdd3;
+    background: rgba(244, 63, 94, 0.1);
+    border: 1px solid rgba(244, 63, 94, 0.2);
+}
+
+.my-wordlist-card__meta {
+    display: flex;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+}
+
+.my-wordlist-card__meta span {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.42rem 0.65rem;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.my-wordlist-card__details {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.8rem;
+}
+
+.my-wordlist-card__details div {
+    padding: 0.9rem;
+    border-radius: 1rem;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(192, 132, 252, 0.12);
+}
+
+.my-wordlist-card__details strong {
+    display: block;
+    margin-bottom: 0.3rem;
+    color: #e9d5ff;
+    font-size: 0.76rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+.my-wordlist-card__sentence {
+    margin: 0;
+    padding: 0 0 0 1rem;
+    color: #d8d0f0;
+    line-height: 1.65;
+    border-left: 3px solid rgba(45, 212, 191, 0.52);
+}
+
+.my-wordlist-card__source-button {
+    width: fit-content;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 0.95rem;
+    border-radius: 999px;
+    background: rgba(168, 85, 247, 0.12);
+    border: 1px solid rgba(192, 132, 252, 0.22);
+    color: #ede9fe;
+    font-weight: 700;
+}
+
+@media (max-width: 980px) {
+    .my-wordlist-hero,
+    .my-wordlist-toolbar,
+    .my-wordlist-grid,
+    .my-wordlist-card__details {
+        grid-template-columns: 1fr;
+    }
+
+    .my-wordlist-filter {
+        justify-content: flex-start;
+    }
+}
+
+@media (max-width: 640px) {
+    .my-wordlist-page {
+        padding: 1rem 0.9rem 2rem;
+    }
+
+    .my-wordlist-stats {
+        grid-template-columns: 1fr;
+    }
+
+    .my-wordlist-ghost-button,
+    .my-wordlist-card__source-button {
+        width: 100%;
+    }
+
+    .my-wordlist-card__top {
+        flex-direction: column;
+    }
+}

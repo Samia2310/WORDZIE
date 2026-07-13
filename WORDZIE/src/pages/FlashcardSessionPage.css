@@ -44,6 +44,7 @@
 .flashcard-studio__ghost-button,
 .flashcard-studio__secondary-button,
 .flashcard-studio__primary-button,
+.flashcard-studio__save-button,
 .flashcard-studio__mode-button,
 .flashcard-card__confidence-button {
     border: none;
@@ -306,6 +307,40 @@
     gap: 1rem;
     color: var(--fc-text-soft);
     font-weight: 600;
+}
+
+.flashcard-studio__card-meta-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.65rem;
+    flex-wrap: wrap;
+}
+
+.flashcard-studio__save-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.45rem;
+    min-height: 2.35rem;
+    padding: 0 0.85rem;
+    border-radius: 999px;
+    color: #ccfbf1;
+    background: rgba(20, 184, 166, 0.1);
+    border: 1px solid rgba(45, 212, 191, 0.22);
+    font-weight: 700;
+}
+
+.flashcard-studio__save-button.is-saved {
+    color: #a7f3d0;
+    background: rgba(52, 211, 153, 0.13);
+    border-color: rgba(52, 211, 153, 0.32);
+}
+
+.flashcard-studio__save-button:hover {
+    transform: translateY(-1px);
+    border-color: rgba(94, 234, 212, 0.42);
+    box-shadow: 0 16px 30px rgba(0, 0, 0, 0.28);
 }
 
 .flashcard-studio__status-pill {
@@ -714,6 +749,11 @@
     .flashcard-studio__controls,
     .flashcard-summary__actions {
         justify-content: stretch;
+    }
+
+    .flashcard-studio__card-meta {
+        align-items: flex-start;
+        flex-direction: column;
     }
 
     .flashcard-studio__header-actions > *,

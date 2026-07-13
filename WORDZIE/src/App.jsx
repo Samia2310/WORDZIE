@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import HomePage from './pages/HomePage.jsx';
 import RoundSelectionPage from './pages/RoundSelectionPage.jsx';
 import WordListPage from './pages/WordListPage.jsx';
+import MyWordlistPage from './pages/MyWordlistPage.jsx';
 import FlashcardSessionPage from './pages/FlashcardSessionPage.jsx';
 import ChallengeMode from './components/ChallengeMode.jsx';
 import './styles.css';
@@ -10,6 +11,7 @@ import { wordDataByLetter } from './data/wordCollection.js';
 import { GAME_IDS } from './components/games/gameData.js';
 
 const MARKED_PROGRESS_STORAGE_KEY = 'wordzie-marked-progress';
+const MY_WORDLIST_STORAGE_KEY = 'wordzie-my-wordlist';
 
 const createEmptyMarkedProgress = () => ({
     pages: {},
@@ -50,6 +52,21 @@ const createRoundsForLetter = (letter, wordData) => {
     return rounds;
 };
 
+const readMyWordlist = () => {
+    if (typeof window === 'undefined') {
+        return [];
+    }
+
+    try {
+        const storedWordlist = window.localStorage.getItem(MY_WORDLIST_STORAGE_KEY);
+        const parsedWordlist = storedWordlist ? JSON.parse(storedWordlist) : [];
+
+        return Array.isArray(parsedWordlist) ? parsedWordlist : [];
+    } catch {
+        return [];
+    }
+};
+
 const getCompletedLettersFromMarkedPages = (wordData, markedPages = {}) =>
     Object.fromEntries(
         Object.keys(wordData || {}).map((letter) => {
@@ -74,6 +91,8 @@ const createFeaturedFlashcardRound = (wordData) => {
         words: previewWords,
     };
 };
+
+const createWordlistKey = (wordItem) => (wordItem?.word || '').trim().toLowerCase();
 
 const getRouteStateFromHash = (hash, wordData) => {
     const params = new URLSearchParams((hash || '').replace(/^#/, ''));
@@ -166,20 +185,24 @@ const scrollPageToTop = () => {
 const UpdatedHomePage = ({
     onLetterClick,
     onNavigateToGameSelect,
+    onOpenMyWordlist,
     onOpenFlashcardPreview,
     onOpenQuickQuiz,
     completedLetters,
     selectedLetter,
     wordData,
+    myWordlistCount,
 }) => (
     <HomePage
         onLetterSelect={onLetterClick}
         onNavigateToGameSelect={onNavigateToGameSelect}
+        onOpenMyWordlist={onOpenMyWordlist}
         onOpenFlashcardPreview={onOpenFlashcardPreview}
         onOpenQuickQuiz={onOpenQuickQuiz}
         completedLetters={completedLetters}
         selectedLetter={selectedLetter}
         wordData={wordData}
+        myWordlistCount={myWordlistCount}
     />
 );
 
@@ -195,6 +218,7 @@ const App = () => {
     const [selectedMode, setSelectedMode] = useState(initialRouteState.selectedMode);
     const [flashcardEntry, setFlashcardEntry] = useState(initialRouteState.flashcardEntry);
     const [markedProgress, setMarkedProgress] = useState(readMarkedProgress);
+    const [myWordlist, setMyWordlist] = useState(readMyWordlist);
 
     const applyRouteState = useCallback((nextRouteState) => {
         setCurrentView(nextRouteState.currentView);
@@ -265,6 +289,14 @@ const App = () => {
     }, [markedProgress]);
 
     useEffect(() => {
+        if (typeof window === 'undefined') {
+            return;
+        }
+
+        window.localStorage.setItem(MY_WORDLIST_STORAGE_KEY, JSON.stringify(myWordlist));
+    }, [myWordlist]);
+
+    useEffect(() => {
         if (currentView === 'flashcards' && !selectedRound) {
             navigateToRoute({
                 currentView: selectedLetter ? 'rounds' : 'home',
@@ -325,6 +357,16 @@ const App = () => {
         });
     };
 
+    const handleOpenMyWordlist = () => {
+        navigateToRoute({
+            currentView: 'myWordlist',
+            selectedLetter: '',
+            selectedRound: null,
+            selectedMode: '',
+            flashcardEntry: 'words',
+        });
+    };
+
     const handleBackToHome = () => {
         navigateToRoute({
             currentView: 'home',
@@ -373,6 +415,52 @@ const App = () => {
             selectedMode: GAME_IDS.QUICK_QUIZ,
             flashcardEntry: 'words',
         });
+    };
+
+    const handleAddToMyWordlist = (wordItem, source = {}) => {
+        const wordKey = createWordlistKey(wordItem);
+
+        if (!wordKey) {
+            return;
+        }
+
+        setMyWordlist((currentWordlist) => {
+            if (currentWordlist.some((item) => (item.wordKey || createWordlistKey(item)) === wordKey)) {
+                return currentWordlist;
+            }
+
+            return [
+                {
+                    ...wordItem,
+                    wordKey,
+                    sourceLetter: source.selectedLetter || selectedLetter || wordItem.word?.[0]?.toUpperCase?.() || '',
+                    sourceRoundName: source.roundName || selectedRound?.name || 'Vocabulary set',
+                    sourceRoundId: source.roundId || selectedRound?.id || '',
+                    addedAt: new Date().toISOString(),
+                },
+                ...currentWordlist,
+            ];
+        });
+    };
+
+    const handleRemoveFromMyWordlist = (wordItemOrKey) => {
+        const wordKey =
+            typeof wordItemOrKey === 'string' ? wordItemOrKey : createWordlistKey(wordItemOrKey);
+        const normalizedWordKey = wordKey.trim().toLowerCase();
+
+        setMyWordlist((currentWordlist) =>
+            currentWordlist.filter(
+                (item) => (item.wordKey || createWordlistKey(item)) !== normalizedWordKey,
+            ),
+        );
+    };
+
+    const isWordInMyWordlist = (wordItem) => {
+        const wordKey = createWordlistKey(wordItem);
+
+        return Boolean(
+            wordKey && myWordlist.some((item) => (item.wordKey || createWordlistKey(item)) === wordKey),
+        );
     };
 
     const handleBackToWordList = () => {
@@ -432,11 +520,48 @@ const App = () => {
             <UpdatedHomePage
                 onLetterClick={handleLetterClick}
                 onNavigateToGameSelect={handleNavigateToGameSelect}
+                onOpenMyWordlist={handleOpenMyWordlist}
                 onOpenFlashcardPreview={handleOpenFlashcardPreview}
                 onOpenQuickQuiz={handleOpenQuickQuiz}
                 completedLetters={completedLetters}
                 selectedLetter={selectedLetter}
                 wordData={wordDataByLetter}
+                myWordlistCount={myWordlist.length}
+            />
+        );
+    }
+
+    if (currentView === 'myWordlist') {
+        return (
+            <MyWordlistPage
+                savedWords={myWordlist}
+                onBackHome={handleBackToHome}
+                onRemoveWord={handleRemoveFromMyWordlist}
+                onStudySource={(savedWord) => {
+                    if (savedWord.sourceRoundId === 'flashcard-preview') {
+                        handleOpenFlashcardPreview();
+                        return;
+                    }
+
+                    const sourceRound =
+                        savedWord.sourceLetter && savedWord.sourceRoundId
+                            ? createRoundsForLetter(savedWord.sourceLetter, wordDataByLetter).find(
+                                  (round) => round.id === savedWord.sourceRoundId,
+                              )
+                            : null;
+
+                    if (sourceRound) {
+                        navigateToRoute({
+                            currentView: 'words',
+                            selectedLetter: savedWord.sourceLetter,
+                            selectedRound: sourceRound,
+                            selectedMode: '',
+                            flashcardEntry: 'words',
+                        });
+                    } else {
+                        handleBackToHome();
+                    }
+                }}
             />
         );
     }
@@ -464,10 +589,14 @@ const App = () => {
             <WordListPage
                 wordsForRound={wordsForRound}
                 roundName={roundName}
+                roundId={selectedRound?.id || ''}
                 selectedLetter={selectedLetter}
                 handleBackToRounds={handleBackToRounds}
                 handleStartFlashcard={handleStartFlashcardSession}
                 handleBackToHome={handleBackToHome}
+                onAddToMyWordlist={handleAddToMyWordlist}
+                onRemoveFromMyWordlist={handleRemoveFromMyWordlist}
+                isWordInMyWordlist={isWordInMyWordlist}
             />
         );
     }
@@ -483,6 +612,9 @@ const App = () => {
                 roundName={selectedRound.name}
                 handleBackToWordList={handleBackToWordList}
                 handleRoundComplete={handleRoundComplete}
+                onAddToMyWordlist={handleAddToMyWordlist}
+                onRemoveFromMyWordlist={handleRemoveFromMyWordlist}
+                isWordInMyWordlist={isWordInMyWordlist}
             />
         );
     }

@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import {
     ArrowLeft,
+    BookmarkCheck,
+    BookmarkPlus,
     BookOpen,
     ChevronDown,
     ChevronUp,
@@ -10,9 +12,33 @@ import {
 } from 'lucide-react';
 import './WordListPage.css';
 
-const SimpleWordCard = ({ wordItem, index }) => {
+const SimpleWordCard = ({
+    wordItem,
+    index,
+    roundName,
+    roundId,
+    selectedLetter,
+    onAddToMyWordlist,
+    onRemoveFromMyWordlist,
+    isWordInMyWordlist,
+}) => {
     const [isDetailsVisible, setIsDetailsVisible] = useState(false);
     const ToggleIcon = isDetailsVisible ? ChevronUp : ChevronDown;
+    const isSaved = isWordInMyWordlist?.(wordItem) || false;
+    const SaveIcon = isSaved ? BookmarkCheck : BookmarkPlus;
+
+    const handleWordlistToggle = () => {
+        if (isSaved) {
+            onRemoveFromMyWordlist?.(wordItem);
+            return;
+        }
+
+        onAddToMyWordlist?.(wordItem, {
+            selectedLetter,
+            roundName,
+            roundId,
+        });
+    };
 
     return (
         <article className="word-list-card">
@@ -22,15 +48,30 @@ const SimpleWordCard = ({ wordItem, index }) => {
                     <h3 className="word-list-card__title">{wordItem.word}</h3>
                 </div>
 
-                <button
-                    onClick={() => setIsDetailsVisible((value) => !value)}
-                    className="word-list-card__toggle"
-                    aria-expanded={isDetailsVisible}
-                    aria-controls={`details-${wordItem.word}`}
-                    type="button"
-                >
-                    <ToggleIcon size={18} className="word-list-icon" />
-                </button>
+                <div className="word-list-card__actions">
+                    <button
+                        onClick={handleWordlistToggle}
+                        className={
+                            isSaved
+                                ? 'word-list-card__save-button is-saved'
+                                : 'word-list-card__save-button'
+                        }
+                        type="button"
+                    >
+                        <SaveIcon size={16} className="word-list-icon" />
+                        {isSaved ? 'Saved' : 'Add Wordlist'}
+                    </button>
+
+                    <button
+                        onClick={() => setIsDetailsVisible((value) => !value)}
+                        className="word-list-card__toggle"
+                        aria-expanded={isDetailsVisible}
+                        aria-controls={`details-${wordItem.word}`}
+                        type="button"
+                    >
+                        <ToggleIcon size={18} className="word-list-icon" />
+                    </button>
+                </div>
             </div>
 
             <p className="word-list-card__definition">
@@ -70,10 +111,14 @@ const SimpleWordCard = ({ wordItem, index }) => {
 const WordListPage = ({
     wordsForRound,
     roundName,
+    roundId,
     selectedLetter,
     handleBackToRounds,
     handleStartFlashcard,
     handleBackToHome,
+    onAddToMyWordlist,
+    onRemoveFromMyWordlist,
+    isWordInMyWordlist,
 }) => {
     const words = wordsForRound || [];
 
@@ -146,7 +191,17 @@ const WordListPage = ({
 
                 <main className="word-list-grid">
                     {words.map((wordItem, index) => (
-                        <SimpleWordCard key={wordItem.word} wordItem={wordItem} index={index} />
+                        <SimpleWordCard
+                            key={wordItem.word}
+                            wordItem={wordItem}
+                            index={index}
+                            roundName={roundName}
+                            roundId={roundId}
+                            selectedLetter={selectedLetter}
+                            onAddToMyWordlist={onAddToMyWordlist}
+                            onRemoveFromMyWordlist={onRemoveFromMyWordlist}
+                            isWordInMyWordlist={isWordInMyWordlist}
+                        />
                     ))}
                 </main>
 

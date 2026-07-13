@@ -3,7 +3,9 @@ import {
     ArrowRight,
     Award,
     BookOpen,
+    Bookmark,
     Gamepad2,
+    Library,
     Play,
     Zap,
 } from 'lucide-react';
@@ -132,11 +134,13 @@ const ExperienceCard = ({
 const HomePage = ({
     onLetterSelect,
     onNavigateToGameSelect,
+    onOpenMyWordlist,
     onOpenFlashcardPreview,
     onOpenQuickQuiz,
     completedLetters,
     selectedLetter,
     wordData,
+    myWordlistCount = 0,
 }) => {
     const totalWords = Object.values(wordData || {}).flat().length;
     const availableLetters = Object.values(wordData || {}).filter((words) => words?.length).length;
@@ -176,6 +180,9 @@ const HomePage = ({
                             <button className="home-button home-button--tertiary" onClick={onOpenQuickQuiz}>
                                 <Award size={18} /> Start Quick Quiz
                             </button>
+                            <button className="home-button home-button--secondary" onClick={onOpenMyWordlist}>
+                                <Library size={18} /> My Wordlist
+                            </button>
                         </div>
 
                         <div className="home-metrics">
@@ -192,8 +199,8 @@ const HomePage = ({
                                 <span>Challenge games</span>
                             </article>
                             <article className="home-metric">
-                                <strong>7 days</strong>
-                                <span>Current streak</span>
+                                <strong>{myWordlistCount}</strong>
+                                <span>Saved words</span>
                             </article>
                         </div>
                     </div>
@@ -248,6 +255,15 @@ const HomePage = ({
                             description="Choose a quiz mode and get instant feedback that helps you understand what you already know and what needs more practice."
                             onClick={onOpenQuickQuiz}
                             actionLabel="Start quiz"
+                        />
+                        <ExperienceCard
+                            icon={Bookmark}
+                            eyebrow="Personal"
+                            title="My Wordlist"
+                            description="Keep difficult, important, or special words in one organized place with definitions, examples, and source pages."
+                            footer={`${myWordlistCount} saved ${myWordlistCount === 1 ? 'word' : 'words'}`}
+                            onClick={onOpenMyWordlist}
+                            actionLabel="Open list"
                         />
                     </div>
                 </section>
