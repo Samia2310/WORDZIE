@@ -330,7 +330,8 @@
 .home-legend__dot.is-available { background: rgba(124, 58, 237, 0.4); border-color: rgba(192, 132, 252, 0.5); }
 .home-legend__dot.is-selected { background: rgba(168, 85, 247, 0.82); border-color: #f5f3ff; }
 .home-legend__dot.is-marked { background: rgba(16, 185, 129, 0.52); border-color: rgba(167, 243, 208, 0.72); }
-.home-legend__dot.is-unavailable { background: rgba(255, 255, 255, 0.03); border-color: rgba(255, 255, 255, 0.12); }
+.home-legend__dot.is-no-pages { background: rgba(248, 113, 113, 0.18); border-color: rgba(248, 113, 113, 0.72); }
+.home-legend__dot.has-marked-pages { background: #39f58a; border-color: #9affbe; box-shadow: 0 0 10px rgba(57, 245, 138, 0.34); }
 
 /* ---------- Circular selector (unchanged look) ---------- */
 .alphabet-selector {

@@ -126,6 +126,7 @@ const HomePage = ({
     onOpenWordDetective,
     onOpenQuickQuiz,
     completedLetters,
+    markedPageCount = 0,
     selectedLetter,
     wordData,
     myWordlistCount = 0,
@@ -261,7 +262,13 @@ const HomePage = ({
                             <li><span className="home-legend__dot is-available" /> Ready to study</li>
                             <li><span className="home-legend__dot is-selected" /> Selected</li>
                             <li><span className="home-legend__dot is-marked" /> Completed</li>
-                            <li><span className="home-legend__dot is-unavailable" /> No entries</li>
+                            <li>
+                                <span
+                                    className={`home-legend__dot ${markedPageCount > 0 ? 'has-marked-pages' : 'is-no-pages'}`}
+                                    aria-hidden="true"
+                                />
+                                {markedPageCount} Marked {markedPageCount === 1 ? 'Page' : 'Pages'}
+                            </li>
                         </ul>
                     </div>
 

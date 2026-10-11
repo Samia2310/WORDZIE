@@ -84,6 +84,12 @@ const getCompletedLettersFromMarkedPages = (wordData, markedPages = {}) =>
         }),
     );
 
+const getMarkedPageCount = (wordData, markedPages = {}) =>
+    Object.keys(wordData || {}).reduce((count, letter) => {
+        const markedCount = createRoundsForLetter(letter, wordData).filter((round) => markedPages[round.id]).length;
+        return count + markedCount;
+    }, 0);
+
 const createFeaturedFlashcardRound = (wordData) => {
     const previewWords = Object.keys(wordData)
         .flatMap((letter) => (wordData[letter] || []).slice(0, 2))
@@ -204,6 +210,7 @@ const UpdatedHomePage = ({
     onOpenWordDetective,
     onOpenQuickQuiz,
     completedLetters,
+    markedPageCount,
     selectedLetter,
     wordData,
     myWordlistCount,
@@ -218,6 +225,7 @@ const UpdatedHomePage = ({
         onOpenWordDetective={onOpenWordDetective}
         onOpenQuickQuiz={onOpenQuickQuiz}
         completedLetters={completedLetters}
+        markedPageCount={markedPageCount}
         selectedLetter={selectedLetter}
         wordData={wordData}
         myWordlistCount={myWordlistCount}
@@ -581,6 +589,7 @@ const App = () => {
 
     if (currentView === 'home') {
         const completedLetters = getCompletedLettersFromMarkedPages(wordDataByLetter, markedProgress.pages);
+        const markedPageCount = getMarkedPageCount(wordDataByLetter, markedProgress.pages);
 
         return (
             <UpdatedHomePage
@@ -593,6 +602,7 @@ const App = () => {
                 onOpenWordDetective={handleOpenWordDetective}
                 onOpenQuickQuiz={handleOpenQuickQuiz}
                 completedLetters={completedLetters}
+                markedPageCount={markedPageCount}
                 selectedLetter={selectedLetter}
                 wordData={wordDataByLetter}
                 myWordlistCount={myWordlist.length}

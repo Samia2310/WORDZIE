@@ -561,6 +561,82 @@
     background: #f0e7fb;
 }
 
+:root[data-color-mode='light'] .round-page-mark-button.is-marked,
+:root[data-color-mode='light'] .round-page-card__mark.is-marked,
+:root[data-color-mode='light'] .word-list-card__save-button.is-saved {
+    border-color: #4f8b67;
+    background: #e2f2e8;
+    color: #14532d;
+    font-weight: 800;
+}
+
+:root[data-color-mode='light'] .word-list-stat {
+    border-color: rgba(103, 73, 145, 0.18);
+    background: #f8f5fc;
+}
+
+:root[data-color-mode='light'] .word-list-stat span {
+    color: #54218f;
+    font-weight: 700;
+}
+
+:root[data-color-mode='light'] .word-list-stat strong {
+    color: #271e37;
+    font-weight: 800;
+}
+
+:root[data-color-mode='light'] .word-list-card__eyebrow {
+    color: #54218f;
+    font-weight: 800;
+}
+
+:root[data-color-mode='light'] .word-list-card__title {
+    color: #271e37;
+    font-weight: 800;
+}
+
+:root[data-color-mode='light'] .word-list-card__definition,
+:root[data-color-mode='light'] .word-list-card__detail-row span,
+:root[data-color-mode='light'] .word-list-card__detail-block li {
+    color: #40304f;
+}
+
+:root[data-color-mode='light'] .word-list-card__detail-row strong,
+:root[data-color-mode='light'] .word-list-card__detail-block strong {
+    color: #54218f;
+    font-weight: 800;
+}
+
+:root[data-color-mode='light'] .word-list-card__toggle {
+    border-color: #c5a9e7;
+    background: #f0e7fb;
+    color: #54218f;
+}
+
+:root[data-color-mode='light'] .word-list-footer__copy h2 {
+    color: #271e37;
+    font-weight: 800;
+}
+
+:root[data-color-mode='light'] .word-list-primary-button .word-list-icon {
+    color: #fff !important;
+}
+
+:root[data-color-mode='light'] .word-list-card__save-button {
+    border-color: #7ea98b;
+    background: #edf6ef;
+    color: #14532d;
+    font-weight: 800;
+}
+
+:root[data-color-mode='light'] .word-list-card__save-button:hover,
+:root[data-color-mode='light'] .round-page-mark-button.is-marked:hover,
+:root[data-color-mode='light'] .round-page-card__mark.is-marked:hover {
+    border-color: #27613d;
+    background: #d8ecdf;
+    color: #104323;
+}
+
 :root[data-color-mode='light'] .round-page-subtitle,
 :root[data-color-mode='light'] .round-page-card__description,
 :root[data-color-mode='light'] .word-list-subtitle,
