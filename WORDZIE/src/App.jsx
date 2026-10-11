@@ -3,11 +3,16 @@ import HomePage from './pages/HomePage.jsx';
 import RoundSelectionPage from './pages/RoundSelectionPage.jsx';
 import WordListPage from './pages/WordListPage.jsx';
 import MyWordlistPage from './pages/MyWordlistPage.jsx';
+import GuidePage from './pages/GuidePage.jsx';
+import WordThemesPage from './pages/WordThemesPage.jsx';
+import WordTalesPage from './pages/WordTalesPage.jsx';
+import WordDetectivePage from './pages/WordDetectivePage.jsx';
 import FlashcardSessionPage from './pages/FlashcardSessionPage.jsx';
 import ChallengeMode from './components/ChallengeMode.jsx';
 import './styles.css';
 import './clean-theme.css';
 import { wordDataByLetter } from './data/wordCollection.js';
+import { getWordsForTheme, wordThemes } from './data/wordThemes.js';
 import { GAME_IDS } from './components/games/gameData.js';
 
 const MARKED_PROGRESS_STORAGE_KEY = 'wordzie-marked-progress';
@@ -100,6 +105,7 @@ const getRouteStateFromHash = (hash, wordData) => {
     const selectedLetter = params.get('letter') || '';
     const selectedMode = params.get('mode') || '';
     const flashcardEntry = params.get('flashcardEntry') || 'words';
+    const selectedThemeId = params.get('theme') || '';
     const roundId = params.get('round') || '';
 
     let selectedRound = null;
@@ -135,6 +141,7 @@ const getRouteStateFromHash = (hash, wordData) => {
         selectedRound,
         selectedMode,
         flashcardEntry,
+        selectedThemeId,
     };
 };
 
@@ -144,6 +151,7 @@ const buildHashFromRouteState = ({
     selectedRound,
     selectedMode,
     flashcardEntry,
+    selectedThemeId,
 }) => {
     const params = new URLSearchParams();
 
@@ -167,6 +175,10 @@ const buildHashFromRouteState = ({
         params.set('flashcardEntry', flashcardEntry);
     }
 
+    if (selectedThemeId) {
+        params.set('theme', selectedThemeId);
+    }
+
     return params.toString();
 };
 
@@ -187,6 +199,9 @@ const UpdatedHomePage = ({
     onNavigateToGameSelect,
     onOpenMyWordlist,
     onOpenFlashcardPreview,
+    onOpenWordThemes,
+    onOpenStoryStudio,
+    onOpenWordDetective,
     onOpenQuickQuiz,
     completedLetters,
     selectedLetter,
@@ -198,6 +213,9 @@ const UpdatedHomePage = ({
         onNavigateToGameSelect={onNavigateToGameSelect}
         onOpenMyWordlist={onOpenMyWordlist}
         onOpenFlashcardPreview={onOpenFlashcardPreview}
+        onOpenWordThemes={onOpenWordThemes}
+        onOpenStoryStudio={onOpenStoryStudio}
+        onOpenWordDetective={onOpenWordDetective}
         onOpenQuickQuiz={onOpenQuickQuiz}
         completedLetters={completedLetters}
         selectedLetter={selectedLetter}
@@ -217,6 +235,7 @@ const App = () => {
     const [selectedRound, setSelectedRound] = useState(initialRouteState.selectedRound);
     const [selectedMode, setSelectedMode] = useState(initialRouteState.selectedMode);
     const [flashcardEntry, setFlashcardEntry] = useState(initialRouteState.flashcardEntry);
+    const [selectedThemeId, setSelectedThemeId] = useState(initialRouteState.selectedThemeId);
     const [markedProgress, setMarkedProgress] = useState(readMarkedProgress);
     const [myWordlist, setMyWordlist] = useState(readMyWordlist);
 
@@ -226,6 +245,7 @@ const App = () => {
         setSelectedRound(nextRouteState.selectedRound);
         setSelectedMode(nextRouteState.selectedMode);
         setFlashcardEntry(nextRouteState.flashcardEntry);
+        setSelectedThemeId(nextRouteState.selectedThemeId || '');
     }, []);
 
     const navigateToRoute = useCallback(
@@ -235,6 +255,7 @@ const App = () => {
                 selectedLetter: '',
                 selectedRound: null,
                 selectedMode: '',
+                selectedThemeId: '',
                 ...nextRouteState,
             };
             const nextHash = buildHashFromRouteState(normalizedRouteState);
@@ -252,6 +273,8 @@ const App = () => {
                     window.history.pushState(null, '', nextUrl);
                 }
             }
+
+            window.dispatchEvent(new Event('wordzie:navigation'));
 
             scrollPageToTop();
         },
@@ -363,6 +386,49 @@ const App = () => {
             selectedLetter: '',
             selectedRound: null,
             selectedMode: '',
+            flashcardEntry: 'words',
+        });
+    };
+
+    const handleOpenWordThemes = () => {
+        navigateToRoute({
+            currentView: 'wordThemes',
+            selectedLetter: '',
+            selectedRound: null,
+            selectedMode: '',
+            selectedThemeId: '',
+            flashcardEntry: 'words',
+        });
+    };
+
+    const handleOpenStoryStudio = () => {
+        navigateToRoute({
+            currentView: 'wordTales',
+            selectedLetter: '',
+            selectedRound: null,
+            selectedMode: '',
+            selectedThemeId: '',
+            flashcardEntry: 'words',
+        });
+    };
+
+    const handleOpenWordDetective = () => {
+        navigateToRoute({
+            currentView: 'wordDetective',
+            selectedLetter: '',
+            selectedRound: null,
+            selectedMode: '',
+            flashcardEntry: 'words',
+        });
+    };
+
+    const handleSelectWordTheme = (themeId) => {
+        navigateToRoute({
+            currentView: 'wordThemes',
+            selectedLetter: '',
+            selectedRound: null,
+            selectedMode: '',
+            selectedThemeId: themeId,
             flashcardEntry: 'words',
         });
     };
@@ -522,11 +588,55 @@ const App = () => {
                 onNavigateToGameSelect={handleNavigateToGameSelect}
                 onOpenMyWordlist={handleOpenMyWordlist}
                 onOpenFlashcardPreview={handleOpenFlashcardPreview}
+                onOpenWordThemes={handleOpenWordThemes}
+                onOpenStoryStudio={handleOpenStoryStudio}
+                onOpenWordDetective={handleOpenWordDetective}
                 onOpenQuickQuiz={handleOpenQuickQuiz}
                 completedLetters={completedLetters}
                 selectedLetter={selectedLetter}
                 wordData={wordDataByLetter}
                 myWordlistCount={myWordlist.length}
+            />
+        );
+    }
+
+    if (currentView === 'wordThemes') {
+        const selectedTheme = wordThemes.find((theme) => theme.id === selectedThemeId) || null;
+
+        return (
+            <WordThemesPage
+                themes={wordThemes}
+                selectedTheme={selectedTheme}
+                wordDataByLetter={wordDataByLetter}
+                getWordsForTheme={getWordsForTheme}
+                onSelectTheme={handleSelectWordTheme}
+                onBackToThemes={() => handleSelectWordTheme('')}
+                onBackHome={handleBackToHome}
+                onAddToMyWordlist={handleAddToMyWordlist}
+                onRemoveFromMyWordlist={handleRemoveFromMyWordlist}
+                isWordInMyWordlist={isWordInMyWordlist}
+            />
+        );
+    }
+
+    if (currentView === 'wordTales') {
+        return (
+            <WordTalesPage
+                vocabulary={Object.values(wordDataByLetter).flat()}
+                onBackHome={handleBackToHome}
+                onAddToMyWordlist={handleAddToMyWordlist}
+                isWordInMyWordlist={isWordInMyWordlist}
+            />
+        );
+    }
+
+    if (currentView === 'wordDetective') {
+        return (
+            <WordDetectivePage
+                vocabulary={Object.values(wordDataByLetter).flat()}
+                onBackHome={handleBackToHome}
+                onAddToMyWordlist={handleAddToMyWordlist}
+                isWordInMyWordlist={isWordInMyWordlist}
             />
         );
     }
@@ -540,6 +650,11 @@ const App = () => {
                 onStudySource={(savedWord) => {
                     if (savedWord.sourceRoundId === 'flashcard-preview') {
                         handleOpenFlashcardPreview();
+                        return;
+                    }
+
+                    if (savedWord.sourceRoundId?.startsWith('theme-')) {
+                        handleSelectWordTheme(savedWord.sourceRoundId);
                         return;
                     }
 
@@ -564,6 +679,10 @@ const App = () => {
                 }}
             />
         );
+    }
+
+    if (currentView === 'guide') {
+        return <GuidePage />;
     }
 
     if (currentView === 'rounds') {
@@ -629,6 +748,7 @@ const App = () => {
                 handleBackToHome={handleBackToHome}
                 handleBackToWords={handleBackToWords}
                 handleBackToGameSelect={handleBackToGameSelect}
+                onOpenWordTales={handleOpenStoryStudio}
             />
         );
     }

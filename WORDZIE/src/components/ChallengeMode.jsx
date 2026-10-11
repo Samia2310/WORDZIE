@@ -4,6 +4,7 @@ import {
     ArrowRight,
     Award,
     BookOpen,
+    BookOpenText,
     Brain,
     Gamepad2,
     LayoutGrid,
@@ -33,7 +34,7 @@ const CHALLENGE_GAME_IDS = [
     GAME_IDS.WORD_BUILDER,
 ];
 
-const GameStudio = ({ onModeSelect, onBackToHome }) => {
+const GameStudio = ({ onModeSelect, onBackToHome, onOpenWordTales }) => {
     const [activeGameKey, setActiveGameKey] = useState(GAME_IDS.WORD_BUCKETS);
 
     return (
@@ -44,7 +45,6 @@ const GameStudio = ({ onModeSelect, onBackToHome }) => {
                         <ArrowLeft size={18} />
                         <span>Back to Home</span>
                     </button>
-                    <div className="game-studio__label">WORDZIE Game Studio</div>
                 </header>
 
                 <section className="game-studio__hero">
@@ -87,6 +87,21 @@ const GameStudio = ({ onModeSelect, onBackToHome }) => {
                             </div>
                         </div>
                     </div>
+                </section>
+
+                <section className="game-studio__story-promo">
+                    <div className="game-studio__story-promo-icon">
+                        <BookOpenText size={23} aria-hidden="true" />
+                    </div>
+                    <div className="game-studio__story-promo-copy">
+                        <span className="game-studio__eyebrow">Read and remember</span>
+                        <h2>Turn vocabulary into a story.</h2>
+                        <p>Choose a reading level, explore a fresh story, and reveal definitions as you read.</p>
+                    </div>
+                    <button className="game-studio__story-promo-button" onClick={onOpenWordTales} type="button">
+                        <span>Open Story Studio</span>
+                        <ArrowRight size={17} aria-hidden="true" />
+                    </button>
                 </section>
 
                 <section className="game-studio__grid-section">
@@ -155,9 +170,16 @@ const ChallengeMode = ({
     onModeSelect,
     handleBackToHome,
     handleBackToGameSelect,
+    onOpenWordTales,
 }) => {
     if (currentView === 'gameSelect') {
-        return <GameStudio onModeSelect={onModeSelect} onBackToHome={handleBackToHome} />;
+        return (
+            <GameStudio
+                onModeSelect={onModeSelect}
+                onBackToHome={handleBackToHome}
+                onOpenWordTales={onOpenWordTales}
+            />
+        );
     }
 
     if (currentView === 'quiz') {

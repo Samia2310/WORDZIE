@@ -1,30 +1,211 @@
+/* =====================================================================
+   Flashcard Studio
+   Theming: every colour lives in a token below. Dark is the default;
+   the navbar's root color mode overrides the tokens. No component rule below
+   contains a hard-coded colour, so adding a theme = adding one block.
+   ===================================================================== */
+
 .flashcard-studio {
-    --fc-bg: #08070d;
-    --fc-bg-soft: #110d1c;
-    --fc-surface: rgba(20, 16, 34, 0.88);
-    --fc-surface-strong: rgba(28, 22, 48, 0.96);
-    --fc-surface-soft: rgba(39, 30, 66, 0.72);
-    --fc-border: rgba(168, 85, 247, 0.22);
-    --fc-border-strong: rgba(192, 132, 252, 0.45);
+    color-scheme: dark;
+
+    /* text */
     --fc-text: #f5f3ff;
     --fc-text-soft: #d8d0f0;
     --fc-muted: #a59bbb;
+    --fc-subtle: #8f83ab;
+
+    /* brand */
     --fc-accent: #a855f7;
     --fc-accent-strong: #c084fc;
     --fc-accent-deep: #7c3aed;
-    --fc-good: #34d399;
-    --fc-warn: #fbbf24;
-    --fc-danger: #fb7185;
+    --fc-accent-soft: rgba(168, 85, 247, 0.16);
+    --fc-accent-border: rgba(192, 132, 252, 0.24);
+    --fc-accent-text: #ddd6fe;
+    --fc-label: #d8b4fe;
+    --fc-primary-from: #7c3aed;
+    --fc-primary-to: #a855f7;
+    --fc-mode-from: #5b21b6;
+    --fc-mode-to: #8b5cf6;
+    --fc-on-accent: #ffffff;
+
+    /* borders & fills */
+    --fc-border: rgba(168, 85, 247, 0.22);
+    --fc-border-strong: rgba(192, 132, 252, 0.45);
+    --fc-border-soft: rgba(192, 132, 252, 0.14);
+    --fc-line: rgba(255, 255, 255, 0.08);
+    --fc-fill-faint: rgba(255, 255, 255, 0.04);
+    --fc-fill-soft: rgba(255, 255, 255, 0.05);
+    --fc-track: rgba(255, 255, 255, 0.08);
+    --fc-focus: rgba(196, 181, 253, 0.85);
+
+    /* page */
+    --fc-page-base: linear-gradient(180deg, #05050a 0%, #0b0813 45%, #120d1d 100%);
+    --fc-glow-a: rgba(168, 85, 247, 0.2);
+    --fc-glow-b: rgba(91, 33, 182, 0.2);
+    --fc-glow-c: rgba(76, 29, 149, 0.16);
+
+    /* surfaces */
+    --fc-panel-from: rgba(22, 17, 37, 0.94);
+    --fc-panel-to: rgba(17, 13, 29, 0.96);
+    --fc-panel-lg-from: rgba(18, 14, 31, 0.96);
+    --fc-panel-lg-to: rgba(13, 10, 22, 0.98);
+    --fc-panel-compact-from: rgba(30, 22, 50, 0.94);
+    --fc-panel-compact-to: rgba(49, 31, 84, 0.88);
+    --fc-control-bg: rgba(20, 16, 34, 0.88);
+    --fc-control-solid-from: rgba(28, 22, 48, 0.95);
+    --fc-control-solid-to: rgba(40, 28, 70, 0.95);
+    --fc-tile-from: rgba(168, 85, 247, 0.18);
+    --fc-tile-to: rgba(91, 33, 182, 0.26);
+    --fc-tile-text: #e9d5ff;
+    --fc-tile-border: rgba(192, 132, 252, 0.2);
+    --fc-kbd-bg: rgba(255, 255, 255, 0.08);
+    --fc-kbd-border: rgba(255, 255, 255, 0.14);
+
+    /* flashcard faces */
+    --fc-face-front-from: rgba(20, 15, 34, 0.98);
+    --fc-face-front-to: rgba(13, 10, 23, 0.98);
+    --fc-face-back-from: rgba(23, 17, 39, 0.98);
+    --fc-face-back-to: rgba(12, 10, 22, 0.98);
+    --fc-face-glow-a: rgba(168, 85, 247, 0.18);
+    --fc-face-glow-b: rgba(91, 33, 182, 0.18);
+    --fc-face-glow-c: rgba(192, 132, 252, 0.18);
+    --fc-face-glow-d: rgba(124, 58, 237, 0.16);
+    --fc-face-border: rgba(192, 132, 252, 0.16);
+
+    /* shadows */
+    --fc-shadow-control: 0 16px 38px rgba(0, 0, 0, 0.28);
+    --fc-shadow-control-hover: 0 18px 40px rgba(0, 0, 0, 0.34);
+    --fc-shadow-panel: 0 24px 48px rgba(0, 0, 0, 0.32);
+    --fc-shadow-hero: 0 28px 56px rgba(0, 0, 0, 0.36);
+    --fc-shadow-card: 0 30px 60px rgba(0, 0, 0, 0.4);
+    --fc-shadow-primary: 0 20px 42px rgba(124, 58, 237, 0.28);
+    --fc-shadow-primary-hover: 0 24px 48px rgba(124, 58, 237, 0.34);
+    --fc-shadow-mode: 0 18px 34px rgba(76, 29, 149, 0.34);
+    --fc-progress-glow: 0 0 20px rgba(192, 132, 252, 0.28);
+
+    /* status: needs practice / building / mastered */
+    --fc-review-bg: rgba(244, 63, 94, 0.12);
+    --fc-review-text: #fda4af;
+    --fc-review-border: rgba(244, 63, 94, 0.28);
+    --fc-familiar-bg: rgba(251, 191, 36, 0.12);
+    --fc-familiar-text: #fcd34d;
+    --fc-familiar-border: rgba(251, 191, 36, 0.28);
+    --fc-mastered-bg: rgba(52, 211, 153, 0.12);
+    --fc-mastered-text: #6ee7b7;
+    --fc-mastered-border: rgba(52, 211, 153, 0.26);
+
+    /* save button */
+    --fc-save-text: #ccfbf1;
+    --fc-save-bg: rgba(20, 184, 166, 0.1);
+    --fc-save-border: rgba(45, 212, 191, 0.22);
+    --fc-save-hover-border: rgba(94, 234, 212, 0.42);
+    --fc-saved-text: #a7f3d0;
+    --fc-saved-bg: rgba(52, 211, 153, 0.13);
+    --fc-saved-border: rgba(52, 211, 153, 0.32);
+
     min-height: 100vh;
     padding: 2rem;
     background:
-        radial-gradient(circle at top left, rgba(168, 85, 247, 0.2), transparent 26%),
-        radial-gradient(circle at top right, rgba(91, 33, 182, 0.2), transparent 24%),
-        radial-gradient(circle at bottom center, rgba(76, 29, 149, 0.16), transparent 32%),
-        linear-gradient(180deg, #05050a 0%, #0b0813 45%, #120d1d 100%);
+        radial-gradient(circle at top left, var(--fc-glow-a), transparent 26%),
+        radial-gradient(circle at top right, var(--fc-glow-b), transparent 24%),
+        radial-gradient(circle at bottom center, var(--fc-glow-c), transparent 32%),
+        var(--fc-page-base);
     color: var(--fc-text);
 }
 
+/* ---------------------------------------------------------------------
+   Light theme: same purple identity, lighter surfaces, darker text
+   shades so every label keeps AA contrast.
+   --------------------------------------------------------------------- */
+:root[data-color-mode='light'] .flashcard-studio {
+    color-scheme: light;
+
+    --fc-text: #1e1536;
+    --fc-text-soft: #3b2f5c;
+    --fc-muted: #675c82;
+    --fc-subtle: #7a6f94;
+
+    --fc-accent-soft: rgba(124, 58, 237, 0.1);
+    --fc-accent-border: rgba(124, 58, 237, 0.22);
+    --fc-accent-text: #5b21b6;
+    --fc-label: #6d28d9;
+    --fc-primary-from: #6d28d9;
+    --fc-primary-to: #8b5cf6;
+    --fc-mode-from: #6d28d9;
+    --fc-mode-to: #8b5cf6;
+
+    --fc-border: rgba(124, 58, 237, 0.18);
+    --fc-border-strong: rgba(124, 58, 237, 0.45);
+    --fc-border-soft: rgba(124, 58, 237, 0.14);
+    --fc-line: rgba(76, 29, 149, 0.12);
+    --fc-fill-faint: rgba(76, 29, 149, 0.04);
+    --fc-fill-soft: rgba(76, 29, 149, 0.05);
+    --fc-track: rgba(76, 29, 149, 0.1);
+    --fc-focus: #7c3aed;
+
+    --fc-page-base: linear-gradient(180deg, #faf8ff 0%, #f5f0ff 50%, #efe7ff 100%);
+    --fc-glow-a: rgba(168, 85, 247, 0.16);
+    --fc-glow-b: rgba(124, 58, 237, 0.1);
+    --fc-glow-c: rgba(192, 132, 252, 0.14);
+
+    --fc-panel-from: #ffffff;
+    --fc-panel-to: #faf7ff;
+    --fc-panel-lg-from: #ffffff;
+    --fc-panel-lg-to: #f8f4ff;
+    --fc-panel-compact-from: #f4edff;
+    --fc-panel-compact-to: #ebe0ff;
+    --fc-control-bg: #ffffff;
+    --fc-control-solid-from: #f4edff;
+    --fc-control-solid-to: #ebe1ff;
+    --fc-tile-from: rgba(124, 58, 237, 0.1);
+    --fc-tile-to: rgba(168, 85, 247, 0.18);
+    --fc-tile-text: #6d28d9;
+    --fc-tile-border: rgba(124, 58, 237, 0.2);
+    --fc-kbd-bg: #ffffff;
+    --fc-kbd-border: rgba(124, 58, 237, 0.25);
+
+    --fc-face-front-from: #ffffff;
+    --fc-face-front-to: #f6f1ff;
+    --fc-face-back-from: #ffffff;
+    --fc-face-back-to: #f3edff;
+    --fc-face-glow-a: rgba(168, 85, 247, 0.14);
+    --fc-face-glow-b: rgba(124, 58, 237, 0.1);
+    --fc-face-glow-c: rgba(192, 132, 252, 0.18);
+    --fc-face-glow-d: rgba(124, 58, 237, 0.1);
+    --fc-face-border: rgba(124, 58, 237, 0.16);
+
+    --fc-shadow-control: 0 10px 24px rgba(76, 29, 149, 0.1);
+    --fc-shadow-control-hover: 0 14px 30px rgba(76, 29, 149, 0.16);
+    --fc-shadow-panel: 0 16px 36px rgba(76, 29, 149, 0.1);
+    --fc-shadow-hero: 0 20px 44px rgba(76, 29, 149, 0.12);
+    --fc-shadow-card: 0 24px 54px rgba(76, 29, 149, 0.16);
+    --fc-shadow-primary: 0 14px 30px rgba(124, 58, 237, 0.3);
+    --fc-shadow-primary-hover: 0 18px 38px rgba(124, 58, 237, 0.38);
+    --fc-shadow-mode: 0 12px 26px rgba(124, 58, 237, 0.3);
+    --fc-progress-glow: none;
+
+    --fc-review-bg: rgba(225, 29, 72, 0.08);
+    --fc-review-text: #be123c;
+    --fc-review-border: rgba(225, 29, 72, 0.28);
+    --fc-familiar-bg: rgba(217, 119, 6, 0.1);
+    --fc-familiar-text: #b45309;
+    --fc-familiar-border: rgba(217, 119, 6, 0.3);
+    --fc-mastered-bg: rgba(5, 150, 105, 0.1);
+    --fc-mastered-text: #047857;
+    --fc-mastered-border: rgba(5, 150, 105, 0.28);
+
+    --fc-save-text: #0f766e;
+    --fc-save-bg: rgba(20, 184, 166, 0.1);
+    --fc-save-border: rgba(13, 148, 136, 0.3);
+    --fc-save-hover-border: rgba(13, 148, 136, 0.55);
+    --fc-saved-text: #047857;
+    --fc-saved-bg: rgba(5, 150, 105, 0.12);
+    --fc-saved-border: rgba(5, 150, 105, 0.35);
+}
+
+/* ---------------------------------------------------------------------
+   Layout
+   --------------------------------------------------------------------- */
 .flashcard-studio__header,
 .flashcard-studio__hero-grid,
 .flashcard-studio__workspace,
@@ -41,6 +222,17 @@
     margin-bottom: 2rem;
 }
 
+.flashcard-studio__header--simple {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+/* ---------------------------------------------------------------------
+   Buttons
+   --------------------------------------------------------------------- */
 .flashcard-studio__ghost-button,
 .flashcard-studio__secondary-button,
 .flashcard-studio__primary-button,
@@ -58,6 +250,11 @@
         color 180ms ease;
 }
 
+.flashcard-studio button:focus-visible {
+    outline: 2px solid var(--fc-focus);
+    outline-offset: 3px;
+}
+
 .flashcard-studio__ghost-button,
 .flashcard-studio__secondary-button {
     display: inline-flex;
@@ -67,9 +264,9 @@
     padding: 0.85rem 1.05rem;
     border-radius: 999px;
     color: var(--fc-text-soft);
-    background: rgba(20, 16, 34, 0.88);
+    background: var(--fc-control-bg);
     border: 1px solid var(--fc-border);
-    box-shadow: 0 16px 38px rgba(0, 0, 0, 0.28);
+    box-shadow: var(--fc-shadow-control);
 }
 
 .flashcard-studio__ghost-button:hover,
@@ -78,13 +275,34 @@
     transform: translateY(-1px);
     color: var(--fc-text);
     border-color: var(--fc-border-strong);
-    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.34);
+    box-shadow: var(--fc-shadow-control-hover);
 }
 
 .flashcard-studio__ghost-button--solid {
-    background: linear-gradient(135deg, rgba(28, 22, 48, 0.95) 0%, rgba(40, 28, 70, 0.95) 100%);
+    background: linear-gradient(135deg, var(--fc-control-solid-from) 0%, var(--fc-control-solid-to) 100%);
 }
 
+.flashcard-studio__primary-button {
+    padding: 0.95rem 1.4rem;
+    border-radius: 999px;
+    background: linear-gradient(135deg, var(--fc-primary-from) 0%, var(--fc-primary-to) 100%);
+    color: var(--fc-on-accent);
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.55rem;
+    box-shadow: var(--fc-shadow-primary);
+}
+
+.flashcard-studio__primary-button:hover {
+    transform: translateY(-1px);
+    box-shadow: var(--fc-shadow-primary-hover);
+}
+
+/* ---------------------------------------------------------------------
+   Header
+   --------------------------------------------------------------------- */
 .flashcard-studio__header-copy {
     display: flex;
     flex-direction: column;
@@ -99,9 +317,9 @@
     width: fit-content;
     padding: 0.35rem 0.75rem;
     border-radius: 999px;
-    background: rgba(168, 85, 247, 0.16);
-    color: #ddd6fe;
-    border: 1px solid rgba(192, 132, 252, 0.24);
+    background: var(--fc-accent-soft);
+    color: var(--fc-accent-text);
+    border: 1px solid var(--fc-accent-border);
     font-size: 0.78rem;
     letter-spacing: 0.06em;
     text-transform: uppercase;
@@ -132,8 +350,12 @@
     align-items: center;
     gap: 0.75rem;
     flex-wrap: wrap;
+    justify-content: flex-end;
 }
 
+/* ---------------------------------------------------------------------
+   Progress / metrics
+   --------------------------------------------------------------------- */
 .flashcard-studio__hero-grid {
     display: grid;
     grid-template-columns: 1.8fr 1fr 1fr 1fr;
@@ -145,10 +367,10 @@
 .flashcard-studio__panel,
 .flashcard-summary__metrics article,
 .flashcard-summary__insight {
-    background: linear-gradient(180deg, rgba(22, 17, 37, 0.94) 0%, rgba(17, 13, 29, 0.96) 100%);
+    background: linear-gradient(180deg, var(--fc-panel-from) 0%, var(--fc-panel-to) 100%);
     border: 1px solid var(--fc-border);
     border-radius: 1.4rem;
-    box-shadow: 0 24px 48px rgba(0, 0, 0, 0.32);
+    box-shadow: var(--fc-shadow-panel);
 }
 
 .flashcard-studio__hero-card {
@@ -180,6 +402,7 @@
     font-size: 2rem;
     line-height: 1;
     color: var(--fc-text);
+    font-variant-numeric: tabular-nums;
 }
 
 .flashcard-studio__progress-row span,
@@ -190,7 +413,7 @@
 .flashcard-studio__progress-bar {
     height: 0.8rem;
     border-radius: 999px;
-    background: rgba(255, 255, 255, 0.08);
+    background: var(--fc-track);
     overflow: hidden;
 }
 
@@ -199,18 +422,20 @@
     height: 100%;
     border-radius: inherit;
     background: linear-gradient(90deg, var(--fc-accent) 0%, var(--fc-accent-strong) 100%);
-    box-shadow: 0 0 20px rgba(192, 132, 252, 0.28);
+    box-shadow: var(--fc-progress-glow);
+    transition: width 320ms ease;
 }
 
 .flashcard-studio__metric-icon {
     width: 2.75rem;
     height: 2.75rem;
+    flex-shrink: 0;
     border-radius: 1rem;
     display: grid;
     place-items: center;
-    background: linear-gradient(135deg, rgba(168, 85, 247, 0.18) 0%, rgba(91, 33, 182, 0.26) 100%);
-    color: #e9d5ff;
-    border: 1px solid rgba(192, 132, 252, 0.2);
+    background: linear-gradient(135deg, var(--fc-tile-from) 0%, var(--fc-tile-to) 100%);
+    color: var(--fc-tile-text);
+    border: 1px solid var(--fc-tile-border);
 }
 
 .flashcard-studio__metric-copy {
@@ -222,8 +447,12 @@
 .flashcard-studio__metric-copy strong {
     font-size: 1.55rem;
     color: var(--fc-text);
+    font-variant-numeric: tabular-nums;
 }
 
+/* ---------------------------------------------------------------------
+   Workspace + sidebar
+   --------------------------------------------------------------------- */
 .flashcard-studio__workspace {
     display: grid;
     grid-template-columns: 320px minmax(0, 1fr);
@@ -247,7 +476,7 @@
     align-items: center;
     gap: 0.65rem;
     margin-bottom: 0.9rem;
-    color: var(--fc-text);
+    color: var(--fc-label);
 }
 
 .flashcard-studio__panel-heading h2,
@@ -268,16 +497,16 @@
 .flashcard-studio__mode-button {
     padding: 0.9rem 1rem;
     border-radius: 1rem;
-    background: rgba(255, 255, 255, 0.04);
+    background: var(--fc-fill-faint);
     color: var(--fc-text-soft);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    border: 1px solid var(--fc-line);
 }
 
 .flashcard-studio__mode-button.is-active {
-    background: linear-gradient(135deg, #5b21b6 0%, #8b5cf6 100%);
-    color: #ffffff;
-    border-color: rgba(221, 214, 254, 0.35);
-    box-shadow: 0 18px 34px rgba(76, 29, 149, 0.34);
+    background: linear-gradient(135deg, var(--fc-mode-from) 0%, var(--fc-mode-to) 100%);
+    color: var(--fc-on-accent);
+    border-color: var(--fc-accent-border);
+    box-shadow: var(--fc-shadow-mode);
 }
 
 .flashcard-studio__tips {
@@ -292,9 +521,30 @@
 }
 
 .flashcard-studio__panel--compact {
-    background: linear-gradient(135deg, rgba(30, 22, 50, 0.94) 0%, rgba(49, 31, 84, 0.88) 100%);
+    background: linear-gradient(135deg, var(--fc-panel-compact-from) 0%, var(--fc-panel-compact-to) 100%);
 }
 
+.flashcard-studio__panel--compact p {
+    margin-top: 0.75rem;
+}
+
+.flashcard-studio kbd {
+    display: inline-block;
+    min-width: 1.6rem;
+    padding: 0.1rem 0.45rem;
+    border-radius: 0.5rem;
+    background: var(--fc-kbd-bg);
+    border: 1px solid var(--fc-kbd-border);
+    color: var(--fc-text-soft);
+    font: inherit;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+/* ---------------------------------------------------------------------
+   Card meta
+   --------------------------------------------------------------------- */
 .flashcard-studio__main-stage {
     display: grid;
     gap: 1rem;
@@ -325,22 +575,22 @@
     min-height: 2.35rem;
     padding: 0 0.85rem;
     border-radius: 999px;
-    color: #ccfbf1;
-    background: rgba(20, 184, 166, 0.1);
-    border: 1px solid rgba(45, 212, 191, 0.22);
+    color: var(--fc-save-text);
+    background: var(--fc-save-bg);
+    border: 1px solid var(--fc-save-border);
     font-weight: 700;
 }
 
 .flashcard-studio__save-button.is-saved {
-    color: #a7f3d0;
-    background: rgba(52, 211, 153, 0.13);
-    border-color: rgba(52, 211, 153, 0.32);
+    color: var(--fc-saved-text);
+    background: var(--fc-saved-bg);
+    border-color: var(--fc-saved-border);
 }
 
 .flashcard-studio__save-button:hover {
     transform: translateY(-1px);
-    border-color: rgba(94, 234, 212, 0.42);
-    box-shadow: 0 16px 30px rgba(0, 0, 0, 0.28);
+    border-color: var(--fc-save-hover-border);
+    box-shadow: var(--fc-shadow-control-hover);
 }
 
 .flashcard-studio__status-pill {
@@ -349,45 +599,38 @@
     justify-content: center;
     padding: 0.45rem 0.8rem;
     border-radius: 999px;
-    background: rgba(255, 255, 255, 0.08);
+    background: var(--fc-fill-soft);
     color: var(--fc-text-soft);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    border: 1px solid var(--fc-line);
     font-size: 0.88rem;
 }
 
 .flashcard-studio__status-pill.is-review {
-    background: rgba(244, 63, 94, 0.12);
-    color: #fda4af;
-    border-color: rgba(244, 63, 94, 0.24);
+    background: var(--fc-review-bg);
+    color: var(--fc-review-text);
+    border-color: var(--fc-review-border);
 }
 
 .flashcard-studio__status-pill.is-familiar {
-    background: rgba(251, 191, 36, 0.12);
-    color: #fcd34d;
-    border-color: rgba(251, 191, 36, 0.24);
+    background: var(--fc-familiar-bg);
+    color: var(--fc-familiar-text);
+    border-color: var(--fc-familiar-border);
 }
 
 .flashcard-studio__status-pill.is-mastered {
-    background: rgba(52, 211, 153, 0.12);
-    color: #6ee7b7;
-    border-color: rgba(52, 211, 153, 0.22);
+    background: var(--fc-mastered-bg);
+    color: var(--fc-mastered-text);
+    border-color: var(--fc-mastered-border);
 }
 
+/* ---------------------------------------------------------------------
+   Flashcard (3D flip)
+   --------------------------------------------------------------------- */
 .flashcard-card {
     width: 100%;
     min-height: 640px;
     perspective: 1600px;
-    background: none;
-    padding: 0;
-    border: none;
-    text-align: left;
     cursor: pointer;
-}
-
-.flashcard-card:focus-visible {
-    outline: 2px solid rgba(196, 181, 253, 0.78);
-    outline-offset: 8px;
-    border-radius: 2rem;
 }
 
 .flashcard-card__inner {
@@ -405,6 +648,7 @@
 .flashcard-card__face {
     position: absolute;
     inset: 0;
+    -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
     border-radius: 2rem;
     padding: 2rem;
@@ -412,32 +656,32 @@
     flex-direction: column;
     justify-content: space-between;
     overflow: hidden;
-    border: 1px solid rgba(192, 132, 252, 0.16);
-    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+    border: 1px solid var(--fc-face-border);
+    box-shadow: var(--fc-shadow-card);
 }
 
 .flashcard-card__face--front {
     background:
-        radial-gradient(circle at top right, rgba(168, 85, 247, 0.18), transparent 26%),
-        radial-gradient(circle at bottom left, rgba(91, 33, 182, 0.18), transparent 24%),
-        linear-gradient(180deg, rgba(20, 15, 34, 0.98) 0%, rgba(13, 10, 23, 0.98) 100%);
+        radial-gradient(circle at top right, var(--fc-face-glow-a), transparent 26%),
+        radial-gradient(circle at bottom left, var(--fc-face-glow-b), transparent 24%),
+        linear-gradient(180deg, var(--fc-face-front-from) 0%, var(--fc-face-front-to) 100%);
 }
 
 .flashcard-card__face--back {
     transform: rotateY(180deg);
     background:
-        radial-gradient(circle at top left, rgba(192, 132, 252, 0.18), transparent 22%),
-        radial-gradient(circle at bottom right, rgba(124, 58, 237, 0.16), transparent 24%),
-        linear-gradient(180deg, rgba(23, 17, 39, 0.98) 0%, rgba(12, 10, 22, 0.98) 100%);
+        radial-gradient(circle at top left, var(--fc-face-glow-c), transparent 22%),
+        radial-gradient(circle at bottom right, var(--fc-face-glow-d), transparent 24%),
+        linear-gradient(180deg, var(--fc-face-back-from) 0%, var(--fc-face-back-to) 100%);
 }
 
 .flashcard-card__badge {
     width: fit-content;
     padding: 0.45rem 0.85rem;
     border-radius: 999px;
-    background: rgba(168, 85, 247, 0.16);
-    color: #ede9fe;
-    border: 1px solid rgba(192, 132, 252, 0.2);
+    background: var(--fc-accent-soft);
+    color: var(--fc-accent-text);
+    border: 1px solid var(--fc-accent-border);
     font-size: 0.82rem;
     font-weight: 700;
     letter-spacing: 0.04em;
@@ -460,6 +704,14 @@
     line-height: 0.95;
     letter-spacing: -0.04em;
     color: var(--fc-text);
+    overflow-wrap: anywhere;
+}
+
+/* long definitions in Recall mode need a smaller size than a single word */
+.flashcard-card__definition {
+    font-size: clamp(1.6rem, 3.2vw, 2.6rem);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
 }
 
 .flashcard-card__clues {
@@ -473,8 +725,8 @@
 .flashcard-card__context-box,
 .flashcard-card__answer-label {
     border-radius: 1rem;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(192, 132, 252, 0.14);
+    background: var(--fc-fill-soft);
+    border: 1px solid var(--fc-border-soft);
 }
 
 .flashcard-card__clues span {
@@ -492,7 +744,7 @@
 .flashcard-card__context-box span,
 .flashcard-card__info-block span {
     display: inline-block;
-    color: #d8b4fe;
+    color: var(--fc-label);
     font-size: 0.78rem;
     letter-spacing: 0.04em;
     text-transform: uppercase;
@@ -525,12 +777,14 @@
     font-size: clamp(2.25rem, 4vw, 3.6rem);
     line-height: 1;
     color: var(--fc-text);
+    overflow-wrap: anywhere;
 }
 
 .flashcard-card__answer-label {
+    display: inline-block;
     width: fit-content;
     padding: 0.4rem 0.8rem;
-    color: #c4b5fd;
+    color: var(--fc-label);
     font-size: 0.8rem;
     font-weight: 700;
     text-transform: uppercase;
@@ -547,18 +801,21 @@
 .flashcard-card__info-block {
     padding: 1.1rem;
     border-radius: 1.3rem;
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid rgba(192, 132, 252, 0.14);
+    background: var(--fc-fill-faint);
+    border: 1px solid var(--fc-border-soft);
 }
 
 .flashcard-card__info-block--wide {
     grid-column: 1 / -1;
 }
 
+/* ---------------------------------------------------------------------
+   Confidence rating
+   --------------------------------------------------------------------- */
 .flashcard-card__confidence {
     margin-top: 1.5rem;
     padding-top: 1.35rem;
-    border-top: 1px solid rgba(192, 132, 252, 0.12);
+    border-top: 1px solid var(--fc-border-soft);
 }
 
 .flashcard-card__confidence-actions {
@@ -572,8 +829,8 @@
     position: relative;
     padding: 1rem;
     border-radius: 1.25rem;
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: var(--fc-fill-faint);
+    border: 1px solid var(--fc-line);
     display: flex;
     flex-direction: column;
     gap: 0.45rem;
@@ -596,26 +853,32 @@
     top: 0.75rem;
     right: 0.85rem;
     font-style: normal;
-    color: #8f83ab;
+    color: var(--fc-subtle);
     font-size: 0.8rem;
     font-weight: 700;
 }
 
-.flashcard-card__confidence-button.is-review:hover {
-    border-color: rgba(244, 63, 94, 0.32);
-    background: rgba(244, 63, 94, 0.1);
+.flashcard-card__confidence-button.is-review:hover,
+.flashcard-card__confidence-button.is-review:focus-visible {
+    border-color: var(--fc-review-border);
+    background: var(--fc-review-bg);
 }
 
-.flashcard-card__confidence-button.is-familiar:hover {
-    border-color: rgba(251, 191, 36, 0.3);
-    background: rgba(251, 191, 36, 0.09);
+.flashcard-card__confidence-button.is-familiar:hover,
+.flashcard-card__confidence-button.is-familiar:focus-visible {
+    border-color: var(--fc-familiar-border);
+    background: var(--fc-familiar-bg);
 }
 
-.flashcard-card__confidence-button.is-mastered:hover {
-    border-color: rgba(52, 211, 153, 0.28);
-    background: rgba(52, 211, 153, 0.08);
+.flashcard-card__confidence-button.is-mastered:hover,
+.flashcard-card__confidence-button.is-mastered:focus-visible {
+    border-color: var(--fc-mastered-border);
+    background: var(--fc-mastered-bg);
 }
 
+/* ---------------------------------------------------------------------
+   Controls
+   --------------------------------------------------------------------- */
 .flashcard-studio__controls,
 .flashcard-summary__actions {
     display: flex;
@@ -625,24 +888,9 @@
     flex-wrap: wrap;
 }
 
-.flashcard-studio__primary-button {
-    padding: 0.95rem 1.4rem;
-    border-radius: 999px;
-    background: linear-gradient(135deg, var(--fc-accent-deep) 0%, var(--fc-accent) 100%);
-    color: #ffffff;
-    font-weight: 700;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.55rem;
-    box-shadow: 0 20px 42px rgba(124, 58, 237, 0.28);
-}
-
-.flashcard-studio__primary-button:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 24px 48px rgba(124, 58, 237, 0.34);
-}
-
+/* ---------------------------------------------------------------------
+   Summary + empty state
+   --------------------------------------------------------------------- */
 .flashcard-summary {
     display: grid;
     gap: 1.2rem;
@@ -654,9 +902,9 @@
 .flashcard-studio__empty-state {
     padding: 2rem;
     border-radius: 1.8rem;
-    background: linear-gradient(180deg, rgba(18, 14, 31, 0.96) 0%, rgba(13, 10, 22, 0.98) 100%);
+    background: linear-gradient(180deg, var(--fc-panel-lg-from) 0%, var(--fc-panel-lg-to) 100%);
     border: 1px solid var(--fc-border);
-    box-shadow: 0 28px 56px rgba(0, 0, 0, 0.36);
+    box-shadow: var(--fc-shadow-hero);
 }
 
 .flashcard-summary__hero {
@@ -670,9 +918,13 @@
     display: grid;
     place-items: center;
     border-radius: 1.5rem;
-    background: linear-gradient(135deg, rgba(168, 85, 247, 0.2) 0%, rgba(91, 33, 182, 0.3) 100%);
-    color: #e9d5ff;
-    border: 1px solid rgba(192, 132, 252, 0.22);
+    background: linear-gradient(135deg, var(--fc-tile-from) 0%, var(--fc-tile-to) 100%);
+    color: var(--fc-tile-text);
+    border: 1px solid var(--fc-tile-border);
+}
+
+.flashcard-summary__eyebrow {
+    margin-bottom: 1rem;
 }
 
 .flashcard-summary__metrics {
@@ -695,9 +947,12 @@
 .flashcard-summary__metrics strong {
     font-size: 1.9rem;
     color: var(--fc-text);
+    font-variant-numeric: tabular-nums;
 }
 
 .flashcard-studio__empty-state {
+    max-width: 1180px;
+    margin: 0 auto;
     text-align: center;
 }
 
@@ -711,6 +966,9 @@
     color: var(--fc-muted);
 }
 
+/* ---------------------------------------------------------------------
+   Responsive
+   --------------------------------------------------------------------- */
 @media (max-width: 1080px) {
     .flashcard-studio__hero-grid,
     .flashcard-summary__metrics {
@@ -736,6 +994,11 @@
         grid-template-columns: 1fr;
     }
 
+    .flashcard-studio__header--simple {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
     .flashcard-studio__header-actions,
     .flashcard-studio__hero-grid,
     .flashcard-studio__sidebar,
@@ -758,7 +1021,8 @@
 
     .flashcard-studio__header-actions > *,
     .flashcard-studio__controls > *,
-    .flashcard-summary__actions > * {
+    .flashcard-summary__actions > *,
+    .flashcard-studio__header--simple > * {
         width: 100%;
     }
 
@@ -769,5 +1033,27 @@
 
     .flashcard-card__face {
         padding: 1.35rem;
+    }
+}
+
+/* ---------------------------------------------------------------------
+   Reduced motion
+   --------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+    .flashcard-card__inner {
+        transition-duration: 1ms;
+    }
+
+    .flashcard-studio__progress-bar span,
+    .flashcard-studio button {
+        transition: none;
+    }
+
+    .flashcard-studio__ghost-button:hover,
+    .flashcard-studio__secondary-button:hover,
+    .flashcard-studio__primary-button:hover,
+    .flashcard-studio__mode-button:hover,
+    .flashcard-studio__save-button:hover {
+        transform: none;
     }
 }

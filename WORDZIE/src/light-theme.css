@@ -1,0 +1,840 @@
+/* Light mode palettes. Game and Quick Quiz routes stay in the dark palette. */
+:root[data-color-mode='light'] {
+    color-scheme: light;
+    --clean-bg: #f6f3fb;
+    --clean-bg-alt: #eee9f6;
+    --clean-surface: rgba(255, 255, 255, 0.94);
+    --clean-surface-soft: #f8f5fc;
+    --clean-border: rgba(103, 73, 145, 0.16);
+    --clean-border-strong: rgba(124, 58, 237, 0.34);
+    --clean-text: #241c32;
+    --clean-muted: #40304f;
+    --clean-accent: #7c3aed;
+    --clean-accent-strong: #6d28d9;
+    --clean-accent-hover: #5b21b6;
+    --clean-accent-soft: rgba(124, 58, 237, 0.1);
+    --clean-shadow: 0 24px 52px rgba(51, 34, 79, 0.12);
+    --clean-shadow-sm: 0 14px 34px rgba(51, 34, 79, 0.1);
+
+    --nav-bg: rgba(250, 248, 253, 0.94);
+    --nav-border: rgba(103, 73, 145, 0.2);
+    --nav-text: #3e2e50;
+    --nav-text-strong: #241c32;
+    --nav-hover-bg: rgba(124, 58, 237, 0.09);
+    --nav-menu-bg: #fff;
+    --nav-accent: #7c3aed;
+    --nav-drawer-bg: linear-gradient(155deg, #fff 0%, #f5f0fb 58%, #eee7f7 100%);
+}
+
+:root[data-color-mode='light'] body {
+    background:
+        radial-gradient(circle at 8% 0%, rgba(167, 139, 250, 0.14), transparent 28rem),
+        radial-gradient(circle at 96% 12%, rgba(196, 181, 253, 0.16), transparent 26rem),
+        linear-gradient(180deg, #f8f6fc, #f0ecf6);
+    color: #241c32;
+}
+
+:root[data-color-mode='light'] .app-brand-bar::before {
+    background: var(--nav-bg);
+}
+
+:root[data-color-mode='light'] .app-brand .wordzie-logo {
+    background-image: linear-gradient(90deg, #6d28d9, #a21caf, #2563eb, #be185d, #6d28d9);
+}
+
+:root[data-color-mode='light'] .app-nav__link svg,
+:root[data-color-mode='light'] .app-nav__menu-link svg {
+    color: var(--nav-accent);
+}
+
+:root[data-color-mode='light'] .app-nav__menu-text strong {
+    color: #241c32;
+}
+
+:root[data-color-mode='light'] .app-nav__menu-text small {
+    color: #40304f;
+}
+
+:root[data-color-mode='light'] .app-nav__menu-link svg {
+    background: rgba(124, 58, 237, 0.09);
+}
+
+:root[data-color-mode='light'] .app-nav__theme-toggle {
+    box-shadow: 0 4px 12px rgba(62, 39, 92, 0.08);
+}
+
+/* Homepage */
+:root[data-color-mode='light'] .home-page {
+    --hp-text: #241c32;
+    --hp-muted: #40304f;
+    --hp-soft: #4d3b5d;
+    --hp-lavender: #6d3db3;
+    --hp-border: rgba(103, 73, 145, 0.17);
+    --hp-hairline: rgba(103, 73, 145, 0.14);
+    --hp-panel: linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(248, 245, 252, 0.98));
+    background:
+        radial-gradient(circle at top left, rgba(167, 139, 250, 0.14), transparent 23%),
+        radial-gradient(circle at top right, rgba(196, 181, 253, 0.18), transparent 26%),
+        linear-gradient(180deg, #f8f6fc 0%, #f1edf7 56%, #ebe6f3 100%);
+}
+
+:root[data-color-mode='light'] .home-page::before {
+    background:
+        linear-gradient(rgba(75, 53, 105, 0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(75, 53, 105, 0.025) 1px, transparent 1px);
+}
+
+:root[data-color-mode='light'] .home-badge,
+:root[data-color-mode='light'] .home-section-kicker {
+    background: rgba(124, 58, 237, 0.08);
+    border-color: rgba(124, 58, 237, 0.18);
+    color: #593094;
+}
+
+:root[data-color-mode='light'] .home-button--secondary {
+    background: rgba(255, 255, 255, 0.74);
+    border-color: rgba(103, 73, 145, 0.2);
+    color: #382a4e;
+}
+
+:root[data-color-mode='light'] .home-button--secondary:hover {
+    border-color: rgba(124, 58, 237, 0.42);
+    box-shadow: 0 12px 24px rgba(51, 34, 79, 0.12);
+}
+
+:root[data-color-mode='light'] .home-selector,
+:root[data-color-mode='light'] .home-path {
+    border-color: var(--hp-border);
+}
+
+:root[data-color-mode='light'] .home-metric {
+    border-color: var(--hp-hairline);
+}
+
+/* Word Themes */
+:root[data-color-mode='light'] .word-themes-page {
+    color: #241c32;
+    background: transparent;
+}
+
+:root[data-color-mode='light'] .word-themes-hero,
+:root[data-color-mode='light'] .word-theme-card,
+:root[data-color-mode='light'] .word-theme-word-card,
+:root[data-color-mode='light'] .word-themes-empty,
+:root[data-color-mode='light'] .word-theme-search-results,
+:root[data-color-mode='light'] .word-theme-browse-section {
+    border-color: rgba(103, 73, 145, 0.17);
+    background: linear-gradient(150deg, #fff, #f8f5fc);
+    box-shadow: 0 18px 42px rgba(51, 34, 79, 0.09);
+}
+
+:root[data-color-mode='light'] .word-themes-intro h1,
+:root[data-color-mode='light'] .word-theme-search-results__heading h2,
+:root[data-color-mode='light'] .word-theme-browse-section__heading h2,
+:root[data-color-mode='light'] .word-theme-card h2,
+:root[data-color-mode='light'] .word-theme-word-card h3,
+:root[data-color-mode='light'] .word-themes-empty h2 {
+    color: #271e37;
+}
+
+:root[data-color-mode='light'] .word-themes-intro p,
+:root[data-color-mode='light'] .word-theme-card p,
+:root[data-color-mode='light'] .word-theme-word-card__definition,
+:root[data-color-mode='light'] .word-theme-word-card__example,
+:root[data-color-mode='light'] .word-theme-word-card__synonyms,
+:root[data-color-mode='light'] .word-themes-empty p,
+:root[data-color-mode='light'] .word-theme-search-result p {
+    color: #453452;
+}
+
+:root[data-color-mode='light'] .word-themes-kicker,
+:root[data-color-mode='light'] .word-themes-summary span,
+:root[data-color-mode='light'] .word-theme-browse-section__heading > span {
+    color: #54218f;
+    font-weight: 800;
+}
+
+:root[data-color-mode='light'] .word-theme-card__icon {
+    border-color: #bd9ce8;
+    background: #eee3fb;
+    color: #5b21a8;
+}
+
+:root[data-color-mode='light'] .word-theme-card__count {
+    color: #54218f;
+    font-size: 0.82rem;
+    font-weight: 800;
+}
+
+:root[data-color-mode='light'] .word-theme-card__preview {
+    color: #4b2d70;
+    font-weight: 700;
+}
+
+:root[data-color-mode='light'] .word-theme-card__action {
+    color: #54218f;
+    font-weight: 800;
+}
+
+:root[data-color-mode='light'] .word-theme-word-card__letter {
+    border: 1px solid #bd9ce8;
+    background: #eee3fb;
+    color: #54218f;
+    font-weight: 900;
+}
+
+:root[data-color-mode='light'] .word-theme-word-card__synonyms {
+    color: #40304f;
+    font-weight: 600;
+}
+
+:root[data-color-mode='light'] .word-theme-word-card__synonyms strong {
+    color: #54218f;
+    font-weight: 900;
+}
+
+:root[data-color-mode='light'] .word-theme-word-card__example {
+    border-left-color: #7140a5;
+}
+
+:root[data-color-mode='light'] .word-themes-search,
+:root[data-color-mode='light'] .word-theme-search-result {
+    border-color: rgba(103, 73, 145, 0.18);
+    background: #fff;
+    color: #5d4b78;
+}
+
+:root[data-color-mode='light'] .word-themes-search input {
+    color: #241c32;
+}
+
+:root[data-color-mode='light'] .word-themes-search input::placeholder {
+    color: #59466b;
+}
+
+:root[data-color-mode='light'] .word-themes-utility-button,
+:root[data-color-mode='light'] .word-theme-save-button {
+    border-color: rgba(103, 73, 145, 0.2);
+    background: #f5f0fb;
+    color: #49335f;
+}
+
+/* Word Tales */
+:root[data-color-mode='light'] .word-tales-page {
+    color: #241c32;
+    background: transparent;
+}
+
+:root[data-color-mode='light'] .word-tales__hero,
+:root[data-color-mode='light'] .word-tales__setup,
+:root[data-color-mode='light'] .word-tales__story-card,
+:root[data-color-mode='light'] .word-tales__glossary {
+    border-color: rgba(103, 73, 145, 0.17);
+    background: linear-gradient(150deg, #fff, #f8f5fc);
+    box-shadow: 0 18px 42px rgba(51, 34, 79, 0.09);
+}
+
+:root[data-color-mode='light'] .word-tales__hero h1,
+:root[data-color-mode='light'] .word-tales__section-heading h2,
+:root[data-color-mode='light'] .word-tales__story h2,
+:root[data-color-mode='light'] .word-tales__word-card h3 {
+    color: #271e37;
+}
+
+:root[data-color-mode='light'] .word-tales__hero > p,
+:root[data-color-mode='light'] .word-tales__story p,
+:root[data-color-mode='light'] .word-tales__word-card p,
+:root[data-color-mode='light'] .word-tales__story-topline,
+:root[data-color-mode='light'] .word-tales__mood-control {
+    color: #453452;
+}
+
+:root[data-color-mode='light'] .word-tales__eyebrow {
+    color: #54218f;
+    font-weight: 900;
+}
+
+:root[data-color-mode='light'] .word-tales__story .word-tales__term {
+    color: #54218f;
+    font-weight: 900;
+    text-decoration-color: #7140a5;
+    text-decoration-thickness: 2px;
+}
+
+:root[data-color-mode='light'] .word-tales__level,
+:root[data-color-mode='light'] .word-tales__mood-control select {
+    border-color: rgba(103, 73, 145, 0.18);
+    background: #f7f3fb;
+    color: #30263e;
+}
+
+:root[data-color-mode='light'] .word-tales__level small,
+:root[data-color-mode='light'] .word-tales__level > span {
+    color: #4b385a;
+}
+
+:root[data-color-mode='light'] .word-tales__back,
+:root[data-color-mode='light'] .word-tales__regenerate,
+:root[data-color-mode='light'] .word-tales__save {
+    border-color: rgba(103, 73, 145, 0.2);
+    background: #f4effa;
+    color: #49335f;
+}
+
+/* Guide */
+:root[data-color-mode='light'] .guide-page {
+    color: #241c32;
+}
+
+:root[data-color-mode='light'] .guide-hero,
+:root[data-color-mode='light'] .guide-steps,
+:root[data-color-mode='light'] .guide-tools,
+:root[data-color-mode='light'] .guide-about {
+    border-color: rgba(103, 73, 145, 0.17);
+    background: linear-gradient(150deg, #fff, #f8f5fc);
+    box-shadow: 0 18px 42px rgba(51, 34, 79, 0.09);
+}
+
+:root[data-color-mode='light'] .guide-hero h1,
+:root[data-color-mode='light'] .guide-section-heading h2,
+:root[data-color-mode='light'] .guide-tools h2,
+:root[data-color-mode='light'] .guide-about h2,
+:root[data-color-mode='light'] .guide-step__title-row h3 {
+    color: #271e37;
+}
+
+:root[data-color-mode='light'] .guide-hero > p,
+:root[data-color-mode='light'] .guide-section-heading > p,
+:root[data-color-mode='light'] .guide-step__body > p,
+:root[data-color-mode='light'] .guide-tools__grid span,
+:root[data-color-mode='light'] .guide-about p {
+    color: #453452;
+}
+
+:root[data-color-mode='light'] .guide-eyebrow {
+    color: #6d3db3;
+}
+
+:root[data-color-mode='light'] .guide-step {
+    border-color: rgba(103, 73, 145, 0.16);
+}
+
+/* My Wordlist */
+:root[data-color-mode='light'] .my-wordlist-page {
+    color: #241c32;
+    background: transparent;
+}
+
+:root[data-color-mode='light'] .my-wordlist-hero,
+:root[data-color-mode='light'] .my-wordlist-toolbar,
+:root[data-color-mode='light'] .my-wordlist-empty,
+:root[data-color-mode='light'] .my-wordlist-group,
+:root[data-color-mode='light'] .my-wordlist-card {
+    border-color: rgba(103, 73, 145, 0.17);
+    background: linear-gradient(150deg, #fff, #f8f5fc);
+    box-shadow: 0 18px 42px rgba(51, 34, 79, 0.09);
+}
+
+:root[data-color-mode='light'] .my-wordlist-hero h1,
+:root[data-color-mode='light'] .my-wordlist-empty h2,
+:root[data-color-mode='light'] .my-wordlist-group__heading h2,
+:root[data-color-mode='light'] .my-wordlist-card h3 {
+    color: #271e37;
+}
+
+:root[data-color-mode='light'] .my-wordlist-hero p,
+:root[data-color-mode='light'] .my-wordlist-empty p,
+:root[data-color-mode='light'] .my-wordlist-group__heading p,
+:root[data-color-mode='light'] .my-wordlist-card__definition,
+:root[data-color-mode='light'] .my-wordlist-card__details p {
+    color: #453452;
+}
+
+:root[data-color-mode='light'] .my-wordlist-ghost-button,
+:root[data-color-mode='light'] .my-wordlist-filter button,
+:root[data-color-mode='light'] .my-wordlist-card__source-button {
+    border-color: rgba(103, 73, 145, 0.18);
+    background: #f4effa;
+    color: #49335f;
+}
+
+:root[data-color-mode='light'] .my-wordlist-search {
+    border-color: rgba(103, 73, 145, 0.2);
+    background: #fff;
+}
+
+:root[data-color-mode='light'] .my-wordlist-search input {
+    color: #241c32;
+}
+
+/* Story and Flashcard study pages */
+:root[data-color-mode='light'] .word-detective-page {
+    --wd-bg: #f1edf7;
+    --wd-card: #fff;
+    --wd-card-2: #f8f4fc;
+    --wd-border: rgba(103, 73, 145, 0.2);
+    --wd-text: #271e37;
+    --wd-muted: #453452;
+    --wd-accent: #7c3aed;
+    --wd-accent-2: #2563eb;
+    background:
+        radial-gradient(800px 400px at 15% 0%, rgba(167, 139, 250, 0.15), transparent 60%),
+        linear-gradient(180deg, #f8f6fc, #eee9f6);
+}
+
+:root[data-color-mode='light'] .word-detective__hero,
+:root[data-color-mode='light'] .word-detective__rules article,
+:root[data-color-mode='light'] .word-detective__stat,
+:root[data-color-mode='light'] .word-detective__case,
+:root[data-color-mode='light'] .word-detective__clue,
+:root[data-color-mode='light'] .word-detective__files li,
+:root[data-color-mode='light'] .word-detective__summary-stats > div {
+    border-color: var(--wd-border);
+    background: #fff;
+    color: var(--wd-text);
+    box-shadow: 0 12px 30px rgba(51, 34, 79, 0.08);
+}
+
+:root[data-color-mode='light'] .word-detective__eyebrow,
+:root[data-color-mode='light'] .word-detective__clue-label,
+:root[data-color-mode='light'] .word-detective__rules span {
+    color: #54218f;
+    font-weight: 900;
+}
+
+:root[data-color-mode='light'] .word-detective__tag {
+    color: #54218f;
+    font-weight: 900;
+}
+
+:root[data-color-mode='light'] .word-detective__slot {
+    border-color: #b99add;
+    background: #f0e8fb;
+}
+
+:root[data-color-mode='light'] .word-detective__clue.is-locked {
+    border-color: #c7afe2;
+    background: #faf6ff;
+    opacity: 1;
+}
+
+:root[data-color-mode='light'] .word-detective__clue.is-locked .word-detective__clue-label {
+    color: #54218f;
+    font-weight: 900;
+}
+
+:root[data-color-mode='light'] .word-detective__primary {
+    background: linear-gradient(135deg, #6d28d9, #7c3aed);
+    color: #fff;
+    font-weight: 800;
+}
+
+:root[data-color-mode='light'] .word-detective__primary:disabled {
+    border: 1px solid #c6afe3;
+    background: #e9ddf8;
+    color: #54218f;
+    opacity: 1;
+    box-shadow: none;
+}
+
+:root[data-color-mode='light'] .word-detective__form input {
+    border-color: var(--wd-border);
+    background: #fff;
+    color: var(--wd-text);
+}
+
+:root[data-color-mode='light'] .word-detective__back,
+:root[data-color-mode='light'] .word-detective__secondary,
+:root[data-color-mode='light'] .word-detective__save {
+    border-color: var(--wd-border);
+    background: #f2edf9;
+    color: #49335f;
+}
+
+:root[data-color-mode='light'] .flashcard-studio {
+    --fc-bg: #f1edf7;
+    --fc-bg-soft: #f8f5fc;
+    --fc-surface: #fff;
+    --fc-surface-strong: #fff;
+    --fc-surface-soft: #f5f0fa;
+    --fc-border: rgba(103, 73, 145, 0.2);
+    --fc-border-strong: rgba(124, 58, 237, 0.4);
+    --fc-text: #271e37;
+    --fc-text-soft: #43304f;
+    --fc-muted: #493756;
+    background: linear-gradient(180deg, #f8f6fc, #eee9f6);
+}
+
+/* Challenge mode selection is a regular study page; the five game routes
+   themselves keep data-color-mode="dark" and never show the toggle. */
+:root[data-color-mode='light'] .game-studio {
+    color: #271e37;
+    background: linear-gradient(180deg, #f8f6fc, #eee9f6);
+}
+
+:root[data-color-mode='light'] .game-studio__hero,
+:root[data-color-mode='light'] .game-studio__story-promo,
+:root[data-color-mode='light'] .game-studio__stat-pill,
+:root[data-color-mode='light'] .game-studio__card {
+    border-color: rgba(103, 73, 145, 0.18);
+    background: linear-gradient(150deg, #fff, #f7f3fb);
+    box-shadow: 0 16px 38px rgba(51, 34, 79, 0.09);
+}
+
+:root[data-color-mode='light'] .game-studio__hero-copy h1,
+:root[data-color-mode='light'] .game-studio__feature-card h2,
+:root[data-color-mode='light'] .game-studio__hero-summary-copy h2,
+:root[data-color-mode='light'] .game-studio__heading h2,
+:root[data-color-mode='light'] .game-studio__card h3 {
+    color: #271e37;
+}
+
+:root[data-color-mode='light'] .game-studio__hero-copy p,
+:root[data-color-mode='light'] .game-studio__card p,
+:root[data-color-mode='light'] .game-studio__story-promo-copy p,
+:root[data-color-mode='light'] .game-studio__stat-pill span {
+    color: #453452;
+}
+
+:root[data-color-mode='light'] .game-studio__nav-button,
+:root[data-color-mode='light'] .game-studio__secondary-button {
+    border-color: rgba(103, 73, 145, 0.2);
+    background: #f2edf9;
+    color: #49335f;
+}
+
+/* Older letter, word-list, and round pages use the shared clean-theme tokens. */
+:root[data-color-mode='light'] .round-page-hero,
+:root[data-color-mode='light'] .word-list-hero,
+:root[data-color-mode='light'] .word-list-footer__panel,
+:root[data-color-mode='light'] .word-list-empty,
+:root[data-color-mode='light'] .round-page-card,
+:root[data-color-mode='light'] .round-page-back-button,
+:root[data-color-mode='light'] .round-page-mark-button,
+:root[data-color-mode='light'] .word-list-ghost-button {
+    border-color: rgba(103, 73, 145, 0.18);
+    background: linear-gradient(150deg, #fff, #f8f5fc);
+    color: #49335f;
+    box-shadow: 0 14px 34px rgba(51, 34, 79, 0.08);
+}
+
+:root[data-color-mode='light'] .round-page-title,
+:root[data-color-mode='light'] .word-list-title,
+:root[data-color-mode='light'] .round-page-card__title,
+:root[data-color-mode='light'] .word-list-word-title {
+    color: #271e37;
+}
+
+:root[data-color-mode='light'] .round-page-title span {
+    color: #54218f;
+    font-weight: 900;
+}
+
+:root[data-color-mode='light'] .round-page-stat {
+    border-color: rgba(103, 73, 145, 0.18);
+    background: #f8f5fc;
+}
+
+:root[data-color-mode='light'] .round-page-stat span {
+    color: #54218f;
+    font-weight: 700;
+}
+
+:root[data-color-mode='light'] .round-page-stat strong {
+    color: #271e37;
+    font-weight: 800;
+}
+
+:root[data-color-mode='light'] .round-page-card__eyebrow,
+:root[data-color-mode='light'] .round-page-card__tag,
+:root[data-color-mode='light'] .round-page-card__count,
+:root[data-color-mode='light'] .round-page-card__cta,
+:root[data-color-mode='light'] .round-page-card__mark:not(.is-marked) {
+    color: #54218f;
+    font-weight: 800;
+}
+
+:root[data-color-mode='light'] .round-page-card__count,
+:root[data-color-mode='light'] .round-page-card__cta,
+:root[data-color-mode='light'] .round-page-card__mark:not(.is-marked) {
+    border-color: #c5a9e7;
+    background: #f0e7fb;
+}
+
+:root[data-color-mode='light'] .round-page-subtitle,
+:root[data-color-mode='light'] .round-page-card__description,
+:root[data-color-mode='light'] .word-list-subtitle,
+:root[data-color-mode='light'] .word-list-word-definition {
+    color: #453452;
+}
+
+:root[data-color-mode='light'] .round-page-kicker,
+:root[data-color-mode='light'] .word-list-kicker {
+    background: rgba(124, 58, 237, 0.08);
+    border-color: rgba(124, 58, 237, 0.18);
+    color: #593094;
+}
+
+/* Give the light-mode alphabet selector and learning path enough contrast. */
+:root[data-color-mode='light'] .alphabet-selector__core {
+    fill: rgba(255, 255, 255, 0.9);
+    stroke: #8b5cf6;
+    filter: drop-shadow(0 8px 22px rgba(76, 29, 149, 0.16));
+}
+
+:root[data-color-mode='light'] .alphabet-selector__core-line,
+:root[data-color-mode='light'] .alphabet-selector__core-line--top,
+:root[data-color-mode='light'] .alphabet-selector__core-line--bottom {
+    fill: #5b21b6;
+    font-weight: 900;
+}
+
+:root[data-color-mode='light'] .alphabet-selector__core-line--middle {
+    fill: #2e1c48;
+    font-weight: 900;
+}
+
+:root[data-color-mode='light'] .alphabet-selector__letter-ring.is-available {
+    fill: #8b5cf6;
+    stroke: #6d28d9;
+}
+
+:root[data-color-mode='light'] .alphabet-selector__letter-ring.is-available:hover {
+    fill: #6d28d9;
+    stroke: #4c1d95;
+}
+
+:root[data-color-mode='light'] .alphabet-selector__letter-ring.is-unavailable {
+    fill: #ebe6f2;
+    stroke: #b9aec8;
+}
+
+:root[data-color-mode='light'] .alphabet-selector__letter-ring.is-selected {
+    fill: #5b21b6;
+    stroke: #3b0764;
+}
+
+:root[data-color-mode='light'] .alphabet-selector__letter-ring.is-marked {
+    fill: #047857;
+    stroke: #065f46;
+}
+
+:root[data-color-mode='light'] .alphabet-selector__letter-text {
+    font-weight: 900;
+}
+
+:root[data-color-mode='light'] .alphabet-selector__letter-text.is-available,
+:root[data-color-mode='light'] .alphabet-selector__letter-text.is-selected,
+:root[data-color-mode='light'] .alphabet-selector__letter-text.is-marked {
+    fill: #fff;
+}
+
+:root[data-color-mode='light'] .alphabet-selector__letter-text.is-unavailable {
+    fill: #62566f;
+}
+
+:root[data-color-mode='light'] .home-stage__number {
+    color: #6d28d9;
+    font-weight: 800;
+}
+
+:root[data-color-mode='light'] .home-stage__title,
+:root[data-color-mode='light'] .home-stage__link strong {
+    color: #241c32;
+    font-weight: 800;
+}
+
+:root[data-color-mode='light'] .home-stage__description {
+    color: #43304f;
+}
+
+:root[data-color-mode='light'] .home-stage__link,
+:root[data-color-mode='light'] .home-stage__link small,
+:root[data-color-mode='light'] .home-stage__arrow {
+    color: #443052;
+}
+
+/* The Game Studio selector keeps each activity's color identity in light mode,
+   while using dark, readable text and clear action buttons. */
+:root[data-color-mode='light'] .game-studio__eyebrow,
+:root[data-color-mode='light'] .game-studio__feature-label {
+    border-color: #c4a7ef;
+    background: #eee5fb;
+    color: #4c1d95;
+    font-weight: 800;
+}
+
+:root[data-color-mode='light'] .game-studio__hero-copy h1,
+:root[data-color-mode='light'] .game-studio__feature-card h2,
+:root[data-color-mode='light'] .game-studio__hero-summary-copy h2,
+:root[data-color-mode='light'] .game-studio__story-promo-copy h2,
+:root[data-color-mode='light'] .game-studio__heading h2,
+:root[data-color-mode='light'] .game-studio__card h3 {
+    color: #20172e;
+    font-weight: 800;
+}
+
+:root[data-color-mode='light'] .game-studio__hero-copy p,
+:root[data-color-mode='light'] .game-studio__feature-card p,
+:root[data-color-mode='light'] .game-studio__card p,
+:root[data-color-mode='light'] .game-studio__story-promo-copy p,
+:root[data-color-mode='light'] .game-studio__stat-pill span {
+    color: #43304f;
+}
+
+:root[data-color-mode='light'] .game-studio__skill-list span {
+    border: 1px solid #d8c9ec;
+    background: #f0e9f8;
+    color: #49335f;
+    font-weight: 700;
+}
+
+:root[data-color-mode='light'] .game-studio__story-promo-icon {
+    border-color: #c4a7ef;
+    background: #eee5fb;
+    color: #5b21b6;
+}
+
+:root[data-color-mode='light'] .game-studio__card {
+    border-width: 1.5px;
+}
+
+:root[data-color-mode='light'] .game-studio__card-badge,
+:root[data-color-mode='light'] .game-studio__card .game-studio__card-skills span {
+    font-weight: 800;
+}
+
+:root[data-color-mode='light'] .game-studio__card .game-studio__card-button {
+    min-height: 48px;
+    border-width: 1.5px;
+    font-weight: 800;
+}
+
+:root[data-color-mode='light'] .game-studio__card--word_buckets {
+    --game-card-bg: linear-gradient(145deg, #fffaf5, #fff1e3);
+    --game-card-bg-active: linear-gradient(145deg, #fff4e8, #ffe6ca);
+    --game-card-border: #e6a36b;
+    --game-card-border-active: #c96a24;
+    --game-card-shadow: rgba(154, 74, 19, 0.16);
+    --game-card-text: #493323;
+    --game-card-title: #321d0e;
+    --game-card-icon-bg: #ffead7;
+    --game-card-icon-color: #9a4515;
+    --game-card-badge-bg: #ffe2c6;
+    --game-card-badge-color: #77350f;
+    --game-card-skill-bg: #ffead7;
+    --game-card-skill-color: #71360f;
+    --game-card-button-bg: #ffead7;
+    --game-card-button-border: #d9874c;
+    --game-card-button-color: #57290d;
+}
+
+:root[data-color-mode='light'] .game-studio__card--matching {
+    --game-card-bg: linear-gradient(145deg, #f5fbff, #e4f4ff);
+    --game-card-bg-active: linear-gradient(145deg, #eaf7ff, #d5edff);
+    --game-card-border: #80b9df;
+    --game-card-border-active: #2876aa;
+    --game-card-shadow: rgba(22, 89, 134, 0.15);
+    --game-card-text: #263e50;
+    --game-card-title: #102b40;
+    --game-card-icon-bg: #d9f0ff;
+    --game-card-icon-color: #075985;
+    --game-card-badge-bg: #d9f0ff;
+    --game-card-badge-color: #075985;
+    --game-card-skill-bg: #e1f3ff;
+    --game-card-skill-color: #13466a;
+    --game-card-button-bg: #e1f3ff;
+    --game-card-button-border: #72acd2;
+    --game-card-button-color: #103e60;
+}
+
+:root[data-color-mode='light'] .game-studio__card--fill_blanks {
+    --game-card-bg: linear-gradient(145deg, #fffdf3, #fff5d7);
+    --game-card-bg-active: linear-gradient(145deg, #fff9df, #ffedb2);
+    --game-card-border: #d6b64e;
+    --game-card-border-active: #9a7410;
+    --game-card-shadow: rgba(120, 91, 7, 0.14);
+    --game-card-text: #494126;
+    --game-card-title: #332808;
+    --game-card-icon-bg: #fff0b8;
+    --game-card-icon-color: #80600a;
+    --game-card-badge-bg: #fff0b8;
+    --game-card-badge-color: #705207;
+    --game-card-skill-bg: #fff4cc;
+    --game-card-skill-color: #644d0c;
+    --game-card-button-bg: #fff4cc;
+    --game-card-button-border: #c5a638;
+    --game-card-button-color: #58440a;
+}
+
+:root[data-color-mode='light'] .game-studio__card--word_builder {
+    --game-card-bg: linear-gradient(145deg, #f5fcf7, #e5f5e9);
+    --game-card-bg-active: linear-gradient(145deg, #ebf8ef, #d6efdd);
+    --game-card-border: #83b895;
+    --game-card-border-active: #36794d;
+    --game-card-shadow: rgba(27, 93, 51, 0.14);
+    --game-card-text: #294333;
+    --game-card-title: #173320;
+    --game-card-icon-bg: #d8f0df;
+    --game-card-icon-color: #176534;
+    --game-card-badge-bg: #d8f0df;
+    --game-card-badge-color: #155c30;
+    --game-card-skill-bg: #e2f4e7;
+    --game-card-skill-color: #245a36;
+    --game-card-button-bg: #e2f4e7;
+    --game-card-button-border: #78ae88;
+    --game-card-button-color: #1d4d2d;
+}
+
+:root[data-color-mode='light'] .game-studio__card--quick_quiz {
+    --game-card-bg: linear-gradient(145deg, #fff, #f0eef3);
+    --game-card-bg-active: linear-gradient(145deg, #fff, #e8e5ec);
+    --game-card-border: #99939f;
+    --game-card-border-active: #403a46;
+    --game-card-shadow: rgba(42, 35, 49, 0.14);
+    --game-card-text: #39343f;
+    --game-card-title: #17141b;
+    --game-card-icon-bg: #e9e6ed;
+    --game-card-icon-color: #27232c;
+    --game-card-badge-bg: #e9e6ed;
+    --game-card-badge-color: #27232c;
+    --game-card-skill-bg: #eeecf1;
+    --game-card-skill-color: #302b35;
+    --game-card-button-bg: #eeecf1;
+    --game-card-button-border: #a7a1ae;
+    --game-card-button-color: #211e25;
+}
+
+/* Keep descriptive copy readable throughout every light-mode page. Game and
+   Quick Quiz routes switch the root back to dark mode and are unaffected. */
+:root[data-color-mode='light'] body :is(
+    p,
+    small,
+    label,
+    li,
+    dt,
+    dd,
+    blockquote,
+    figcaption,
+    [class*='subtitle'],
+    [class*='description'],
+    [class*='muted'],
+    [class*='hint'],
+    [class*='helper'],
+    [class*='caption'],
+    [class*='meta']
+) {
+    color: #40304f !important;
+}
+
+:root[data-color-mode='light'] body input::placeholder,
+:root[data-color-mode='light'] body textarea::placeholder {
+    color: #59466b;
+    opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .app-nav__theme-toggle {
+        transition: none;
+    }
+}

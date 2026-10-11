@@ -4,7 +4,7 @@
         radial-gradient(circle at top, rgba(124, 58, 237, 0.16), transparent 24%),
         linear-gradient(180deg, #080511 0%, #0d0817 46%, #090611 100%);
     color: #f6f2ff;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
 }
 
 .game-studio__shell {
@@ -41,14 +41,6 @@
     color: #f6f2ff;
     background: rgba(22, 16, 36, 0.82);
     border: 1px solid rgba(197, 181, 255, 0.16);
-}
-
-.game-studio__label {
-    color: #d5c8f6;
-    font-size: 0.9rem;
-    font-weight: 600;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
 }
 
 .game-studio__hero {
@@ -91,10 +83,10 @@
 .game-studio__hero-copy h1 {
     margin: 18px 0 14px;
     max-width: none;
-    font-size: clamp(1.85rem, 3vw, 2.8rem);
-    line-height: 0.98;
-    letter-spacing: -0.05em;
-    white-space: nowrap;
+    font-size: clamp(2rem, 3vw, 2.7rem);
+    font-weight: 800;
+    line-height: 1.08;
+    letter-spacing: -0.055em;
 }
 
 .game-studio__hero-copy p,
@@ -102,6 +94,7 @@
 .game-studio__card p {
     margin: 0;
     color: #c8bbde;
+    font-size: 0.98rem;
     line-height: 1.72;
 }
 
@@ -140,6 +133,7 @@
 
 .game-studio__stat-pill strong {
     font-size: 1.3rem;
+    font-weight: 800;
 }
 
 .game-studio__stat-pill span {
@@ -161,16 +155,18 @@
 
 .game-studio__feature-card h2 {
     margin: 0;
+    font-weight: 800;
     font-size: clamp(2rem, 3vw, 3rem);
     line-height: 1.02;
-    letter-spacing: -0.04em;
+    letter-spacing: -0.055em;
 }
 
 .game-studio__hero-summary-copy h2 {
     margin: 0;
+    font-weight: 800;
     font-size: clamp(1.5rem, 2.4vw, 2.2rem);
     line-height: 1.06;
-    letter-spacing: -0.04em;
+    letter-spacing: -0.05em;
 }
 
 .game-studio__skill-list,
@@ -191,6 +187,7 @@
     background: rgba(255, 255, 255, 0.05);
     color: #e1d6ff;
     font-size: 0.84rem;
+    font-weight: 600;
 }
 
 .game-studio__secondary-button,
@@ -207,15 +204,78 @@
     margin-top: 26px;
 }
 
+.game-studio__story-promo {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 16px;
+    margin-top: 22px;
+    padding: 20px 22px;
+    border: 1px solid rgba(192, 132, 252, 0.24);
+    border-radius: 22px;
+    background:
+        radial-gradient(circle at 0 50%, rgba(124, 58, 237, 0.2), transparent 28%),
+        linear-gradient(110deg, rgba(24, 17, 38, 0.98), rgba(14, 10, 23, 0.98));
+}
+
+.game-studio__story-promo-icon {
+    display: grid;
+    width: 52px;
+    height: 52px;
+    place-items: center;
+    border: 1px solid rgba(216, 180, 254, 0.26);
+    border-radius: 16px;
+    background: rgba(124, 58, 237, 0.17);
+    color: #dfc7ff;
+}
+
+.game-studio__story-promo-copy h2 {
+    margin: 7px 0 4px;
+    color: #f8f5ff;
+    font-size: clamp(1.15rem, 2.2vw, 1.55rem);
+    font-weight: 800;
+    letter-spacing: -0.045em;
+}
+
+.game-studio__story-promo-copy p {
+    margin: 0;
+    color: #bfb2d2;
+    font-size: 0.95rem;
+    line-height: 1.55;
+}
+
+.game-studio__story-promo-button {
+    display: inline-flex;
+    min-height: 46px;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    padding: 0 16px;
+    border: 1px solid rgba(216, 180, 254, 0.3);
+    border-radius: 14px;
+    background: linear-gradient(130deg, #7c3aed, #9333ea);
+    color: #fff;
+    font: inherit;
+    font-weight: 700;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: filter 160ms ease, transform 160ms ease;
+}
+
+.game-studio__story-promo-button:hover {
+    filter: brightness(1.1);
+    transform: translateY(-1px);
+}
+
 .game-studio__heading h2 {
     margin: 14px 0 0;
     max-width: 14ch;
     font-size: clamp(1.9rem, 3vw, 2.9rem);
-    letter-spacing: -0.04em;
-    line-height: 1.04;
+    font-weight: 800;
+    letter-spacing: -0.05em;
+    line-height: 1.08;
 }
 
-.game-studio__grid,
 .game-studio__grid {
     display: grid;
     margin-top: 18px;
@@ -277,13 +337,16 @@
     background: var(--game-card-badge-bg);
     color: var(--game-card-badge-color);
     font-size: 0.76rem;
+    font-weight: 800;
     text-transform: uppercase;
     letter-spacing: 0.08em;
 }
 
 .game-studio__card h3 {
     margin: 0;
-    font-size: 1.35rem;
+    font-size: 1.28rem;
+    font-weight: 800;
+    letter-spacing: -0.035em;
     color: var(--game-card-title);
 }
 
@@ -443,6 +506,14 @@
         grid-template-columns: 1fr;
     }
 
+    .game-studio__story-promo {
+        grid-template-columns: auto minmax(0, 1fr);
+    }
+
+    .game-studio__story-promo-button {
+        grid-column: 1 / -1;
+    }
+
     .game-studio__hero,
     .game-studio__heading,
     .game-studio__card {
@@ -497,12 +568,6 @@
         right: 0;
         top: -6px;
         transform: none;
-    }
-
-    .game-studio__label {
-        font-size: 0.66rem;
-        letter-spacing: 0.08em;
-        text-align: center;
     }
 
     .game-studio__hero .game-studio__eyebrow {

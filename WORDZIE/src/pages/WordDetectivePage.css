@@ -1,0 +1,624 @@
+/* =====================================================
+   Word Detective: dark purple "case file" game theme
+   ===================================================== */
+.word-detective-page {
+    --wd-bg: #0b0914;
+    --wd-card: #14101f;
+    --wd-card-2: #1a1430;
+    --wd-border: rgba(139, 92, 246, 0.28);
+    --wd-text: #f4f1ff;
+    --wd-muted: #b6aed4;
+    --wd-accent: #8b5cf6;
+    --wd-accent-2: #22d3ee;
+    --wd-good: #34d399;
+    --wd-bad: #f87171;
+    --wd-warm: #fbbf24;
+    --wd-display: 'Orbitron', 'Segoe UI', system-ui, sans-serif;
+
+    min-height: 100vh;
+    padding: 28px 16px 64px;
+    color: var(--wd-text);
+    background:
+        radial-gradient(900px 420px at 15% -10%, rgba(124, 58, 237, 0.22), transparent 60%),
+        radial-gradient(700px 360px at 100% 0%, rgba(34, 211, 238, 0.1), transparent 60%),
+        var(--wd-bg);
+}
+
+.word-detective__shell {
+    max-width: 860px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+
+.word-detective-page .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* ---------- Buttons ---------- */
+.word-detective__back,
+.word-detective__primary,
+.word-detective__secondary,
+.word-detective__ghost,
+.word-detective__save {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border-radius: 12px;
+    font: inherit;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.15s ease, background 0.2s ease, border-color 0.2s ease, opacity 0.2s ease;
+}
+
+.word-detective__back {
+    align-self: flex-start;
+    padding: 10px 14px;
+    border: 1px solid var(--wd-border);
+    background: rgba(124, 58, 237, 0.12);
+    color: var(--wd-text);
+}
+
+.word-detective__primary {
+    padding: 13px 22px;
+    border: 0;
+    color: #fff;
+    background: linear-gradient(135deg, #7c3aed, #a78bfa);
+    box-shadow: 0 10px 26px rgba(124, 58, 237, 0.35);
+}
+
+.word-detective__secondary {
+    padding: 12px 18px;
+    border: 1px solid var(--wd-border);
+    background: rgba(124, 58, 237, 0.14);
+    color: var(--wd-text);
+}
+
+.word-detective__ghost {
+    padding: 12px 16px;
+    border: 1px solid transparent;
+    background: transparent;
+    color: var(--wd-muted);
+}
+
+.word-detective__save {
+    padding: 10px 14px;
+    border: 1px solid var(--wd-border);
+    background: rgba(255, 255, 255, 0.04);
+    color: var(--wd-text);
+}
+
+.word-detective__back:hover,
+.word-detective__secondary:hover:not(:disabled),
+.word-detective__save:hover:not(:disabled) {
+    background: rgba(124, 58, 237, 0.26);
+}
+
+.word-detective__ghost:hover {
+    color: var(--wd-text);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.word-detective__primary:hover:not(:disabled) {
+    transform: translateY(-1px);
+}
+
+.word-detective__primary:disabled,
+.word-detective__secondary:disabled,
+.word-detective__save:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
+.word-detective__back:focus-visible,
+.word-detective__primary:focus-visible,
+.word-detective__secondary:focus-visible,
+.word-detective__ghost:focus-visible,
+.word-detective__save:focus-visible,
+.word-detective__form input:focus-visible {
+    outline: 2px solid var(--wd-accent-2);
+    outline-offset: 2px;
+}
+
+/* ---------- Hero ---------- */
+.word-detective__hero {
+    padding: 34px 28px;
+    border: 1px solid var(--wd-border);
+    border-radius: 24px;
+    background: linear-gradient(145deg, var(--wd-card-2), var(--wd-card));
+}
+
+.word-detective__eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #d8c8ff;
+}
+
+.word-detective__hero h1 {
+    margin: 12px 0 10px;
+    font-family: var(--wd-display);
+    font-weight: 900;
+    font-size: clamp(2rem, 6vw, 3.1rem);
+    letter-spacing: 0.04em;
+    line-height: 1.1;
+}
+
+.word-detective__hero p {
+    margin: 0;
+    max-width: 62ch;
+    color: var(--wd-muted);
+    line-height: 1.65;
+}
+
+/* ---------- Intro rules ---------- */
+.word-detective__rules {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+}
+
+.word-detective__rules article {
+    padding: 20px;
+    border: 1px solid var(--wd-border);
+    border-radius: 18px;
+    background: var(--wd-card);
+}
+
+.word-detective__rules span {
+    font-family: var(--wd-display);
+    font-weight: 900;
+    font-size: 1.1rem;
+    color: var(--wd-accent-2);
+}
+
+.word-detective__rules h2 {
+    margin: 8px 0 6px;
+    font-size: 1.05rem;
+}
+
+.word-detective__rules p {
+    margin: 0;
+    color: var(--wd-muted);
+    font-size: 0.93rem;
+    line-height: 1.55;
+}
+
+.word-detective__start {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 14px;
+}
+
+.word-detective__best {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--wd-warm);
+    font-weight: 700;
+}
+
+.word-detective__note {
+    margin: 0;
+    color: var(--wd-muted);
+}
+
+/* ---------- HUD ---------- */
+.word-detective__hud {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+}
+
+.word-detective__stat {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 14px 16px;
+    border: 1px solid var(--wd-border);
+    border-radius: 16px;
+    background: var(--wd-card);
+}
+
+.word-detective__stat > span {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--wd-muted);
+}
+
+.word-detective__stat strong {
+    font-family: var(--wd-display);
+    font-size: 1.6rem;
+    line-height: 1;
+}
+
+.word-detective__stat--streak.is-hot strong,
+.word-detective__stat--streak.is-hot > span {
+    color: var(--wd-warm);
+}
+
+.word-detective__hearts {
+    display: flex;
+    gap: 6px;
+    min-height: 26px;
+    align-items: center;
+}
+
+.word-detective__hearts .is-full {
+    color: var(--wd-bad);
+    fill: var(--wd-bad);
+}
+
+.word-detective__hearts .is-empty {
+    color: rgba(255, 255, 255, 0.25);
+}
+
+/* ---------- Progress ---------- */
+.word-detective__progress {
+    display: flex;
+    gap: 8px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.word-detective__progress li {
+    flex: 1;
+    height: 8px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.word-detective__progress .is-current { background: var(--wd-accent); }
+.word-detective__progress .is-solved { background: var(--wd-good); }
+.word-detective__progress .is-failed { background: var(--wd-bad); }
+
+/* ---------- Case card ---------- */
+.word-detective__case {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 26px 22px;
+    border: 1px solid var(--wd-border);
+    border-radius: 24px;
+    background: linear-gradient(160deg, var(--wd-card-2), var(--wd-card));
+}
+
+.word-detective__case-top {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+.word-detective__tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--wd-display);
+    font-weight: 800;
+    font-size: 0.82rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #d8c8ff;
+}
+
+.word-detective__worth {
+    padding: 6px 12px;
+    border-radius: 999px;
+    border: 1px solid rgba(251, 191, 36, 0.4);
+    background: rgba(251, 191, 36, 0.08);
+    color: var(--wd-warm);
+    font-size: 0.82rem;
+    font-weight: 700;
+}
+
+/* ---------- Letter slots ---------- */
+.word-detective__slots {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+}
+
+.word-detective__slot {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: clamp(36px, 8vw, 56px);
+    height: clamp(46px, 10vw, 66px);
+    border: 2px solid var(--wd-border);
+    border-radius: 12px;
+    background: rgba(124, 58, 237, 0.12);
+    font-family: var(--wd-display);
+    font-weight: 900;
+    font-size: clamp(1.1rem, 4vw, 1.7rem);
+    text-transform: uppercase;
+}
+
+.word-detective__slot.is-typing { border-color: var(--wd-accent); background: rgba(139, 92, 246, 0.25); }
+.word-detective__slot.is-hint { border-color: var(--wd-accent-2); color: var(--wd-accent-2); }
+.word-detective__slot.is-solved { border-color: var(--wd-good); background: rgba(52, 211, 153, 0.16); color: var(--wd-good); }
+.word-detective__slot.is-failed { border-color: var(--wd-bad); background: rgba(248, 113, 113, 0.14); color: var(--wd-bad); }
+
+.word-detective__slots.is-shaking { animation: wd-shake 0.4s ease; }
+
+@keyframes wd-shake {
+    0%, 100% { transform: translateX(0); }
+    20% { transform: translateX(-8px); }
+    40% { transform: translateX(8px); }
+    60% { transform: translateX(-5px); }
+    80% { transform: translateX(5px); }
+}
+
+/* ---------- Clues ---------- */
+.word-detective__clues {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.word-detective__clue {
+    padding: 14px 16px;
+    border: 1px solid var(--wd-border);
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.03);
+    animation: wd-clue-in 0.25s ease-out;
+}
+
+.word-detective__clue p {
+    margin: 6px 0 0;
+    line-height: 1.6;
+}
+
+.word-detective__clue.is-locked {
+    border-style: dashed;
+    background: transparent;
+    opacity: 0.6;
+    animation: none;
+}
+
+.word-detective__clue-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--wd-accent-2);
+}
+
+.word-detective__clue.is-locked .word-detective__clue-label {
+    color: var(--wd-muted);
+}
+
+@keyframes wd-clue-in {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ---------- Guess form ---------- */
+.word-detective__form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.word-detective__form input {
+    flex: 1 1 220px;
+    min-width: 0;
+    padding: 13px 16px;
+    border: 1px solid var(--wd-border);
+    border-radius: 12px;
+    background: rgba(0, 0, 0, 0.35);
+    color: var(--wd-text);
+    font: inherit;
+    font-size: 1.05rem;
+    letter-spacing: 0.08em;
+    text-transform: lowercase;
+}
+
+.word-detective__misses {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    margin: 0;
+    color: var(--wd-muted);
+    font-size: 0.88rem;
+}
+
+.word-detective__misses span {
+    padding: 3px 10px;
+    border-radius: 999px;
+    background: rgba(248, 113, 113, 0.12);
+    color: var(--wd-bad);
+    text-decoration: line-through;
+}
+
+.word-detective__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+/* ---------- Result ---------- */
+.word-detective__result {
+    padding: 22px;
+    border: 1px solid var(--wd-border);
+    border-radius: 18px;
+    animation: wd-clue-in 0.3s ease-out;
+}
+
+.word-detective__result--solved { border-color: rgba(52, 211, 153, 0.5); background: rgba(52, 211, 153, 0.07); }
+.word-detective__result--failed { border-color: rgba(248, 113, 113, 0.45); background: rgba(248, 113, 113, 0.06); }
+
+.word-detective__result h2 {
+    margin: 0 0 6px;
+    font-family: var(--wd-display);
+    font-size: 1.3rem;
+}
+
+.word-detective__result--solved h2 { color: var(--wd-good); }
+.word-detective__result--failed h2 { color: var(--wd-bad); }
+
+.word-detective__earned {
+    margin: 0 0 14px;
+    color: var(--wd-muted);
+}
+
+.word-detective__reveal {
+    margin-bottom: 16px;
+    padding: 14px 16px;
+    border-radius: 14px;
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.word-detective__reveal h3 {
+    margin: 0 0 4px;
+    font-family: var(--wd-display);
+    font-size: 1.3rem;
+    letter-spacing: 0.06em;
+    text-transform: capitalize;
+}
+
+.word-detective__reveal p {
+    margin: 0;
+    color: var(--wd-muted);
+    line-height: 1.6;
+}
+
+/* ---------- Summary ---------- */
+.word-detective__summary-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+}
+
+.word-detective__summary-stats div {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 16px;
+    border: 1px solid var(--wd-border);
+    border-radius: 16px;
+    background: var(--wd-card);
+}
+
+.word-detective__summary-stats span {
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--wd-muted);
+}
+
+.word-detective__summary-stats strong {
+    font-family: var(--wd-display);
+    font-size: 1.6rem;
+}
+
+.word-detective__record {
+    margin: -8px 0 0;
+    color: var(--wd-warm);
+    font-weight: 700;
+}
+
+.word-detective__files h2 {
+    margin: 0 0 12px;
+    font-size: 1.1rem;
+}
+
+.word-detective__files ul {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.word-detective__files li {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 16px;
+    border: 1px solid var(--wd-border);
+    border-left-width: 4px;
+    border-radius: 14px;
+    background: var(--wd-card);
+}
+
+.word-detective__files li.is-solved { border-left-color: var(--wd-good); }
+.word-detective__files li.is-failed { border-left-color: var(--wd-bad); }
+
+.word-detective__files li div { flex: 1 1 240px; }
+
+.word-detective__files strong {
+    font-size: 1.05rem;
+    text-transform: capitalize;
+}
+
+.word-detective__files p {
+    margin: 4px 0 0;
+    color: var(--wd-muted);
+    font-size: 0.92rem;
+    line-height: 1.5;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 680px) {
+    .word-detective__rules,
+    .word-detective__summary-stats {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .word-detective__rules article:last-child {
+        grid-column: 1 / -1;
+    }
+
+    .word-detective__hero { padding: 26px 20px; }
+    .word-detective__case { padding: 20px 16px; }
+}
+
+@media (max-width: 460px) {
+    .word-detective__hud { grid-template-columns: 1fr 1fr; }
+    .word-detective__stat:last-child { grid-column: 1 / -1; }
+    .word-detective__rules { grid-template-columns: 1fr; }
+    .word-detective__primary,
+    .word-detective__secondary { flex: 1 1 100%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .word-detective__slots.is-shaking,
+    .word-detective__clue,
+    .word-detective__result { animation: none; }
+    .word-detective__primary { transition: none; }
+}
