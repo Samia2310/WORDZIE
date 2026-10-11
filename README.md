@@ -1,110 +1,99 @@
-# Wordzie 📚
+# Wordzie
 
-**Interactive Vocabulary Learning Platform**
+**An interactive vocabulary learning platform**
 
-Wordzie is a frontend vocabulary learning application built with React, designed to help learners build and reinforce vocabulary through structured study sessions and five distinct interactive game modes. It features a hand-curated A-to-Z word database, dynamic algorithmic question generation, and a custom-built client-side routing system.
+Wordzie helps learners discover, study, and practice vocabulary through structured word lists, themed collections, stories, flashcards, quizzes, and games. It is a client-side React application with a large built-in dictionary and browser-based progress storage.
 
-🔗 **Live Demo:** [wordzie.vercel.app](https://wordzie.vercel.app/)
+[Open the live app](https://wordzie.vercel.app/)
 
----
+## Learning features
 
-## ✨ Features
+- **Alphabet rounds:** Explore words from A to Z in manageable study pages, expand entries for more detail, and mark pages as reviewed.
+- **Word Themes:** Browse vocabulary grouped by meaning and situation, or search words, definitions, and themes.
+- **Word Tales:** Generate a new story for a selected reading level and mood. Dictionary words used in the story are highlighted; hover over or focus one to reveal its meaning.
+- **Flashcard Studio:** Study in Explore or Recall mode, flip cards, rate confidence, and review session progress.
+- **Word Detective:** Solve vocabulary cases using definitions and progressively revealed clues.
+- **Game Studio:** Practice with Word Buckets, Connect the Words, Fill in the Blanks, and Word Builder.
+- **Quick Quiz:** Test vocabulary with mixed or focused question modes and immediate feedback.
+- **My Wordlist:** Save words to revisit later.
+- **Light and dark appearance:** Switch themes from the navbar. Quick Quiz and the four game interfaces keep their dedicated dark styling.
+- **Responsive navigation:** Use the navbar dropdowns on desktop or the navigation drawer on smaller screens.
 
-- **Structured Study Flow** — Browse vocabulary by letter, paginated into manageable rounds, with expandable word cards showing definitions, synonyms, antonyms, and example sentences
-- **Flashcard Sessions** — Flip-card study mode with two modes (Explore / Recall), confidence-based self-rating (Need Practice / Building / Mastered), keyboard shortcuts, and session mastery scoring
-- **Game Studio** — Five distinct quiz modes for active recall:
-  - **Word Buckets** — Sort word families (word, synonym, antonym) into correct slots
-  - **Connect the Words** — Match prompts to the correct synonym or antonym
-  - **Fill in the Blanks** — Choose the correct word to complete a sentence using context clues
-  - **Quick Quiz** — 10-question mixed or single-mode assessment (definitions, synonyms, antonyms, sentence context)
-  - **Word Builder** — Rebuild scrambled words using definition and letter-pattern clues
-- **Progress Tracking** — Marked/completed pages persisted via `localStorage`
+## Getting started
 
----
+Requirements: [Node.js](https://nodejs.org/) and npm.
 
-## 🧠 Algorithmic Highlights
-
-This project emphasizes algorithmic problem-solving in how quiz content is dynamically generated:
-
-- **Fisher-Yates Shuffle** — Implements the standard unbiased shuffle algorithm (O(n)) for randomizing word pools and answer options, avoiding the bias introduced by naive `sort(() => Math.random() - 0.5)` approaches.
-- **Set-Based Duplicate Prevention** — Uses `Set` data structures for O(1) lookups to guarantee no word, synonym, or antonym label repeats across a single game board (critical for games like Word Buckets and Connect the Words, where duplicate answers would break gameplay).
-- **Anti-Spoiler Clue Filtering** — A custom constraint-filtering algorithm (`pickSafeClueText`) checks candidate clue text against a list of forbidden terms using word-boundary regex matching, ensuring a definition or example sentence never accidentally contains one of the answer choices on screen.
-- **Multi-Candidate Fallback Logic** — Each clue-generation function tries a prioritized list of candidate sentences/definitions in order, falling back to a safe generic clue if no candidate passes validation — guaranteeing the game never breaks or displays an empty/spoiled clue.
-- **Distractor Generation** — Wrong-answer options are generated with a length-similarity constraint (within 2 characters of the correct word) so incorrect choices are plausible rather than trivially eliminable.
-- **Modular Question Blueprint Architecture** — Quick Quiz uses a blueprint pattern that decouples "which word pool and builder function to use" from "which specific word gets selected," making it straightforward to add new question types without modifying existing logic.
-
----
-
-## 🛣️ Custom Routing System
-
-Rather than relying on `react-router-dom`, Wordzie implements a hand-built hash-based router:
-
-- Application state (current view, selected letter, round, quiz mode) is serialized into URL query parameters within the hash (`#view=words&letter=A&round=A-2`)
-- State updates trigger URL updates via the History API (`pushState` / `replaceState`)
-- `popstate` and `hashchange` listeners keep React state in sync with browser back/forward navigation
-- Invalid or stale URL states (e.g., a round ID that no longer exists) gracefully fall back to a safe parent view instead of crashing
-
----
-
-## 🛠️ Tech Stack
-
-- **React** — Component architecture and state management
-- **JavaScript (ES6+)** — Core application logic and algorithms
-- **CSS** — Custom styling per game mode with distinct visual themes
-- **localStorage API** — Client-side persistence for study progress
-
----
-
-## 📂 Project Structure (Key Files)
-
-```
-src/
-├── App.jsx                     # Root component, custom router, global state
-├── data/
-│   └── wordCollection.js       # A-to-Z vocabulary dataset
-├── components/
-│   ├── ChallengeMode.jsx       # Game Studio hub and game routing
-│   └── games/
-│       ├── gameData.js         # Core algorithms: shuffling, question generation, clue filtering
-│       ├── WordBucketsGame.jsx
-│       ├── ConnectTheWords.Game.jsx
-│       ├── FillInTheBlanksGame.jsx
-│       ├── QuickQuizGame.jsx
-│       └── WordBuilderGame.jsx
-└── pages/
-    ├── HomePage.jsx
-    ├── RoundSelectionPage.jsx
-    ├── WordListPage.jsx
-    └── FlashcardSessionPage.jsx
-```
-
----
-
-## 🚀 Getting Started
+The Vite app is in the `WORDZIE/` directory:
 
 ```bash
-# Clone the repository
-git clone https://github.com/Samia2310/WORDZIE.git
-
-# Navigate into the project directory
 cd WORDZIE
-
-# Install dependencies
 npm install
-
-# Run the development server
 npm run dev
 ```
 
----
+Open the local URL printed by Vite, usually `http://localhost:5173`.
 
-## 📌 Status
+## Available scripts
 
-**Live** • 2025 • Personal Project
+Run these commands from the `WORDZIE/` directory.
 
----
+| Command | Purpose |
+| --- | --- |
+| `npm run dev` | Start the local development server. |
+| `npm run lint` | Check the source with ESLint. |
+| `npm run build` | Create a production build in `WORDZIE/dist/`. |
+| `npm run preview` | Preview the production build locally. |
 
-## 👩‍💻 Author
+## Technology
 
-**Samia Tabassum Chowdhury**
-[Portfolio](https://samia-portfolio-gold.vercel.app/) · [GitHub](https://github.com/Samia2310)
+- React 19
+- JavaScript with ES modules
+- Vite
+- CSS, including page-specific and theme styles
+- Lucide React icons
+- `localStorage` for browser-local preferences and study data
+
+## Project structure
+
+```text
+repository-root/
+├── README.md               GitHub project overview
+└── WORDZIE/                 Vite application root
+    ├── public/              Static files served as-is
+    │   └── wordzie.png      App logo
+    ├── src/
+    │   ├── components/
+    │   │   ├── games/       Game interfaces and shared game logic
+    │   │   ├── AppNavbar.jsx
+    │   │   └── ChallengeMode.jsx
+    │   ├── data/
+    │   │   ├── wordCollection.js  Dictionary entries
+    │   │   └── wordThemes.js      Theme descriptions and word groups
+    │   ├── pages/           App screens and page-specific styles
+    │   ├── App.jsx          App state and hash-based navigation
+    │   ├── main.jsx         React entry point
+    │   └── *.css            Global, brand, and theme styles
+    ├── index.html           Vite HTML entry point
+    ├── package.json         Scripts and dependencies
+    ├── package-lock.json    Locked dependency versions
+    ├── eslint.config.js     ESLint configuration
+    └── vite.config.js       Vite configuration
+```
+
+Run the development, lint, build, and preview commands from inside `WORDZIE/`. The production output is created in `WORDZIE/dist/` relative to the repository root.
+
+## Vocabulary data
+
+Dictionary entries live in `WORDZIE/src/data/wordCollection.js`, organized by starting letter. An entry typically contains a word, definition, synonyms, antonyms, and example sentences. Some fields can be empty when that information is unavailable.
+
+Theme definitions are maintained in `WORDZIE/src/data/wordThemes.js`. Their word names correspond to dictionary entries and are resolved against the vocabulary data by the app.
+
+## Navigation and browser storage
+
+Wordzie uses hash-based client-side navigation, for example `/#view=wordTales` or `/#view=rounds&letter=A`. Browser back and forward navigation is supported; no server-side router is needed.
+
+Saved words, marked study progress, the appearance preference, and Word Detective's best score are kept in the current browser profile using `localStorage`. There is no account system, backend database, or API key requirement.
+
+## Privacy
+
+The app runs in the browser and stores its current user data locally. Do not commit passwords, API keys, private deployment settings, or personal contact information to the repository.
